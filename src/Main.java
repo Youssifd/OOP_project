@@ -2,8 +2,6 @@ import java.util.Scanner;
 
 import Traffic.Traffic_Lights;
 
-import static java.lang.System.out;
-
 import java.io.*;
 
 public class Main {
