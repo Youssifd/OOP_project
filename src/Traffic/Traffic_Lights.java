@@ -1,6 +1,7 @@
 package Traffic;
 
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Traffic_Lights implements Runnable {
@@ -103,7 +104,49 @@ public class Traffic_Lights implements Runnable {
         return ID;
     }
 
+    public String getLocation() {
+        return Location;
+    }
+
     public int getDuration() {
         return Duration;
+    }
+    public void Details() {
+        System.out.println("ID: " + ID);
+        System.out.println("Location: " + Location);
+        System.out.println("Status: " + Status);
+        System.out.println("Duration: " + Duration);
+    }
+    public static int  checkDuration(int Duration){
+        if(Duration<=1){
+            System.out.println("Invalid Duration :(");
+            System.out.println("Enter Duration: ");
+            Duration = input.nextInt();
+            checkDuration(Duration); //Recursion to enter a valid Duration
+
+        }
+        return Duration;
+    }
+    public static  void addTrafficLight(ArrayList<Traffic_Lights> Traffic_Lights){
+        System.out.println("Enter Location: ");
+        String Location = input.next();
+        String Status="";
+        System.out.println("Enter Duration(greater than 1): ");
+        int Duration = input.nextInt();
+
+        Duration= Traffic.Traffic_Lights.checkDuration(Duration);
+
+        System.out.println("1-Red\n2-Yellow\n3-Green\nEnter Status: ");
+        int choice = input.nextInt(); //check valid from admin class
+
+        if(choice==1 ){
+            Status="Red";
+        }else if(choice==2){
+          Status= "Yellow";
+        }else if(choice==3){
+            Status="Green";
+        }
+            Traffic_Lights.add(new Traffic_Lights(Location, Duration, Status));
+
     }
 }
