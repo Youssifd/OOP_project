@@ -20,9 +20,6 @@ package Traffic;
 
         }
 
-        public Traffic_Violation(java.lang.String number, java.lang.String number1, java.lang.String overspeed, java.lang.String number2, double fineAmount) {
-        }
-
         public String getTracksViolationID() {
             return TracksViolationID;
         }
