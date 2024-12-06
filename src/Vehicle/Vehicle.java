@@ -1,15 +1,19 @@
 
 package Vehicle;
+
 import java.util.ArrayList;
 import java.util.Scanner;
+
 public class Vehicle {
-    
-    private String id; 
-    private String type; 
-    private String licensePlate; 
-    private String owner; 
+
+    private String id;
+    private String type;
+    private String licensePlate;
+    private String owner;
+    public ArrayList<Traffic_Violation> TV = new ArrayList<>();
     public static int counter = 0;
- static String licensePlates = ""; 
+    static String licensePlates = "";
+
     // Constructor
     public Vehicle(String type, String licensePlate, String owner) {
         counter++;
@@ -22,6 +26,7 @@ public class Vehicle {
         this.licensePlate = licensePlate;
         this.owner = owner;
     }
+
     // Getters
     public String getId() {
         return id;
@@ -38,7 +43,7 @@ public class Vehicle {
     public String getOwner() {
         return owner;
     }
-    
+
     public static void addVehicles(ArrayList<Vehicle> vehicles) {
         Scanner scanner = new Scanner(System.in);
         boolean continueInput = true;
@@ -55,14 +60,14 @@ public class Vehicle {
                 if (licensePlates.contains("," + licensePlate + ",")) {
                     System.out.println("This license plate is already used. Please enter a unique one.");
                 } else {
-                    break; 
+                    break;
                 }
             }
 
             System.out.println("Enter owner name:");
             String owner = scanner.nextLine();
 
-            
+
             Vehicle vehicle = new Vehicle(type, licensePlate, owner);
             vehicles.add(vehicle);
             System.out.println("Vehicle added: " + vehicle);
@@ -73,9 +78,9 @@ public class Vehicle {
                 continueInput = false;
             }
         }
-        
+
     }
- 
+
 }
 
 

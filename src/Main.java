@@ -1,6 +1,7 @@
 import Admin.*;
+import Area.Traffic_Lights;
 import Area.Zone;
-
+import File_function.File_Processing;
 import java.io.Console;
 import java.util.ArrayList;
 
@@ -85,7 +86,15 @@ public class Main {
     }
 
     public static void main(String[] args) {
-
+        ArrayList<Zone> zones = new ArrayList<>();
+        File_Processing.Load_Zones(zones);
+        for(Zone zone : zones) {
+            zone.getinfo();
+            for (Traffic_Lights traffic_light : zone.traffic_light) {
+                traffic_light.Details();
+            }
+        }
+        File_Processing.Save_Zones(zones);
 
 
     }

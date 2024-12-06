@@ -12,9 +12,9 @@ public class Traffic_Lights implements Runnable {
      */
     public static Scanner input = new Scanner(System.in);
     public static int Traffic_counter = 0;
-    int  redTime = 25;
-    int greenTime = 20;
-    int yellowTime = 5;
+    public int  redTime = 25;
+    public int greenTime = 20;
+    public int yellowTime = 5;
     private final String ID;
     private String Location;
     public String Status;//Red/Green/Yellow
@@ -34,12 +34,15 @@ public class Traffic_Lights implements Runnable {
         this.Status = Status;
     }
 
-    public Traffic_Lights(String ID, String Location, int Duration, String Status) {
+    public Traffic_Lights(String ID, String Location, int Duration, String Status ,int[]arr ) {
         this.ID = ID;
         ID = ID.split("-")[1];
         this.Location = Location;
         this.Duration = Duration;
         this.Status = Status;
+        this.redTime = arr[0];
+        this.yellowTime = arr[1];
+        this.greenTime = arr[2];
         Traffic_counter = Integer.parseInt(ID);
     }
 
@@ -140,9 +143,10 @@ public class Traffic_Lights implements Runnable {
         return Duration;
     }
 
-    public static void addTrafficLight(ArrayList<Traffic_Lights> Traffic_Lights) {
-        System.out.println("Enter Location: ");
-        String Location = input.next();
+    public static void addTrafficLight(ArrayList<Traffic_Lights> Traffic_Lights,String location) {
+       // System.out.println("Enter Location: ");
+        int temp= Traffic_Lights.size()+1;
+        String Location = location + "-"+temp;
         String Status = "";
         System.out.println("Enter Duration(greater than 1): ");
         int Duration = input.nextInt();

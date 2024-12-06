@@ -41,7 +41,7 @@ public class Zone {
         System.out.println("Zone Location: "+Location);
     }
     public void addTrafficLight(){
-        Traffic_Lights.addTrafficLight(traffic_light);
+        Traffic_Lights.addTrafficLight(traffic_light,Location);
     }
     public void removeTrafficLight(){
         Traffic_Lights.delete(traffic_light);

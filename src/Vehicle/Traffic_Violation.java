@@ -9,10 +9,10 @@ import java.util.ArrayList;
 public  class Traffic_Violation{
 
         private String  TracksViolationID ;
-        private  String Vehicle_ID;
+        private final String Vehicle_ID;
         private String Violation_type;
         private String date;
-        private    double fine_amount;
+        private double fine_amount;
         public Traffic_Violation(String TracksViolationID,String Vehicle_ID,
                                 String Violation_type,String date,double fine_amount ){
             this.TracksViolationID=TracksViolationID;
@@ -33,10 +33,6 @@ public  class Traffic_Violation{
 
         public String getVehicle_ID() {
             return Vehicle_ID;
-        }
-
-        public void setVehicle_ID(String vehicle_ID) {
-            Vehicle_ID = vehicle_ID;
         }
 
         public String getViolation_type() {
