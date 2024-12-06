@@ -3,12 +3,23 @@ import  java.util.ArrayList;
 public class Zone {
 
     public ArrayList <Traffic_Lights> traffic_light = new ArrayList<>();
+    static  int ZoneCounter=0;
     private final String ID;
     private final String Name;
     private final String Location;
 
+    public Zone( String Name, String Location) {
+        ZoneCounter++;
+        if(ZoneCounter<10) this.ID = "Z-00"+ZoneCounter;
+        else if (ZoneCounter<100) this.ID = "Z-0"+ZoneCounter;
+        else this.ID = "Z-"+ZoneCounter;
+        this.Name = Name;
+        this.Location = Location;
+    }
     public Zone(String ID, String Name, String Location) {
+        //for loading from file
         this.ID = ID;
+        ZoneCounter=Integer.parseInt(ID.split("-")[1]);
         this.Name = Name;
         this.Location = Location;
     }
@@ -23,6 +34,11 @@ public class Zone {
 
     public String getID() {
         return ID;
+    }
+    public void getinfo(){
+        System.out.println("Zone ID: "+ID);
+        System.out.println("Zone Name: "+Name);
+        System.out.println("Zone Location: "+Location);
     }
     public void addTrafficLight(){
         Traffic_Lights.addTrafficLight(traffic_light);

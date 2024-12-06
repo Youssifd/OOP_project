@@ -1,37 +1,16 @@
-import Admin.*;
+import Admin.Admin;
+import Admin.Exc;
 import Area.Zone;
 
-import java.io.Console;
 import java.util.ArrayList;
-
 import java.util.Scanner;
 
 
-public class Main {
+public class Draft {
     public static Scanner input = new Scanner(System.in);
-    public static  void hide_pass(){
-        Console console = System.console();
-
-        if (console == null) {
-            System.out.println("No console available");
-            return;
-        }
-
-        // قراءة كلمة المرور باستخدام console.readPassword() لإخفائها
-        char[] passwordArray = console.readPassword("Enter your password: ");
-
-        // تحويل كلمة المرور إلى سلسلة نصية
-        String password = new String(passwordArray);
-
-        System.out.println("You entered a password of length: " + password.length());
-        System.out.println("The password is: " + password);
-        System.out.println();
-    }
-
     public static void AdminPage(ArrayList<Zone> zones/*,ArrayList<officer_class>*/, String AccName) {
         System.out.println("Welcome " + AccName);
         System.out.println("1- Add Zone\n2- modify Zone\n3- Traffic Report\n4- Add new admin\n5- Logout");
-        //6- inbox for messages
         int choice = 0;
         choice = Exc.infinite(choice, 1, 1);
         switch (choice) {
@@ -82,12 +61,11 @@ public class Main {
                 break;
 
         }
+        /*if (choice == 1) {
+            Admin.addZone(zones);
+        }*/
+
+
     }
-
-    public static void main(String[] args) {
-
-
-
-    }
-
 }
+

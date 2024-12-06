@@ -163,7 +163,7 @@ public class Traffic_Lights implements Runnable {
 
     }
     public static  void update(ArrayList<Traffic_Lights> trafficLightsList) {
-        String Location;
+        String Location; //replace with ID
         int s=0;
         boolean flag = false;
         int index=0;
@@ -172,6 +172,8 @@ public class Traffic_Lights implements Runnable {
             Location = input.next();
             for (int i = 0; i < trafficLightsList.size(); i++) {
                 if (trafficLightsList.get(i).getLocation().equals(Location)) {
+                    // location not unique -> must be Zone location + special char (e.g. '-')
+                    // or use ID instead of location
                     flag = true;
                     index=i;
                     break;
@@ -222,7 +224,7 @@ public class Traffic_Lights implements Runnable {
     }
     public static void delete(ArrayList<Traffic_Lights> trafficLightsList)
     {
-        String Location;
+        String Location; //replace with ID
         boolean flag = false;
         while (!flag) {
             System.out.print("Enter Location: ");

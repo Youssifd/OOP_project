@@ -1,8 +1,0 @@
-ID,Location,Duration,Status
-TL-01,Cairo,10,Red
-TL-02,Alex,20,Green
-TL-03,Giza,30,Yellow
-TL-04,Aswan,40,Red
-TL-05,Luxor,50,Green
-TL-06,Suez,60,Yellow
-TL-07,Ismailia,70,Red
