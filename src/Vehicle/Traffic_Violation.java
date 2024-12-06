@@ -1,4 +1,4 @@
-package Traffic;
+package Vehicle;
 
 
 import Admin.Admin;

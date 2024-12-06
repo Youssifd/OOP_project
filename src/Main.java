@@ -1,8 +1,6 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
-import Traffic.Traffic_Lights;
-
-import java.io.*;
 
 public class Main {
     public static Scanner input = new Scanner(System.in);
@@ -16,4 +14,5 @@ public class Main {
     public static void main(String[] args) {
 
     }
+
 }

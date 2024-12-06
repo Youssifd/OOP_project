@@ -1,7 +1,8 @@
-package Traffic;
+package Area;
+
 
 import Admin.*;
-import java.util.ArrayList;
+        import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Traffic_Lights implements Runnable {
@@ -14,7 +15,7 @@ public class Traffic_Lights implements Runnable {
     int  redTime = 25;
     int greenTime = 20;
     int yellowTime = 5;
-    private String ID;
+    private final String ID;
     private String Location;
     public String Status;//Red/Green/Yellow
     private int Duration;
@@ -146,7 +147,7 @@ public class Traffic_Lights implements Runnable {
         System.out.println("Enter Duration(greater than 1): ");
         int Duration = input.nextInt();
 
-        Duration = Traffic.Traffic_Lights.checkDuration(Duration);
+        Duration = Area.Traffic_Lights.checkDuration(Duration);
 
         System.out.println("1-Red\n2-Yellow\n3-Green\nEnter Status: ");
         int choice = input.nextInt(); //check valid from admin class
@@ -180,44 +181,64 @@ public class Traffic_Lights implements Runnable {
                 System.out.println("Invalid Location");
             }
         }
+        System.out.println("1-Edit Time\n2-Edit Status\nEnter Choice: ");
+        s=Exc.infinite(s,2,1);
+        if(s==1)
+        {
+            System.out.println("1-Red\n2-Yellow\n3-Green\nEnter Status: ");
+            s=Exc.infinite(s,3,1);
+            System.out.println("Enter Duration: ");
+            int Duration = input.nextInt();
+            Duration = Traffic_Lights.checkDuration(Duration);
+            switch (s) {
+                case 3:
+                    trafficLightsList.get(index).EditTimeLights(Duration,"Green");
+                    break;
+                case 2:
+                    trafficLightsList.get(index).EditTimeLights(Duration,"Yellow");
+                    break;
+                case 1:
+                    trafficLightsList.get(index).EditTimeLights(Duration,"Red");
+                    break;
+            }
+        }
+        else
         if (flag) {
             System.out.println("1-Red\n2-Yellow\n3-Green\nEnter Status: ");
             s=Exc.infinite(s,3,1);
             switch (s) {
                 case 3:
-                    trafficLightsList.get(index).Status = "Green";
-                    trafficLightsList.get(index).Duration= 25;
+                    trafficLightsList.get(index).ConfigurationByAdmin(trafficLightsList.get(index).greenTime,"Green");
                     break;
                 case 2:
-                    trafficLightsList.get(index).Status = "Yellow";
-                    trafficLightsList.get(index).Duration = 5;
+                    trafficLightsList.get(index).ConfigurationByAdmin(trafficLightsList.get(index).yellowTime,"Yellow");
                     break;
                 case 1:
-                    trafficLightsList.get(index).Status = "Red";
-                    trafficLightsList.get(index).Duration = 20;
+                    trafficLightsList.get(index).ConfigurationByAdmin(trafficLightsList.get(index).redTime,"Red");
                     break;
             }
         }
 
     }
-public static void delete(ArrayList<Traffic_Lights> trafficLightsList)
-{
-    String Location;
-    boolean flag = false;
-    while (!flag) {
-        System.out.print("Enter Location: ");
-        Location = input.next();
-        for (int i = 0; i < trafficLightsList.size(); i++) {
-            if (trafficLightsList.get(i).getLocation().equals(Location)) {
-                flag = true;
-                trafficLightsList.remove(i);
-                break;
+    public static void delete(ArrayList<Traffic_Lights> trafficLightsList)
+    {
+        String Location;
+        boolean flag = false;
+        while (!flag) {
+            System.out.print("Enter Location: ");
+            Location = input.next();
+            for (int i = 0; i < trafficLightsList.size(); i++) {
+                if (trafficLightsList.get(i).getLocation().equals(Location)) {
+                    flag = true;
+                    trafficLightsList.remove(i);
+                    break;
+                }
+            }
+            if (!flag) {
+                System.out.println("Invalid Location");
             }
         }
-        if (!flag) {
-            System.out.println("Invalid Location");
-        }
     }
-}
 
 }
+

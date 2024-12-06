@@ -1,6 +1,6 @@
 package Admin;
 import java.util.ArrayList;
-import Traffic.*;
+import Vehicle.Traffic_Violation;
 public class TrafficReport {
     public static void generateHighDensityZonesReport(ArrayList<Traffic_Violation> traffic_Violation) {
         ArrayList<String> zones = new ArrayList<>();
