@@ -2,7 +2,7 @@ package Area;
 import  java.util.ArrayList;
 public class Zone {
 
-    ArrayList<Traffic_Lights> traffic_light = new ArrayList<>();
+    public ArrayList <Traffic_Lights> traffic_light = new ArrayList<>();
     private final String ID;
     private final String Name;
     private final String Location;

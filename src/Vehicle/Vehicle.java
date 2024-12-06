@@ -1,0 +1,81 @@
+
+package Vehicle;
+import java.util.ArrayList;
+import java.util.Scanner;
+public class Vehicle {
+    
+    private String id; 
+    private String type; 
+    private String licensePlate; 
+    private String owner; 
+    public static int counter = 0;
+ static String licensePlates = ""; 
+    // Constructor
+    public Vehicle(String type, String licensePlate, String owner) {
+        counter++;
+        if (counter < 10) {
+            this.id = "VH-0" + counter;
+        } else {
+            this.id = "VH-" + counter;
+        }
+        this.type = type;
+        this.licensePlate = licensePlate;
+        this.owner = owner;
+    }
+    // Getters
+    public String getId() {
+        return id;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public String getLicensePlate() {
+        return licensePlate;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+    
+    public static void addVehicles(ArrayList<Vehicle> vehicles) {
+        Scanner scanner = new Scanner(System.in);
+        boolean continueInput = true;
+
+        while (continueInput) {
+            System.out.println("Enter vehicle type (Car, Truck, Bike):");
+            String type = scanner.nextLine();
+
+            String licensePlate;
+            while (true) {
+                System.out.println("Enter license plate:");
+                licensePlate = scanner.nextLine();
+
+                if (licensePlates.contains("," + licensePlate + ",")) {
+                    System.out.println("This license plate is already used. Please enter a unique one.");
+                } else {
+                    break; 
+                }
+            }
+
+            System.out.println("Enter owner name:");
+            String owner = scanner.nextLine();
+
+            
+            Vehicle vehicle = new Vehicle(type, licensePlate, owner);
+            vehicles.add(vehicle);
+            System.out.println("Vehicle added: " + vehicle);
+
+            System.out.println("Do you want to add another vehicle? (yes/no):");
+            String response = scanner.nextLine();
+            if (!response.equalsIgnoreCase("yes")) {
+                continueInput = false;
+            }
+        }
+        
+    }
+ 
+}
+
+
