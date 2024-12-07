@@ -92,6 +92,7 @@ public class Main {
             zone.getinfo();
             for (Traffic_Lights traffic_light : zone.traffic_light) {
                 traffic_light.Details();
+                traffic_light.Details();
             }
         }
         File_Processing.Save_Zones(zones);
