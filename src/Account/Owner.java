@@ -14,6 +14,8 @@ public class Owner extends Account {
 }*/
 package Account;
 
+import Admin.Admin;
+
 import java.util.ArrayList;
 
 public class Owner extends Account {
@@ -62,6 +64,22 @@ public class Owner extends Account {
     public ArrayList<String> getMessages() {
         return messages;
     }
+    public static String UniqueID(ArrayList <Owner> accounts) {
+        String id;
+        System.out.print("Enter a unique ID: ");
+        while (true) {
+            id = Admin.cin.nextLine();
+            String finalId = id;
+            boolean isUnique = accounts.stream().noneMatch(owner -> owner.getID().equals(finalId));
+
+            if (isUnique) {
+                break;
+            }
+            System.out.println("This ID is already taken. Please enter a different ID: ");
+        }
+        return id;
+    }
+
 
     // Method to display owner details
     public void displayOwnerDetails() {

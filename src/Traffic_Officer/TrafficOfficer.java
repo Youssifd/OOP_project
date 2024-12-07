@@ -1,5 +1,6 @@
 package Traffic_Officer;
 import Account.*;
+import Admin.Admin;
 import Vehicle.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +10,8 @@ public class TrafficOfficer extends Account implements display {
     private ArrayList<Traffic_Violation> violations;//list ->ArrayList
 
     public TrafficOfficer(String Id, String Name, String Email, String Password, String Contact, String assignedZone) {
-        super(Id, Name, Email, Password);
+        super(Id, Email, Password, Name);
+
         super.Contact = Contact;//temp
         if (assignedZone == null || assignedZone.trim().isEmpty()) {
             this.assignedZone = "General Zone";
@@ -101,5 +103,23 @@ public class TrafficOfficer extends Account implements display {
 //            System.out.println("Congratulations " + Name + "! You Have earned 50 reward points. Total: " + rewardPoints);
 //        }
 //    }
+
     }
+    public static String UniqueID(ArrayList <TrafficOfficer> accounts) {
+        String id;
+        System.out.print("Enter a unique ID: ");
+        while (true) {
+            id = Admin.cin.nextLine();
+            String finalId = id;
+            boolean isUnique = accounts.stream().noneMatch(admin -> admin.getID().equals(finalId));
+
+            if (isUnique) {
+                break;
+            }
+            System.out.println("This ID is already taken. Please enter a different ID: ");
+        }
+        return id;
+    }
+
 }
+
