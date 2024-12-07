@@ -13,7 +13,7 @@ public class File_Processing {
     public static void Sava_Data() {}
 
     public static void Save_Zones(ArrayList<Zone> zones) {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("File/ZoneDate.txt"))) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("File/ZoneData.txt"))) {
             for (Zone zone : zones) {
                 bw.write(zone.getID() + "," + zone.getName() + "," + zone.getLocation() + "," + zone.traffic_light.size());
                 bw.newLine();
@@ -31,7 +31,7 @@ public class File_Processing {
     }
 
     public static void Load_Zones(ArrayList<Zone> zones) {
-        try (BufferedReader br = new BufferedReader(new FileReader("File/ZoneDate.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("File/ZoneData.txt"))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(",");
