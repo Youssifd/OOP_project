@@ -8,7 +8,7 @@ import java.util.Scanner;
 import static java.lang.System.out;
 public class Admin extends Account {
     public static int Admincounter =0;
-    public String Contact;
+  //  public String Contact;
 
     public static Scanner cin=new Scanner(System.in);
     public Admin(String id,String Name,String email,String Passowrd,String Contact){

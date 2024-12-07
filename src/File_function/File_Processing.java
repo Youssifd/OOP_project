@@ -64,7 +64,7 @@ public class File_Processing {
     }
 
     public static void Save_Accounts(ArrayList<Admin> admins, ArrayList<TrafficOfficer> officers, ArrayList<Owner> owners) {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("File/AccountData.txt"))) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("File/AccData.txt"))) {
             bw.write(admins.size() + "," + officers.size() + "," + owners.size());
             bw.newLine();
             for (Admin admin : admins) {
@@ -80,9 +80,10 @@ public class File_Processing {
                 bw.newLine();
                 for (Vehicle vehicle : owner.vehicle) {
                     // bw.write(vehicle.getPlateNumber() + "," + vehicle.getBrand() + "," + vehicle.getModel() + "," + vehicle.getColor() + "," + vehicle.getYear());
-                    bw.write(vehicle.getId() + "," + vehicle.getType() + "," + vehicle.getLicensePlate() + "," + vehicle.TV.size());
+                    bw.write(vehicle.getId() + "," + vehicle.getType() + "," + vehicle.getLicensePlate() + ","+owner.Name+"," + vehicle.TV.size());
+                   bw.newLine();
                     for (Traffic_Violation tv : vehicle.TV) {
-                        bw.write(tv.getViolationID() + "," + tv.getViolation_type() + "," + tv.getVehicle_ID() + "," + tv.getDate() + "," + tv.getFine_amount() + "," + tv.Status);
+                        bw.write(tv.getViolationID() + "," + tv.getViolation_type() + "," + tv.getVehicle_ID() + "," + tv.getDate() + "," + tv.getFine_amount() + ","+tv.getWhoIssued()+"," + tv.Status);
                         bw.newLine();
                     }
 
@@ -97,7 +98,7 @@ public class File_Processing {
     }
 
     public static void Load_Accounts(ArrayList<Admin> admins, ArrayList<TrafficOfficer> officers, ArrayList<Owner> owners) {
-        try (BufferedReader br = new BufferedReader(new FileReader("File/AccountData.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("File/AccData.txt"))) {
             String line = br.readLine();
             String[] data = line.split(",");
             int admin_count = Integer.parseInt(data[0]);
@@ -129,9 +130,10 @@ public class File_Processing {
                         line = br.readLine();
                         data = line.split(",");
                         Traffic_Violation tv = new Traffic_Violation(data[0], data[1], data[2], data[3], Double.parseDouble(data[4]), data[5], data[6]);
-                        owners.get(i).vehicle.get(j).TV.add(tv);
+                       vehicle.TV.add(tv);
                     }
-                    owners.get(i).vehicle.add(vehicle);
+                    owner.vehicle.add(vehicle);
+
                 }
                 owners.add(owner);
             }

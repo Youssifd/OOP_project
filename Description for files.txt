@@ -11,7 +11,7 @@ AccID, Name, Email,Password ,Contact
 **officer
 AccID, Name, Email, Password ,Contact,AssignedZone
 **owner
-AccID, Name, Email, Password ,Contact,Vehicle.Size
+AccID, Name, Email, Password ,Contact,Vehicle_Size
 ->Vehicle
 getId Type LicensePlate owner TV.size
 -->TV

@@ -12,7 +12,7 @@ public class TrafficOfficer extends Account implements display {
     public TrafficOfficer(String Id, String Name, String Email, String Password, String Contact, String assignedZone) {
         super(Id, Email, Password, Name);
 
-        super.Contact = Contact;//temp
+        this.Contact = Contact;
         if (assignedZone == null || assignedZone.trim().isEmpty()) {
             this.assignedZone = "General Zone";
         } else {

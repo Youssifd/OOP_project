@@ -1,7 +1,9 @@
 import Admin.*;
-import Area.Traffic_Lights;
-import Area.Zone;
+import Area.*;
 import File_function.File_Processing;
+import Traffic_Officer.TrafficOfficer;
+import Vehicle.*;
+import Account.Owner;
 import java.io.Console;
 import java.util.ArrayList;
 
@@ -86,16 +88,17 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        ArrayList<Zone> zones = new ArrayList<>();
-        File_Processing.Load_Zones(zones);
-        for(Zone zone : zones) {
-            zone.getinfo();
-            for (Traffic_Lights traffic_light : zone.traffic_light) {
-                traffic_light.Details();
-                traffic_light.Details();
-            }
-        }
-        File_Processing.Save_Zones(zones);
+        ArrayList<Admin>    Admins = new ArrayList<>();
+        ArrayList<TrafficOfficer> TrafficOfficers = new ArrayList<>();
+        ArrayList<Owner> owners = new ArrayList<>();
+        /*Admins.add(new Admin("1", "Marwan", "<EMAIL>", "MS", "123"));
+        owners.add(new Owner("2", "<EMAIL>", "N", "you", "MS"));
+        TrafficOfficers.add(new TrafficOfficer("3", "MM", "<EMAIL>", "M", "w", "555555555555555"));
+        owners.get(0).vehicle.add(new Vehicle( "1", "1", "1", "1"));
+        owners.get(0).vehicle.get(0).TV.add(new Traffic_Violation("1", "1", "1", "1", 1, "1"));
+*/
+        File_Processing.Load_Accounts(Admins, TrafficOfficers, owners);
+        File_Processing.Save_Accounts(Admins, TrafficOfficers, owners);
 
 
     }

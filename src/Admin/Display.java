@@ -86,7 +86,7 @@ public class Display {
         ArrayList<Admin> Admins = new ArrayList<>();
         ArrayList<Owner> owners = new ArrayList<>();
 
-        Admins.add(new Admin("1", "Marwan", "<EMAIL>", "MS"));
+        Admins.add(new Admin("1", "Marwan", "<EMAIL>", "MS", "123"));
         owners.add(new Owner("2", "<EMAIL>", "N", "you", "MS"));
         TrafficOfficers.add(new TrafficOfficer("3", "MM", "<EMAIL>", "M", "w", "555555555555555"));
 
