@@ -1,8 +1,11 @@
 package Admin;
 import Account.*;
-import Area.Zone; // Ensure that the 'Zone' class is defined in the 'Area' package and accessible from this module.
-import Traffic_Officer.TrafficOfficer;
 
+import Area.*; // Ensure that the 'Zone' class is defined in the 'Area' package and accessible from this module.
+import Traffic_Officer.TrafficOfficer;
+import Vehicle.Traffic_Violation;
+
+import java.awt.geom.Area;
 import java.util.ArrayList;
 import java.util.Scanner;
 import static java.lang.System.out;
@@ -114,10 +117,59 @@ public class Admin extends Account {
         }
         return id;
     }
+protected void changePass(ArrayList<Admin> admins,int index)
+{
+    out.println("Note that you will need to login again to use this feature and you can change your password only.");
+out.print("Enter your new password: ");
+admins.get(index).Password=Admin.cin.nextLine();
+out.println("Password changed successfully!");
+}
+public static void AdminPage(ArrayList<Admin> admin,int index, ArrayList<Owner> owner, ArrayList<TrafficOfficer> TrafficOfficer,ArrayList<Zone> Zone,int i,ArrayList<Traffic_Violation> traffic_Violation, String by) {
 
+    System.out.println("Welcome " + admin.get(index).Name + "!" );
+    System.out.println("1- Add traffic lights and configure durations.\n2- update traffic lights and configure durations.\3- delete traffic lights and configure durations.\n" +
+            "4- Add zone.\n5- View violations by vehicle or by zone.\n6- Generate traffic reports\n"
+    + "7- Add new Admin.\n8- change my password.\n9- Add new Traffic Officer.\n10- Logout.\n");
+int a=0;
+a= Exc.infinite(a,10,1);
+switch (a)
+{
+    case 1:
+        Zone.get(i).addTrafficLight();
+    break;
+    case 2:
+        Zone.get(i).editTrafficLight();
+break;
+    case 3:
+        Zone.get(i).removeTrafficLight();
+        break;
+    case 4:
+Admin.addZone(Zone);
+break;
+    case 5:
+        Traffic_Violation.View_violations(traffic_Violation,by);
+        break;
+    case 6:
+TrafficReport.generateFrequentViolationsReport(traffic_Violation);
+break;
+    case 7:
+    admin.get(index).addAdmins(admin,owner);
+    break;
+    case 8:
+    admin.get(index).changePass(admin,index);
+break;
+    case 9:
+admin.get(index).AddOfficer(TrafficOfficer);
+break;
+    case 10:
+//logout();
+break;
+}
+
+}
     @Override
     public String toString() {
-        return "Admin name: " + Name;
+        return "Admin name: " + this.Name;
     }
 
 }

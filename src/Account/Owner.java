@@ -19,6 +19,8 @@ import Vehicle.Vehicle;
 
 import java.util.ArrayList;
 
+import static java.lang.System.out;
+
 public class Owner extends Account {
 
     //  contact number of the owner
@@ -81,7 +83,12 @@ public class Owner extends Account {
     }
 
 
-
+    protected void changePass(ArrayList<Owner> Owners,int index)
+    {
+        out.print("Enter your new password: ");
+        Owners.get(index).Password=Admin.cin.nextLine();
+        out.println("Password changed successfully!");
+    }
     // Method to display owner details
     
     public void displayOwnerDetails() {

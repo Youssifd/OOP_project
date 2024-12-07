@@ -5,6 +5,9 @@ import Vehicle.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import static java.lang.System.out;
+
 public class TrafficOfficer extends Account implements display {
     private String assignedZone;
     private ArrayList<Traffic_Violation> violations;//list ->ArrayList
@@ -120,6 +123,11 @@ public class TrafficOfficer extends Account implements display {
         }
         return id;
     }
-
+    protected void changePass(ArrayList<TrafficOfficer> TrafficOfficer,int index)
+    {
+        out.print("Enter your new password: ");
+        TrafficOfficer.get(index).Password=Admin.cin.nextLine();
+        out.println("Password changed successfully!");
+    }
 }
 
