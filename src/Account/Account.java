@@ -10,7 +10,7 @@ public abstract class Account {
     // if gmail search for user object(owner) , if admin search for admin object(admin) , if officer search for officer object
     protected String Password;
     public String Name;
-    protected String Contact;
+    public String Contact;
 
     public Account(String ID, String Email, String Password, String Name) {
         this.id = ID;
@@ -20,7 +20,7 @@ public abstract class Account {
         Acc_counter++;
     }
 
-    protected String getPassword() {
+    public String getPassword() {
         return this.Password;
     }
 

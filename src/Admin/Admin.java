@@ -8,10 +8,13 @@ import java.util.Scanner;
 import static java.lang.System.out;
 public class Admin extends Account {
     public static int Admincounter =0;
+    public String Contact;
 
     public static Scanner cin=new Scanner(System.in);
-    public Admin(String id,String Name,String email,String Passowrd) {
-        super(id, email, Passowrd, Name);Admincounter++;
+    public Admin(String id,String Name,String email,String Passowrd,String Contact){
+        super(id, email, Passowrd, Name);
+        Admincounter++;
+        this.Contact=Contact;
     }
 
     public ArrayList<TrafficOfficer> AddOfficer(ArrayList<TrafficOfficer> arr){
@@ -48,7 +51,7 @@ public class Admin extends Account {
         out.println("Zone ID: "+zone.getID()+",added successfully!");
     }
     public ArrayList<Admin> addAdmins(ArrayList<Admin> admins, ArrayList<Owner> owners) {
-        String id, name, email, password;
+        String id, name, email, password, contact;
         char hasAccount, continueAdding;
 
         System.out.print("Does this Admin already have an account? (y/n): ");
@@ -63,10 +66,11 @@ public class Admin extends Account {
                 if (owner.getID().equals(id)) {
                     name = owner.Name;
                     email = owner.Email;
+                    contact = owner.Contact;
                     System.out.print("Enter their password: ");
                     password = Admin.cin.nextLine();
 
-                    admins.add(new Admin(id, name, email, password));
+                    admins.add(new Admin(id, name, email, password, contact));
                     System.out.println("Admin added successfully!");
                     return admins;
                 }
@@ -82,8 +86,10 @@ public class Admin extends Account {
                 password = Admin.cin.nextLine();
                 System.out.print("Enter your Name: ");
                 name = Admin.cin.nextLine();
+                System.out.print("Enter your Contact_info: ");
+                contact = Admin.cin.nextLine();
 
-                admins.add(new Admin(id, name, email, password));
+                admins.add(new Admin(id, name, email, password, contact));
                 System.out.println("Account created successfully!");
 
                 System.out.print("Do you want to create another account? (y/n): ");

@@ -26,6 +26,14 @@ public class Vehicle {
         this.licensePlate = licensePlate;
         this.owner = owner;
     }
+    public  Vehicle (String id, String type, String licensePlate, String owner) {
+      //for loading data
+        this.id = id;
+        this.type = type;
+        this.licensePlate = licensePlate;
+        this.owner = owner;
+    }
+
 
     // Getters
     public String getId() {

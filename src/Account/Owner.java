@@ -15,6 +15,7 @@ public class Owner extends Account {
 package Account;
 
 import Admin.Admin;
+import Vehicle.Vehicle;
 
 import java.util.ArrayList;
 
@@ -24,7 +25,7 @@ public class Owner extends Account {
     Boolean isVerified = false; // Verification status (set by the admin)
     ArrayList<String> vehicles; // List to store the IDs of vehicles ( owned by this owner )
     ArrayList<String> messages; // List to store messages sent to the owner
-
+    public ArrayList<Vehicle> vehicle = new ArrayList<Vehicle>();
     // 0# The Constructor
 
     public Owner(String ID, String Email, String Password, String Name, String Contact_info) {
@@ -79,6 +80,7 @@ public class Owner extends Account {
         }
         return id;
     }
+
 
 
     // Method to display owner details
