@@ -1,14 +1,15 @@
-package TrafficOfficer;
+package Traffic_Officer;
 import Account.*;
 import Vehicle.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 public class TrafficOfficer extends Account implements display {
     private String assignedZone;
-    private List<Traffic_Violation  > violations ;
+    private ArrayList<Traffic_Violation> violations ;//list ->ArrayList
 
     public TrafficOfficer(String Id , String Name , String Email, String Password,String Contact ,String assignedZone) {
-        super(Id, Name, Email, Password, Contact);
+        super(Id, Name, Email, Password);
+        super.Contact = Contact;//temp
         if (assignedZone == null || assignedZone.trim().isEmpty()) {
             this.assignedZone = "General Zone";
         } else {
@@ -29,18 +30,19 @@ public class TrafficOfficer extends Account implements display {
             System.out.println("Invalid violation! Cannot record.");
         }
         violations.add(violation);
-        System.out.println("Violation recorded successfully by officer: " + getName());
+        System.out.println("Violation recorded successfully by officer: " + Name);
     }
     @Override
     public void displayInfo() {
         System.out.println("================ Traffic Officer Info ================");
-        System.out.println("Traffic Officer ID: " + getId());
-        System.out.println("Name: " + getName());
-        System.out.println("Contact Info: " + getContact());
+        System.out.println("Traffic Officer ID: " + getID());//getid -> getID
+        System.out.println("Name: " + Name);//no getter for name
+        System.out.println("Contact Info: " + Contact);//no getter for contact
         System.out.println("Assigned Zone: " + assignedZone);
         System.out.println("Violations Recorded: " + violations.size());
         System.out.println("=====================================================");
     }
+
     public void viewViolations() {
         System.out.println("Enter 1 if you want view violations \nEnter 2 if you want violation by specific type  ");
         Scanner input = new Scanner(System.in);
@@ -51,7 +53,7 @@ public class TrafficOfficer extends Account implements display {
                     if (violations.isEmpty()) {
                         System.out.println("No violations recorded yet.");
                     } else {
-                        System.out.println("===== Violations Recorded by Officer " + getName() + " =====");
+                        System.out.println("===== Violations Recorded by Officer " + Name + " =====");//no getter for name
                         for (TrafficViolation violation : violations) {
                             System.out.println(violation);
                         }
