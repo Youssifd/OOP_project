@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Scanner;
 public class TrafficOfficer extends Account implements display {
     private String assignedZone;
-    private ArrayList<Traffic_Violation> violations ;//list ->ArrayList
+    private ArrayList<Traffic_Violation> violations;//list ->ArrayList
 
-    public TrafficOfficer(String Id , String Name , String Email, String Password,String Contact ,String assignedZone) {
+    public TrafficOfficer(String Id, String Name, String Email, String Password, String Contact, String assignedZone) {
         super(Id, Name, Email, Password);
         super.Contact = Contact;//temp
         if (assignedZone == null || assignedZone.trim().isEmpty()) {
@@ -18,6 +18,7 @@ public class TrafficOfficer extends Account implements display {
         }
         this.violations = new ArrayList<Traffic_Violation>();
     }
+
     public String getassignedZone() {
         return assignedZone;
     }
@@ -25,14 +26,15 @@ public class TrafficOfficer extends Account implements display {
     public void setassignedZone(String assignedZone) {
         this.assignedZone = assignedZone;
     }
-    public void recordvolation (Traffic_Violation violation)
-    {
+
+    public void recordvolation(Traffic_Violation violation) {
         if (violation == null) {
             System.out.println("Invalid violation! Cannot record.");
         }
         violations.add(violation);
         System.out.println("Violation recorded successfully by officer: " + Name);
     }
+
     @Override
     public void displayInfo() {
         System.out.println("================ Traffic Officer Info ================");
@@ -47,6 +49,7 @@ public class TrafficOfficer extends Account implements display {
     public void viewViolations() {
         System.out.println("Enter 1 if you want view violations \nEnter 2 if you want violation by specific type  ");
         Scanner input = new Scanner(System.in);
+        char c;
         do {
             int choise = input.nextInt();
             do {
@@ -82,14 +85,14 @@ public class TrafficOfficer extends Account implements display {
                         System.out.println("No violations found for type: " + type);
                     }
                     System.out.println("==================================================");
-                }else  {
+                } else {
                     System.out.println("Invalid number ! Please enter a valid numer 1 or 2 .");
                 }
 
-        } while (choise == 1 || choise == 2);
-        System.out.println("Do You Want opration again y|n");
-        char c=input.next().charAt(0);
-    }while (c == 'y'|| c == 'Y');
+            } while (choise == 1 || choise == 2);
+            System.out.println("Do You Want opration again y|n");
+            c = input.next().charAt(0);
+        } while (c == 'y' || c == 'Y');
 
 //    private int rewardPoints = 0;
 //    public void updateRewardPoints() {
@@ -98,5 +101,5 @@ public class TrafficOfficer extends Account implements display {
 //            System.out.println("Congratulations " + Name + "! You Have earned 50 reward points. Total: " + rewardPoints);
 //        }
 //    }
+    }
 }
-
