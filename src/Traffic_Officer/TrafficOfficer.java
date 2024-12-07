@@ -2,6 +2,7 @@ package Traffic_Officer;
 import Account.*;
 import Vehicle.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 public class TrafficOfficer extends Account implements display {
     private String assignedZone;
@@ -54,7 +55,7 @@ public class TrafficOfficer extends Account implements display {
                         System.out.println("No violations recorded yet.");
                     } else {
                         System.out.println("===== Violations Recorded by Officer " + Name + " =====");//no getter for name
-                        for (TrafficViolation violation : violations) {
+                        for (Traffic_Violation violation : violations) {
                             System.out.println(violation);
                         }
                         System.out.println("==========================================================");
@@ -70,7 +71,7 @@ public class TrafficOfficer extends Account implements display {
                     System.out.println("===== Searching for Violations of Type: " + type + " =====");
                     boolean found = false;
 
-                    for (TrafficViolation violation : violations) {
+                    for (Traffic_Violation violation : violations) {
                         if (violation.getViolation_type().equalsIgnoreCase(type)) {
                             System.out.println(violation);
                             found = true;
@@ -81,15 +82,14 @@ public class TrafficOfficer extends Account implements display {
                         System.out.println("No violations found for type: " + type);
                     }
                     System.out.println("==================================================");
-                } else {
+                }else  {
                     System.out.println("Invalid number ! Please enter a valid numer 1 or 2 .");
                 }
 
-            }
         } while (choise == 1 || choise == 2);
         System.out.println("Do You Want opration again y|n");
         char c=input.next().charAt(0);
-    }while (c == 'y'|| c == 'Y')
+    }while (c == 'y'|| c == 'Y');
 
 //    private int rewardPoints = 0;
 //    public void updateRewardPoints() {
