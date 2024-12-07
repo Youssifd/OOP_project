@@ -1,4 +1,4 @@
-package trifficofficer;
+package TrafficOfficer;
 
 public interface display {
     void displayInfo();

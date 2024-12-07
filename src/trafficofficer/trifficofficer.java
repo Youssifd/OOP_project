@@ -1,8 +1,7 @@
-package trifficofficer;
+package TrafficOfficer;
 import Account.*;
-import Traffic.*;
+import Vehicle.*;
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.Scanner;
 public class TrafficOfficer extends Account implements display {
     private String assignedZone;
@@ -17,11 +16,11 @@ public class TrafficOfficer extends Account implements display {
         }
         this.violations = new ArrayList<Traffic_Violation>();
     }
-    public String getAssignedZone() {
+    public String getassignedZone() {
         return assignedZone;
     }
 
-    public void setAssignedZone(String assignedZone) {
+    public void setassignedZone(String assignedZone) {
         this.assignedZone = assignedZone;
     }
     public void recordvolation (Traffic_Violation violation)
@@ -70,7 +69,7 @@ public class TrafficOfficer extends Account implements display {
                     boolean found = false;
 
                     for (TrafficViolation violation : violations) {
-                        if (violation.getViolationType().equalsIgnoreCase(type)) {
+                        if (violation.getViolation_type().equalsIgnoreCase(type)) {
                             System.out.println(violation);
                             found = true;
                         }
