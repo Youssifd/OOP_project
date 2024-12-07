@@ -84,6 +84,7 @@ public class Owner extends Account {
 
 
     // Method to display owner details
+    
     public void displayOwnerDetails() {
         System.out.println("Owner Name: " + Name);
         System.out.println("Contact Number: " + Contact_info);
