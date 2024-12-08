@@ -25,14 +25,20 @@ public class TrafficOfficer extends Account implements display {
     public void setassignedZone(String assignedZone) {
         this.assignedZone = assignedZone;
     }
-    public void recordvolation (Traffic_Violation violation)
+    public void recordvolation (Traffic_Violation violation,Vehicle vehicle)
     {
         if (violation == null) {
             System.out.println("Invalid violation! Cannot record.");
         }
+        // Add violation to the vehicle
         violations.add(violation);
         System.out.println("Violation recorded successfully by officer: " + Name);
+        vehicle.addViolation(violation);
+        System.out.println("Violation added to Vehicle with License Plate: " + vehicle.getLicensePlate());
     }
+
+
+}
     @Override
     public void displayInfo() {
         System.out.println("================ Traffic Officer Info ================");

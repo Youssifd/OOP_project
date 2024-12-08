@@ -1,11 +1,8 @@
 
 package Vehicle;
-
 import java.util.ArrayList;
 import java.util.Scanner;
-
 public class Vehicle {
-
     private String id;
     private String type;
     private String licensePlate;
@@ -13,7 +10,6 @@ public class Vehicle {
     public ArrayList<Traffic_Violation> TV = new ArrayList<>();
     public static int counter = 0;
     static String licensePlates = "";
-
     // Constructor
     public Vehicle(String type, String licensePlate, String owner) {
         counter++;
@@ -26,7 +22,6 @@ public class Vehicle {
         this.licensePlate = licensePlate;
         this.owner = owner;
     }
-
     // Getters
     public String getId() {
         return id;
@@ -43,7 +38,11 @@ public class Vehicle {
     public String getOwner() {
         return owner;
     }
-
+//    update by yousefelsayed
+    public void addViolation(Traffic_Violation violation) {
+        TV.add(violation);
+    }
+//       *******
     public static void addVehicles(ArrayList<Vehicle> vehicles) {
         Scanner scanner = new Scanner(System.in);
         boolean continueInput = true;
@@ -66,8 +65,6 @@ public class Vehicle {
 
             System.out.println("Enter owner name:");
             String owner = scanner.nextLine();
-
-
             Vehicle vehicle = new Vehicle(type, licensePlate, owner);
             vehicles.add(vehicle);
             System.out.println("Vehicle added: " + vehicle);
@@ -78,9 +75,7 @@ public class Vehicle {
                 continueInput = false;
             }
         }
-
     }
-
 }
 
 
