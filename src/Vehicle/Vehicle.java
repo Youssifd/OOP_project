@@ -23,10 +23,19 @@ public class Vehicle {
         this.owner = owner;
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     public  Vehicle (String id, String type, String licensePlate, String owner) {
       //for loading data
+=======
+
+    public Vehicle(String id, String type, String licensePlate, String owner) {
+        //for loading data
+>>>>>>> 137c46b01c2e7d10bff1e214598a31cd79e4d78c
         this.id = id;
+        id = id.split("-")[1];
+        if (Integer.parseInt(id) > counter)
+            counter = Integer.parseInt(id);
         this.type = type;
         this.licensePlate = licensePlate;
         this.owner = owner;

@@ -19,7 +19,9 @@ public class Zone {
     public Zone(String ID, String Name, String Location) {
         //for loading from file
         this.ID = ID;
-        ZoneCounter=Integer.parseInt(ID.split("-")[1]);
+        ID=ID.split("-")[1];
+        if(Integer.parseInt(ID)>ZoneCounter)
+            ZoneCounter=Integer.parseInt(ID);
         this.Name = Name;
         this.Location = Location;
     }
