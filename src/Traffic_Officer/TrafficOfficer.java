@@ -1,16 +1,21 @@
 package Traffic_Officer;
 import Account.*;
+import Admin.Admin;
 import Vehicle.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import static java.lang.System.out;
+
 public class TrafficOfficer extends Account implements display {
     private String assignedZone;
-    private ArrayList<Traffic_Violation> violations ;//list ->ArrayList
+    private ArrayList<Traffic_Violation> violations;//list ->ArrayList
 
-    public TrafficOfficer(String Id , String Name , String Email, String Password,String Contact ,String assignedZone) {
-        super(Id, Name, Email, Password);
-        super.Contact = Contact;//temp
+    public TrafficOfficer(String Id, String Name, String Email, String Password, String Contact, String assignedZone) {
+        super(Id, Email, Password, Name);
+
+        this.Contact = Contact;
         if (assignedZone == null || assignedZone.trim().isEmpty()) {
             this.assignedZone = "General Zone";
         } else {
@@ -18,6 +23,7 @@ public class TrafficOfficer extends Account implements display {
         }
         this.violations = new ArrayList<Traffic_Violation>();
     }
+
     public String getassignedZone() {
         return assignedZone;
     }
@@ -25,8 +31,13 @@ public class TrafficOfficer extends Account implements display {
     public void setassignedZone(String assignedZone) {
         this.assignedZone = assignedZone;
     }
+<<<<<<< HEAD
     public void recordvolation (Traffic_Violation violation,Vehicle vehicle)
     {
+=======
+
+    public void recordvolation(Traffic_Violation violation) {
+>>>>>>> 28a9d8050b9ea5ff5499b1bf03c0d81c6655adf6
         if (violation == null) {
             System.out.println("Invalid violation! Cannot record.");
         }
@@ -37,8 +48,11 @@ public class TrafficOfficer extends Account implements display {
         System.out.println("Violation added to Vehicle with License Plate: " + vehicle.getLicensePlate());
     }
 
+<<<<<<< HEAD
 
 }
+=======
+>>>>>>> 28a9d8050b9ea5ff5499b1bf03c0d81c6655adf6
     @Override
     public void displayInfo() {
         System.out.println("================ Traffic Officer Info ================");
@@ -53,6 +67,7 @@ public class TrafficOfficer extends Account implements display {
     public void viewViolations() {
         System.out.println("Enter 1 if you want view violations \nEnter 2 if you want violation by specific type  ");
         Scanner input = new Scanner(System.in);
+        char c;
         do {
             int choise = input.nextInt();
             do {
@@ -88,14 +103,14 @@ public class TrafficOfficer extends Account implements display {
                         System.out.println("No violations found for type: " + type);
                     }
                     System.out.println("==================================================");
-                }else  {
+                } else {
                     System.out.println("Invalid number ! Please enter a valid numer 1 or 2 .");
                 }
 
-        } while (choise == 1 || choise == 2);
-        System.out.println("Do You Want opration again y|n");
-        char c=input.next().charAt(0);
-    }while (c == 'y'|| c == 'Y');
+            } while (choise == 1 || choise == 2);
+            System.out.println("Do You Want opration again y|n");
+            c = input.next().charAt(0);
+        } while (c == 'y' || c == 'Y');
 
 //    private int rewardPoints = 0;
 //    public void updateRewardPoints() {
@@ -104,5 +119,28 @@ public class TrafficOfficer extends Account implements display {
 //            System.out.println("Congratulations " + Name + "! You Have earned 50 reward points. Total: " + rewardPoints);
 //        }
 //    }
+
+    }
+    public static String UniqueID(ArrayList <TrafficOfficer> accounts) {
+        String id;
+        System.out.print("Enter a unique ID: ");
+        while (true) {
+            id = Admin.cin.nextLine();
+            String finalId = id;
+            boolean isUnique = accounts.stream().noneMatch(admin -> admin.getID().equals(finalId));
+
+            if (isUnique) {
+                break;
+            }
+            System.out.println("This ID is already taken. Please enter a different ID: ");
+        }
+        return id;
+    }
+    protected void changePass(ArrayList<TrafficOfficer> TrafficOfficer,int index)
+    {
+        out.print("Enter your new password: ");
+        TrafficOfficer.get(index).Password=Admin.cin.nextLine();
+        out.println("Password changed successfully!");
+    }
 }
 
