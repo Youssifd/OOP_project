@@ -23,7 +23,9 @@ public class TrafficOfficer extends Account implements display {
         }
         this.violations = new ArrayList<Traffic_Violation>();
     }
-
+    public void addviolations(Traffic_Violation violation) {
+        violations.add(violation);
+    }
     public String getassignedZone() {
         return assignedZone;
     }

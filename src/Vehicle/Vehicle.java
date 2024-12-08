@@ -26,9 +26,13 @@ public class Vehicle {
         this.licensePlate = licensePlate;
         this.owner = owner;
     }
-    public  Vehicle (String id, String type, String licensePlate, String owner) {
-      //for loading data
+
+    public Vehicle(String id, String type, String licensePlate, String owner) {
+        //for loading data
         this.id = id;
+        id = id.split("-")[1];
+        if (Integer.parseInt(id) > counter)
+            counter = Integer.parseInt(id);
         this.type = type;
         this.licensePlate = licensePlate;
         this.owner = owner;

@@ -43,7 +43,8 @@ public class Traffic_Lights implements Runnable {
         this.redTime = arr[0];
         this.yellowTime = arr[1];
         this.greenTime = arr[2];
-        Traffic_counter = Integer.parseInt(ID);
+        if(Integer.parseInt(ID)>Traffic_counter)
+            Traffic_counter = Integer.parseInt(ID);
     }
 
     public void run() {

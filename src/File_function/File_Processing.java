@@ -71,10 +71,12 @@ public class File_Processing {
                 bw.write(admin.getID() + "," + admin.Name + "," + admin.Email + "," + admin.getPassword() + "," + admin.Contact);
                 bw.newLine();
             }
+            bw.newLine();
             for (TrafficOfficer officer : officers) {
                 bw.write(officer.getID() + "," + officer.Name + "," + officer.Email + "," + officer.getPassword() + "," + officer.Contact + "," + officer.getassignedZone());
                 bw.newLine();
             }
+            bw.newLine();
             for (Owner owner : owners) {
                 bw.write(owner.getID() + "," + owner.Name + "," + owner.Email + "," + owner.getPassword() + "," + owner.Contact + "," + owner.vehicle.size());
                 bw.newLine();
@@ -87,7 +89,7 @@ public class File_Processing {
                         bw.newLine();
                     }
 
-                    bw.newLine();
+                   // bw.newLine();
 
                 }
             }
@@ -110,12 +112,14 @@ public class File_Processing {
                 Admin admin = new Admin(data[0], data[1], data[2], data[3], data[4]);
                 admins.add(admin);
             }
+            br.readLine();
             for (int i = 0; i < officer_count; i++) {
                 line = br.readLine();
                 data = line.split(",");
                 TrafficOfficer officer = new TrafficOfficer(data[0], data[1], data[2], data[3], data[4], data[5]);
                 officers.add(officer);
             }
+            br.readLine();
             for (int i = 0; i < owner_count; i++) {
                 line = br.readLine();
                 data = line.split(",");
@@ -137,6 +141,19 @@ public class File_Processing {
                 }
                 owners.add(owner);
             }
+            //load violations to officers
+            for (TrafficOfficer officer : officers) {
+                for (Owner owner : owners) {
+                    for (Vehicle vehicle : owner.vehicle) {
+                        for (Traffic_Violation tv : vehicle.TV) {
+                            if (tv.getWhoIssued().equals(officer.Name)) {
+                                officer.addviolations(tv);
+                            }
+                        }
+                    }
+                }
+            }
+
         } catch (IOException e) {
             e.printStackTrace();
         }
