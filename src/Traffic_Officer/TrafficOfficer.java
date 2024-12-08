@@ -1,7 +1,9 @@
 package Traffic_Officer;
+
 import Account.*;
 import Admin.Admin;
 import Vehicle.*;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -23,9 +25,11 @@ public class TrafficOfficer extends Account implements display {
         }
         this.violations = new ArrayList<Traffic_Violation>();
     }
+
     public void addviolations(Traffic_Violation violation) {
         violations.add(violation);
     }
+
     public String getassignedZone() {
         return assignedZone;
     }
@@ -33,13 +37,8 @@ public class TrafficOfficer extends Account implements display {
     public void setassignedZone(String assignedZone) {
         this.assignedZone = assignedZone;
     }
-<<<<<<< HEAD
-    public void recordvolation (Traffic_Violation violation,Vehicle vehicle)
-    {
-=======
 
-    public void recordvolation(Traffic_Violation violation) {
->>>>>>> 28a9d8050b9ea5ff5499b1bf03c0d81c6655adf6
+    public void recordvolation(Traffic_Violation violation, Vehicle vehicle) {
         if (violation == null) {
             System.out.println("Invalid violation! Cannot record.");
         }
@@ -48,13 +47,10 @@ public class TrafficOfficer extends Account implements display {
         System.out.println("Violation recorded successfully by officer: " + Name);
         vehicle.addViolation(violation);
         System.out.println("Violation added to Vehicle with License Plate: " + vehicle.getLicensePlate());
+
+
     }
 
-<<<<<<< HEAD
-
-}
-=======
->>>>>>> 28a9d8050b9ea5ff5499b1bf03c0d81c6655adf6
     @Override
     public void displayInfo() {
         System.out.println("================ Traffic Officer Info ================");
@@ -123,7 +119,8 @@ public class TrafficOfficer extends Account implements display {
 //    }
 
     }
-    public static String UniqueID(ArrayList <TrafficOfficer> accounts) {
+
+    public static String UniqueID(ArrayList<TrafficOfficer> accounts) {
         String id;
         System.out.print("Enter a unique ID: ");
         while (true) {
@@ -138,10 +135,10 @@ public class TrafficOfficer extends Account implements display {
         }
         return id;
     }
-    protected void changePass(ArrayList<TrafficOfficer> TrafficOfficer,int index)
-    {
+
+    protected void changePass(ArrayList<TrafficOfficer> TrafficOfficer, int index) {
         out.print("Enter your new password: ");
-        TrafficOfficer.get(index).Password=Admin.cin.nextLine();
+        TrafficOfficer.get(index).Password = Admin.cin.nextLine();
         out.println("Password changed successfully!");
     }
 }

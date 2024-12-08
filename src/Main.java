@@ -4,15 +4,18 @@ import File_function.File_Processing;
 import Traffic_Officer.TrafficOfficer;
 import Vehicle.*;
 import Account.Owner;
+
 import java.io.Console;
 import java.util.ArrayList;
 
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 
 public class Main {
     public static Scanner input = new Scanner(System.in);
-    public static  void hide_pass(){
+
+    public static void hide_pass() {
         Console console = System.console();
 
         if (console == null) {
@@ -88,15 +91,13 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        ArrayList<Admin>    Admins = new ArrayList<>();
+        ArrayList<Admin> Admins = new ArrayList<>();
         ArrayList<TrafficOfficer> TrafficOfficers = new ArrayList<>();
         ArrayList<Owner> owners = new ArrayList<>();
-        /*Admins.add(new Admin("1", "Marwan", "<EMAIL>", "MS", "123"));
-        owners.add(new Owner("2", "<EMAIL>", "N", "you", "MS"));
-        TrafficOfficers.add(new TrafficOfficer("3", "MM", "<EMAIL>", "M", "w", "555555555555555"));
-        owners.get(0).vehicle.add(new Vehicle( "1", "1", "1", "1"));
-        owners.get(0).vehicle.get(0).TV.add(new Traffic_Violation("1", "1", "1", "1", 1, "1"));
-*/
+        ArrayList<Zone> zones = new ArrayList<>();
+
+
+
         File_Processing.Load_Accounts(Admins, TrafficOfficers, owners);
         File_Processing.Save_Accounts(Admins, TrafficOfficers, owners);
 
