@@ -7,7 +7,7 @@ import Admin.Exc;
 import java.util.ArrayList;
 
 public class Traffic_Violation {
-
+    public static int TV_counter = 0;
     private String TracksViolationID;
     private final String Vehicle_ID;
     private String Violation_type;
@@ -15,33 +15,54 @@ public class Traffic_Violation {
     private double fine_amount;
     public String Status; // paid or not paid
     private final String whoIssued;//"Traffic Officer";
+    private String ZoneName;
 
-    public Traffic_Violation(String TracksViolationID, String Vehicle_ID,
-                             String Violation_type, String date, double fine_amount, String whoIssued) {
-        this.TracksViolationID = TracksViolationID;
-        this.Vehicle_ID = Vehicle_ID;
+
+
+    boolean Seen = false;
+
+    public Traffic_Violation( String Vehicle_ID,
+                             String Violation_type, String date,String zoneName, double fine_amount, String whoIssued) {
+        //for adding data
+        TV_counter++;
+        if (TV_counter < 10)
+            this.TracksViolationID = "TV-0" + TV_counter;
+        else
+            this.TracksViolationID = "TV-" + TV_counter;
+      //  this.TracksViolationID = TracksViolationID;
+        this.Vehicle_ID = Vehicle_ID;//license plate
         this.Violation_type = Violation_type;
         this.date = date;
         this.fine_amount = fine_amount;
         this.whoIssued = whoIssued;
+        this.ZoneName = zoneName;
         this.Status = "Not Paid";
 
     }
 
     public Traffic_Violation(String TracksViolationID, String Vehicle_ID,
-                             String Violation_type, String date, double fine_amount, String whoIssued, String Status) {
+                             String Violation_type, String date, String zoneName ,double fine_amount, String whoIssued, String Status) {
         //for loading data
+
         this.TracksViolationID = TracksViolationID;
+        TracksViolationID = TracksViolationID.split("-")[1];
+        if (Integer.parseInt(TracksViolationID) > TV_counter)
+            TV_counter = Integer.parseInt(TracksViolationID);
         this.Vehicle_ID = Vehicle_ID;
         this.Violation_type = Violation_type;
         this.date = date;
         this.fine_amount = fine_amount;
+        this.ZoneName = zoneName;
         this.whoIssued = whoIssued;
         this.Status = Status;
 
     }
     public String getViolationID() {
         return TracksViolationID;
+    }
+
+    public String getZoneName() {
+        return ZoneName;
     }
 
     public String getWhoIssued() {
@@ -81,8 +102,20 @@ public class Traffic_Violation {
     public void setFine_amount(double fine_amount) {
         this.fine_amount = fine_amount;
     }
-
+    public static void View_Details(ArrayList<Traffic_Violation> traffic_Violation) {
+        //for officer
+        for (Traffic_Violation tv : traffic_Violation) {
+            System.out.println("Violation found:");
+            System.out.println("TracksViolationID: " + tv.getViolationID());
+            System.out.println("Vehicle ID: " + tv.getVehicle_ID());
+            System.out.println("Violation Type: " + tv.getViolation_type());
+            System.out.println("Date: " + tv.getDate());
+            System.out.println("Fine Amount: " + tv.getFine_amount());
+            System.out.println("---------------------------------------");
+        }
+    }
     public static void View_violations(ArrayList<Traffic_Violation> traffic_Violation, String by) {
+      //for owner
         System.out.println("Do you want view violations by Zone or vechicle?\\n1-Zone\\n2-Vehicle\\nEnter Choice: ");
         int choice = 0;
         choice = Exc.infinite(choice, 2, 1);

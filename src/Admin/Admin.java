@@ -134,8 +134,8 @@ break;
     case 4:
 Admin.addZone(Zone);
 break;
-    case 5:
-        Traffic_Violation.View_violations(traffic_Violation,by);
+    case 5://make global object of Traffic_Violation
+        Traffic_Violation.View_violations(traffic_Violation,by);// which violation
         break;
     case 6:
 TrafficReport.generateFrequentViolationsReport(traffic_Violation);

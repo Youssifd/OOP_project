@@ -85,7 +85,7 @@ public class File_Processing {
                     bw.write(vehicle.getId() + "," + vehicle.getType() + "," + vehicle.getLicensePlate() + ","+owner.Name+"," + vehicle.TV.size());
                    bw.newLine();
                     for (Traffic_Violation tv : vehicle.TV) {
-                        bw.write(tv.getViolationID() + "," + tv.getViolation_type() + "," + tv.getVehicle_ID() + "," + tv.getDate() + "," + tv.getFine_amount() + ","+tv.getWhoIssued()+"," + tv.Status);
+                        bw.write(tv.getViolationID() + "," + tv.getVehicle_ID() + "," + tv.getViolation_type() + "," + tv.getDate() + "," +tv.getZoneName()+","+ tv.getFine_amount() + ","+tv.getWhoIssued()+"," + tv.Status);
                         bw.newLine();
                     }
 
@@ -133,7 +133,7 @@ public class File_Processing {
                     for (int k = 0; k < tv_count; k++) {
                         line = br.readLine();
                         data = line.split(",");
-                        Traffic_Violation tv = new Traffic_Violation(data[0], data[1], data[2], data[3], Double.parseDouble(data[4]), data[5], data[6]);
+                        Traffic_Violation tv = new Traffic_Violation(data[0], data[1], data[2], data[3],data[4], Double.parseDouble(data[5]), data[6], data[7]);
                        vehicle.TV.add(tv);
                     }
                     owner.vehicle.add(vehicle);

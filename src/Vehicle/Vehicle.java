@@ -11,7 +11,7 @@ public class Vehicle {
     private String owner;
     public ArrayList<Traffic_Violation> TV = new ArrayList<>();
     public static int counter = 0;
-    static String licensePlates = "";
+    static ArrayList<String> licensePlates = new ArrayList<>();
 
     // Constructor
     public Vehicle(String type, String licensePlate, String owner) {
@@ -23,6 +23,7 @@ public class Vehicle {
         }
         this.type = type;
         this.licensePlate = licensePlate;
+        licensePlates.add( licensePlate );
         this.owner = owner;
     }
 
@@ -37,6 +38,7 @@ public class Vehicle {
                 counter = Integer.parseInt(id);
             this.type = type;
             this.licensePlate = licensePlate;
+        licensePlates.add( licensePlate );
             this.owner = owner;
         }
 
@@ -56,6 +58,15 @@ public class Vehicle {
 
         public String getOwner () {
             return owner;
+        }
+        public static boolean ChechExist ( String licensePlate){
+           if(licensePlates.contains(licensePlate)){
+               return true;
+           }else{
+               System.out.println("This license plate is not exist");
+               System.out.println("Please enter a valid one.");
+              return false;
+           }
         }
 //    update by yousefelsayed
         public void addViolation (Traffic_Violation violation){
