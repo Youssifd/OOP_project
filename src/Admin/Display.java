@@ -10,29 +10,14 @@ public class Display {
 
     public ArrayList<Owner> singup(ArrayList<Owner> arr){
            char c;
+           do {
             String ID, Email, Password, Name, Contact_info;
-        do {
-                out.print("Enter your ID: ");
-            while (true) {
-                ID = Admin.cin.nextLine();
-                boolean valid = true;
-                for (int i = 0; i < arr.size(); i++) {
-                    if (arr.get(i).getID().equals(ID)) {
-                        out.println("This ID is already taken. Please enter a different ID.");
-                        valid = false;
-                        break;
-                    }
-                }
-                if (valid) {
-                    break;
-                }
-            }
+        ID = Account.Unique("Enter your ID: ",Account.ids);
       out.print("Enter your Email: ");
      Email=Admin.cin.nextLine();
      out.print("Enter your Password: ");
      Password=Admin.cin.nextLine();
-     out.print("Enter your Name: ");
-     Name=Admin.cin.nextLine();
+     Name=Account.Unique("Enter your Name: ",Account.Names);
      out.print("Enter your Contact_info: ");
      Contact_info=Admin.cin.nextLine();
      arr.add(new Owner(ID,Email,Password,Name,Contact_info));

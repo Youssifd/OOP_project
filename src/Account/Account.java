@@ -11,12 +11,15 @@ public abstract class Account {
     protected String Password;
     public String Name;
     public String Contact;
-
+public static ArrayList<String> Names=new ArrayList<>();
+public static ArrayList<String> ids=new ArrayList<>();
     public Account(String ID, String Email, String Password, String Name) {
         this.id = ID;
         this.Email = Email;
         this.Password = Password;
         this.Name = Name;
+        Names.add(Name);
+        ids.add(ID);
         Acc_counter++;
     }
 
@@ -33,6 +36,22 @@ public abstract class Account {
         return id;
     }
 
+
+    public static String Unique(String prompt, ArrayList<String> existingValues) {
+        String input;
+            System.out.print(prompt);
+        while (true) {
+            input = Admin.cin.nextLine();
+            if (!existingValues.contains(input)) {
+                existingValues.add(input);
+                break;
+            } else {
+                System.out.println("Error: This value is already used. Please try again.");
+                System.out.print("Enter new value: ");
+            }
+        }
+        return input;
+    }
 
 
 }

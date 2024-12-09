@@ -24,8 +24,8 @@ public class Admin extends Account {
         char c;
         String Id,  Name, Email, Password, Contact,  assignedZone;
         do {
-            out.print("Enter your ID: ");
-          Id=TrafficOfficer.UniqueID(arr);
+
+            Id=Account.Unique("Enter your ID: ",Account.ids);
             out.print("Enter your Email: ");
             Email=Admin.cin.nextLine();
             out.print("Enter your Password: ");
@@ -54,12 +54,12 @@ public class Admin extends Account {
         out.println("Zone ID: "+zone.getID()+",added successfully!");
     }
     public ArrayList<Admin> addAdmins(ArrayList<Admin> admins, ArrayList<Owner> owners) {
-        String id, name, email, password, contact;
+        String id, name="", email, password, contact;
         char hasAccount, continueAdding;
 
         System.out.print("Does this Admin already have an account? (y/n): ");
         hasAccount = Admin.cin.next().charAt(0);
-        Admin.cin.nextLine(); // Consume the leftover newline character.
+        Admin.cin.nextLine();
 
         if (hasAccount == 'y' || hasAccount == 'Y') {
             System.out.print("Enter their ID: ");
@@ -67,8 +67,10 @@ public class Admin extends Account {
 
             for (Owner owner : owners) {
                 if (owner.getID().equals(id)) {
-                    name = owner.Name;
-                    email = owner.Email;
+
+                    name = Account.Unique("Enter their new username: ",Account.Names);
+
+                     email = owner.Email;
                     contact = owner.Contact;
                     System.out.print("Enter their password: ");
                     password = Admin.cin.nextLine();
@@ -82,7 +84,7 @@ public class Admin extends Account {
         } else {
             System.out.println("This Admin does not have an account.");
             do {
-                id = UniqueID(admins);
+                id = Account.Unique("Enter their new username: ",Account.ids);
                 System.out.print("Enter your Email: ");
                 email = Admin.cin.nextLine();
                 System.out.print("Enter your Password: ");
@@ -102,21 +104,7 @@ public class Admin extends Account {
         }
         return admins;
     }
-    private String UniqueID(ArrayList<Admin> accounts) {
-        String id;
-        System.out.print("Enter a unique ID: ");
-        while (true) {
-            id = Admin.cin.nextLine();
-            String finalId = id;
-            boolean isUnique = accounts.stream().noneMatch(admin -> admin.getID().equals(finalId));
 
-            if (isUnique) {
-                break;
-            }
-            System.out.println("This ID is already taken. Please enter a different ID: ");
-        }
-        return id;
-    }
 protected void changePass(ArrayList<Admin> admins,int index)
 {
     out.println("Note that you will need to login again to use this feature and you can change your password only.");

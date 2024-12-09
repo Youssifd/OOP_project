@@ -120,21 +120,7 @@ public class TrafficOfficer extends Account implements display {
 
     }
 
-    public static String UniqueID(ArrayList<TrafficOfficer> accounts) {
-        String id;
-        System.out.print("Enter a unique ID: ");
-        while (true) {
-            id = Admin.cin.nextLine();
-            String finalId = id;
-            boolean isUnique = accounts.stream().noneMatch(admin -> admin.getID().equals(finalId));
 
-            if (isUnique) {
-                break;
-            }
-            System.out.println("This ID is already taken. Please enter a different ID: ");
-        }
-        return id;
-    }
 
     protected void changePass(ArrayList<TrafficOfficer> TrafficOfficer, int index) {
         out.print("Enter your new password: ");
