@@ -140,7 +140,7 @@ public class Admin extends Account {
                 Admin.addZone(Zone);
                 break;
             case 5://make global object of Traffic_Violation
-                Traffic_Violation.View_violations(traffic_Violation, by);// which violation
+                Traffic_Violation.View_violations(traffic_Violation, by);// which violation-> Traffic_Violation.(traffic_Violation)static
                 break;
             case 6:
                 TrafficReport.generateFrequentViolationsReport(traffic_Violation);

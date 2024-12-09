@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 public class Traffic_Violation {
     public static int TV_counter = 0;
+    public static ArrayList<Traffic_Violation> traffic_Violation = new ArrayList<>();
     private String TracksViolationID;
     private final String Vehicle_ID;
     private String Violation_type;
@@ -141,7 +142,7 @@ public class Traffic_Violation {
             System.out.println("Enter Zone: ");
             by = Admin.cin.next();
             for (int i = 0; i < traffic_Violation.size(); i++) {
-                if (traffic_Violation.get(i).getVehicle_ID().equals(by))
+                if (traffic_Violation.get(i).getZoneName().equals(by))
                     System.out.println("Violation found:");
                 System.out.println("TracksViolationID: " + traffic_Violation.get(i).getViolationID());
                 System.out.println("Vehicle ID: " + traffic_Violation.get(i).getVehicle_ID());
