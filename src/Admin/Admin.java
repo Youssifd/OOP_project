@@ -24,7 +24,7 @@ public class Admin extends Account {
         this.Contact = Contact;
     }
 
-    public ArrayList<TrafficOfficer> AddOfficer(ArrayList<TrafficOfficer> arr) {
+    public ArrayList<TrafficOfficer> AddOfficer(ArrayList<TrafficOfficer> arr, ArrayList<Zone> Zone) {
         char c;
         String Id, Name, Email, Password, Contact, assignedZone;
         do {
@@ -38,9 +38,16 @@ public class Admin extends Account {
             Name = Admin.cin.nextLine();
             out.print("Enter your Contact_info: ");
             Contact = Admin.cin.nextLine();
-            out.print("Enter your assigned zone: ");
-            assignedZone = Admin.cin.nextLine();
-            arr.add(new TrafficOfficer(Id, Email, Password, Name, Contact, assignedZone));
+            for (int i = 0, j; i < Zone.size(); i++) {
+                j = i + 1;
+                out.println(j + "- " + Zone.get(i).getName());
+            }
+            out.print("Enter Number assigned zone: ");
+            int choice = 0;
+            choice = Exc.infinite(choice, Zone.size(), 1);
+            assignedZone = Zone.get(choice - 1).getName();
+            //String Id, String Name, String Email, String Password, String Contact, String assignedZone
+            arr.add(new TrafficOfficer(Id, Name, Email, Password, Contact, assignedZone));
             out.println("Account created successfully!");
             out.print("Do you want to create another account? (y/n): ");
             c = Admin.cin.next().charAt(0);
@@ -118,46 +125,61 @@ public class Admin extends Account {
         out.println("Password changed successfully!");
     }
 
-    public static void AdminPage(ArrayList<Admin> admin, int index, ArrayList<Owner> owner, ArrayList<TrafficOfficer> TrafficOfficer, ArrayList<Zone> Zone, int i, ArrayList<Traffic_Violation> traffic_Violation, String by) {
-
+    public static void AdminPage(ArrayList<Admin> admin, int index, ArrayList<Owner> owner, ArrayList<TrafficOfficer> TrafficOfficer, ArrayList<Zone> Zone, ArrayList<Traffic_Violation> traffic_Violation, String by) {
+        boolean logout = false;
         System.out.println("Welcome " + admin.get(index).Name + "!");
-        System.out.println("1- Add traffic lights and configure durations.\n2- update traffic lights and configure durations.\3- delete traffic lights and configure durations.\n" +
-                "4- Add zone.\n5- View violations by vehicle or by zone.\n6- Generate traffic reports\n"
-                + "7- Add new Admin.\n8- change my password.\n9- Add new Traffic Officer.\n10- Logout.\n");
-        int a = 0;
-        a = Exc.infinite(a, 10, 1);
-        switch (a) {
-            case 1:
-                Zone.get(i).addTrafficLight();
-                break;
-            case 2:
-                Zone.get(i).editTrafficLight();
-                break;
-            case 3:
-                Zone.get(i).removeTrafficLight();
-                break;
-            case 4:
-                Admin.addZone(Zone);
-                break;
-            case 5://make global object of Traffic_Violation
-                Traffic_Violation.View_violations(traffic_Violation, by);// which violation-> Traffic_Violation.(traffic_Violation)static
-                break;
-            case 6:
-                TrafficReport.generateFrequentViolationsReport(traffic_Violation);
-                break;
-            case 7:
-                admin.get(index).addAdmins(admin, owner);
-                break;
-            case 8:
-                admin.get(index).changePass(admin, index);
-                break;
-            case 9:
-                admin.get(index).AddOfficer(TrafficOfficer);
-                break;
-            case 10:
-//logout();
-                break;
-        }
+        do {
+            System.out.println("1- Add traffic lights and configure durations.\n2- update traffic lights and configure durations.\3- delete traffic lights and configure durations.\n" +
+                    "4- Add zone.\n5- View violations by vehicle or by zone.\n6- Generate traffic reports\n"
+                    + "7- Add new Admin.\n8- change my password.\n9- Add new Traffic Officer.\n10- Logout.\n");
+            int a = 0, i = 0;
+
+            a = Exc.infinite(a, 10, 1);
+            if (a >= 1 && a <= 3) {
+                for (int x = 0, j; x < Zone.size(); x++) {
+                    j = x + 1;
+                    out.println(j + "- " + Zone.get(x).getName());
+                    out.print("Enter Number assigned zone: ");
+                    int choice = 0;
+                    choice = Exc.infinite(choice, Zone.size(), 1);
+                    i = choice - 1;
+                }
+
+            }
+
+            switch (a) {
+                case 1:
+                    Zone.get(i).addTrafficLight();
+                    break;
+                case 2:
+                    Zone.get(i).editTrafficLight();
+                    break;
+                case 3:
+                    Zone.get(i).removeTrafficLight();
+                    break;
+                case 4:
+                    Admin.addZone(Zone);
+                    break;
+                case 5://make global object of Traffic_Violation
+                    Traffic_Violation.View_violations(traffic_Violation, by);// which violation-> Traffic_Violation.(traffic_Violation)static
+                    break;
+                case 6:
+                    TrafficReport.generateFrequentViolationsReport(traffic_Violation);
+                    break;
+                case 7:
+                    admin.get(index).addAdmins(admin, owner);
+                    break;
+                case 8:
+                    admin.get(index).changePass(admin, index);
+                    break;
+                case 9:
+                    admin.get(index).AddOfficer(TrafficOfficer, Zone);
+                    break;
+                case 10:
+                    logout = true;
+                    break;
+            }
+        } while (!logout);
 
     }
 

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class Traffic_Violation {
     public static int TV_counter = 0;
-    public static ArrayList<Traffic_Violation> traffic_Violation = new ArrayList<>();
+    public static ArrayList<Traffic_Violation> tra = new ArrayList<>();
     private String TracksViolationID;
     private final String Vehicle_ID;
     private String Violation_type;

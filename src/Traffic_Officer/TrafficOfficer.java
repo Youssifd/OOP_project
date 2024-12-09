@@ -249,7 +249,7 @@ public class TrafficOfficer extends Account implements display {
 
                     Traffic_Violation violation = new Traffic_Violation(LicensePlate, Violation_type, date, zoneName, fine_amount, whoIssued);
                     officer.get(index).recordvolation(violation, owners, ownerIndex, vehicleIndex);
-                    Traffic_Violation.traffic_Violation.add(violation);
+                    Traffic_Violation.tra.add(violation);
                     break;
                 case 4:
                     officer.get(index).changePass(officer, index);
