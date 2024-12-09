@@ -99,7 +99,7 @@ public class File_Processing {
 
     }
 
-    public static void Load_Accounts(ArrayList<Admin> admins, ArrayList<TrafficOfficer> officers, ArrayList<Owner> owners) {
+    public static void Load_Accounts(ArrayList<Admin> admins, ArrayList<TrafficOfficer> officers, ArrayList<Owner> owners, ArrayList<Zone> zones) {
         try (BufferedReader br = new BufferedReader(new FileReader("File/AccData.txt"))) {
             String line = br.readLine();
             String[] data = line.split(",");
@@ -150,6 +150,13 @@ public class File_Processing {
                                 officer.addviolations(tv);
                             }
                         }
+                    }
+                }
+            }
+            for (Zone zone : zones) {
+                for (TrafficOfficer officer : officers) {
+                    if (officer.getassignedZone().equals(zone.getName())) {
+                        zone.numViolationOccured += officer.violations.size();
                     }
                 }
             }

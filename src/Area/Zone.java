@@ -6,6 +6,7 @@ public class Zone {
 
     public ArrayList<Traffic_Lights> traffic_light = new ArrayList<>();
     static int ZoneCounter = 0;
+    public int numViolationOccured = 0;
     private final String ID;
     private final String Name;
     private final String Location;

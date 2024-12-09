@@ -2,6 +2,7 @@ package Traffic_Officer;
 
 import Account.*;
 import Admin.*;
+import Area.Zone;
 import Vehicle.*;
 
 import java.text.SimpleDateFormat;
@@ -141,7 +142,7 @@ public class TrafficOfficer extends Account implements display {
         out.println("Password changed successfully!");
     }
 
-    public static void OfficerPage(ArrayList<TrafficOfficer> officer, int index, ArrayList<Owner> owners) {
+    public static void OfficerPage(ArrayList<TrafficOfficer> officer, int index, ArrayList<Owner> owners, ArrayList<Zone> z) {
         Scanner input = new Scanner(System.in);
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM-HH:mm");
         boolean logout = false;
@@ -179,13 +180,17 @@ public class TrafficOfficer extends Account implements display {
                             }
                         }
                     }
-                    if (getVtype.equals("Bike"))
-                        System.out.println("Choose Violation Type\n1- Speeding\n2- Parking\n3- Running Red Light\n4- No License Plate\n5- No Registration\n6- No Helmet");
-                    else
-                        System.out.println("Choose Violation Type\n1- Speeding\n2- Parking\n3- Running Red Light\n4- No License Plate\n5- No Registration\n");
-                    System.out.println("Enter your choice: ");
                     int choice = 0;
-                    choice = Exc.infinite(choice, 7, 1);
+                    if (getVtype.equals("Bike")) {
+                        System.out.println("Choose Violation Type\n1- Speeding\n2- Parking\n3- Running Red Light\n4- No License Plate\n5- No Registration\n6- No Helmet");
+                        choice = Exc.infinite(choice, 6, 1);
+
+                    } else {
+                        System.out.println("Choose Violation Type\n1- Speeding\n2- Parking\n3- Running Red Light\n4- No License Plate\n5- No Registration\n");
+                        choice = Exc.infinite(choice, 5, 1);
+
+                    }
+                    System.out.println("Enter your choice: ");
                     switch (choice) {
                         case 1:
                             Violation_type = "Speeding";
@@ -224,7 +229,7 @@ public class TrafficOfficer extends Account implements display {
                                 fine_amount *= 2;
                             else if (getVtype.equals("Car"))
                                 fine_amount *= 3;
-                            else
+                            else //truck
                                 fine_amount *= 4;
                             break;
                         case 5:
@@ -246,7 +251,11 @@ public class TrafficOfficer extends Account implements display {
                     date = formatter.format(new Date());
                     whoIssued = officer.get(index).Name;
                     zoneName = officer.get(index).assignedZone; // assignedZone not taken from user
-
+                    for(Zone zone: z){
+                        if(zone.getName().equals(zoneName)){
+                            zone.numViolationOccured++;
+                        }
+                    }
                     Traffic_Violation violation = new Traffic_Violation(LicensePlate, Violation_type, date, zoneName, fine_amount, whoIssued);
                     officer.get(index).recordvolation(violation, owners, ownerIndex, vehicleIndex);
                     Traffic_Violation.tra.add(violation);
