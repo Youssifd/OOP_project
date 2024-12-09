@@ -30,7 +30,7 @@ public class Owner extends Account {
     public ArrayList<Vehicle> vehicle = new ArrayList<>();
     // 0# The Constructor
 
-    public Owner(String id,String Name,String email,String Password,String Contact_info) {
+    public Owner(String id, String Name, String email, String Password, String Contact_info) {
         super(id, email, Password, Name);
         this.Contact = Contact_info;
         this.vehicles = new ArrayList<>(); // Initialize the list of vehicles
@@ -68,15 +68,13 @@ public class Owner extends Account {
     }
 
 
-
-    protected void changePass(ArrayList<Owner> Owners,int index)
-    {
+    protected void changePass(ArrayList<Owner> Owners, int index) {
         out.print("Enter your new password: ");
-        Owners.get(index).Password=Admin.cin.nextLine();
+        Owners.get(index).Password = Admin.cin.nextLine();
         out.println("Password changed successfully!");
     }
     // Method to display owner details
-    
+
     public void displayOwnerDetails() {
         System.out.println("Owner Name: " + Name);
         System.out.println("Contact Number: " + Contact);

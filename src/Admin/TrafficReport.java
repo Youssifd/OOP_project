@@ -1,6 +1,9 @@
 package Admin;
+
 import java.util.ArrayList;
+
 import Vehicle.Traffic_Violation;
+
 public class TrafficReport {
     public static void generateHighDensityZonesReport(ArrayList<Traffic_Violation> traffic_Violation) {
         ArrayList<String> zones = new ArrayList<>();
@@ -20,6 +23,7 @@ public class TrafficReport {
             System.out.println("Zone: " + zones.get(i) + " | Violations: " + zoneCounts.get(i));
         }
     }
+
     public static void generateFrequentViolationsReport(ArrayList<Traffic_Violation> traffic_Violation) {
         ArrayList<String> violationTypes = new ArrayList<>();
         ArrayList<Integer> violationCounts = new ArrayList<>();

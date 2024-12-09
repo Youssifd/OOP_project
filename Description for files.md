@@ -15,4 +15,4 @@ AccID, Name, Email, Password ,Contact,Vehicle_Size
 ->Vehicle
 getId Type LicensePlate owner TV.size
 -->TV
-ViolationID,  VehicleLicense, ViolationType, Date,zoneName,  FineAmount, whoIssued, Status
+ViolationID,  VehicleLicense, ViolationType, Date, zoneName,  FineAmount, whoIssued, Status

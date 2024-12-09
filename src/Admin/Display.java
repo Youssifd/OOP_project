@@ -1,4 +1,5 @@
 package Admin;
+
 import Account.*;
 import Traffic_Officer.*;
 import Area.*;
@@ -8,27 +9,29 @@ import java.util.ArrayList;
 
 
 import static java.lang.System.out;
+
 public class Display {
 
-    public ArrayList<Owner> singup(ArrayList<Owner> arr){
-           char c;
-           do {
+    public ArrayList<Owner> singup(ArrayList<Owner> arr) {
+        char c;
+        do {
             String ID, Email, Password, Name, Contact_info;
-        ID = Account.Unique("Enter your ID: ",Account.ids);
-      out.print("Enter your Email: ");
-     Email=Admin.cin.nextLine();
-     out.print("Enter your Password: ");
-     Password=Admin.cin.nextLine();
-     Name=Account.Unique("Enter your Name: ",Account.Names);
-     out.print("Enter your Contact_info: ");
-     Contact_info=Admin.cin.nextLine();
-     arr.add(new Owner(ID,Email,Password,Name,Contact_info));
-           out.println("Account created successfully!");
-           out.print("Do you want to create another account? (y/n): ");
-           c=Admin.cin.next().charAt(0);
-        } while (c=='y' || c=='Y' );
-           return arr;
+            ID = Account.Unique("Enter your ID: ", Account.ids);
+            out.print("Enter your Email: ");
+            Email = Admin.cin.nextLine();
+            out.print("Enter your Password: ");
+            Password = Admin.cin.nextLine();
+            Name = Account.Unique("Enter your Name: ", Account.Names);
+            out.print("Enter your Contact_info: ");
+            Contact_info = Admin.cin.nextLine();
+            arr.add(new Owner(ID, Email, Password, Name, Contact_info));
+            out.println("Account created successfully!");
+            out.print("Do you want to create another account? (y/n): ");
+            c = Admin.cin.next().charAt(0);
+        } while (c == 'y' || c == 'Y');
+        return arr;
     }
+
     public String Login(ArrayList<TrafficOfficer> TrafficOfficers, ArrayList<Admin> Admins, ArrayList<Owner> owners) {
         int count = 0;
 
@@ -67,7 +70,6 @@ public class Display {
 
         return null;
     }
-
 
 
     public static void main(String[] args) {

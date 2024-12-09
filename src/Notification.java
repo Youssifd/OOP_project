@@ -3,7 +3,7 @@ public class Notification {
     public String date;
     public String title;
 
-    public Notification(String message, String date, String title,Boolean isRead) {
+    public Notification(String message, String date, String title, Boolean isRead) {
         this.message = message;
         this.date = date;
         this.title = title;

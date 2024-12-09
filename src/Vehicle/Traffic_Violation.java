@@ -15,21 +15,20 @@ public class Traffic_Violation {
     private double fine_amount;
     public String Status; // paid or not paid
     private final String whoIssued;//"Traffic Officer";
-    private String ZoneName;
-
+    private final String ZoneName;
 
 
     boolean Seen = false;
 
-    public Traffic_Violation( String Vehicle_ID,
-                             String Violation_type, String date,String zoneName, double fine_amount, String whoIssued) {
+    public Traffic_Violation(String Vehicle_ID,
+                             String Violation_type, String date, String zoneName, double fine_amount, String whoIssued) {
         //for adding data
         TV_counter++;
         if (TV_counter < 10)
             this.TracksViolationID = "TV-0" + TV_counter;
         else
             this.TracksViolationID = "TV-" + TV_counter;
-      //  this.TracksViolationID = TracksViolationID;
+        //  this.TracksViolationID = TracksViolationID;
         this.Vehicle_ID = Vehicle_ID;//license plate
         this.Violation_type = Violation_type;
         this.date = date;
@@ -41,7 +40,7 @@ public class Traffic_Violation {
     }
 
     public Traffic_Violation(String TracksViolationID, String Vehicle_ID,
-                             String Violation_type, String date, String zoneName ,double fine_amount, String whoIssued, String Status) {
+                             String Violation_type, String date, String zoneName, double fine_amount, String whoIssued, String Status) {
         //for loading data
 
         this.TracksViolationID = TracksViolationID;
@@ -57,6 +56,7 @@ public class Traffic_Violation {
         this.Status = Status;
 
     }
+
     public String getViolationID() {
         return TracksViolationID;
     }
@@ -102,6 +102,7 @@ public class Traffic_Violation {
     public void setFine_amount(double fine_amount) {
         this.fine_amount = fine_amount;
     }
+
     public static void View_Details(ArrayList<Traffic_Violation> traffic_Violation) {
         //for officer
         for (Traffic_Violation tv : traffic_Violation) {
@@ -114,8 +115,9 @@ public class Traffic_Violation {
             System.out.println("---------------------------------------");
         }
     }
+
     public static void View_violations(ArrayList<Traffic_Violation> traffic_Violation, String by) {
-      //for owner
+        //for owner
         System.out.println("Do you want view violations by Zone or vechicle?\\n1-Zone\\n2-Vehicle\\nEnter Choice: ");
         int choice = 0;
         choice = Exc.infinite(choice, 2, 1);

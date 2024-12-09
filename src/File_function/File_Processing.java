@@ -82,14 +82,14 @@ public class File_Processing {
                 bw.newLine();
                 for (Vehicle vehicle : owner.vehicle) {
                     // bw.write(vehicle.getPlateNumber() + "," + vehicle.getBrand() + "," + vehicle.getModel() + "," + vehicle.getColor() + "," + vehicle.getYear());
-                    bw.write(vehicle.getId() + "," + vehicle.getType() + "," + vehicle.getLicensePlate() + ","+owner.Name+"," + vehicle.TV.size());
-                   bw.newLine();
+                    bw.write(vehicle.getId() + "," + vehicle.getType() + "," + vehicle.getLicensePlate() + "," + owner.Name + "," + vehicle.TV.size());
+                    bw.newLine();
                     for (Traffic_Violation tv : vehicle.TV) {
-                        bw.write(tv.getViolationID() + "," + tv.getVehicle_ID() + "," + tv.getViolation_type() + "," + tv.getDate() + "," +tv.getZoneName()+","+ tv.getFine_amount() + ","+tv.getWhoIssued()+"," + tv.Status);
+                        bw.write(tv.getViolationID() + "," + tv.getVehicle_ID() + "," + tv.getViolation_type() + "," + tv.getDate() + "," + tv.getZoneName() + "," + tv.getFine_amount() + "," + tv.getWhoIssued() + "," + tv.Status);
                         bw.newLine();
                     }
 
-                   // bw.newLine();
+                    // bw.newLine();
 
                 }
             }
@@ -133,8 +133,8 @@ public class File_Processing {
                     for (int k = 0; k < tv_count; k++) {
                         line = br.readLine();
                         data = line.split(",");
-                        Traffic_Violation tv = new Traffic_Violation(data[0], data[1], data[2], data[3],data[4], Double.parseDouble(data[5]), data[6], data[7]);
-                       vehicle.TV.add(tv);
+                        Traffic_Violation tv = new Traffic_Violation(data[0], data[1], data[2], data[3], data[4], Double.parseDouble(data[5]), data[6], data[7]);
+                        vehicle.TV.add(tv);
                     }
                     owner.vehicle.add(vehicle);
 

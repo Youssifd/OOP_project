@@ -161,7 +161,7 @@ public class TrafficOfficer extends Account implements display {
                     officer.get(index).viewViolations(2);
                     break;
                 case 3:
-                    String Vehicle_Licence, Violation_type = " ", date, whoIssued,zoneName;
+                    String Vehicle_Licence, Violation_type = " ", date, whoIssued, zoneName;
                     double fine_amount = 0;
                     int ownerIndex = -1, vehicleIndex = -1;
                     System.out.println("Enter Vehicle ID: ");
@@ -247,7 +247,7 @@ public class TrafficOfficer extends Account implements display {
                     whoIssued = officer.get(index).Name;
                     zoneName = officer.get(index).assignedZone; // assignedZone not taken from user
 
-                    Traffic_Violation violation = new Traffic_Violation(LicensePlate, Violation_type, date,zoneName, fine_amount, whoIssued);
+                    Traffic_Violation violation = new Traffic_Violation(LicensePlate, Violation_type, date, zoneName, fine_amount, whoIssued);
                     officer.get(index).recordvolation(violation, owners, ownerIndex, vehicleIndex);
                     break;
                 case 4:

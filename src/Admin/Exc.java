@@ -1,7 +1,9 @@
 package Admin;
+
 import java.util.ArrayList;
 
 import static java.lang.System.out;
+
 public class Exc {
     public static int infinite(int num, int max, int min) {
         String input;
@@ -26,6 +28,7 @@ public class Exc {
         }
 
     }
+
     public static void Arr(ArrayList<?> arr, int index) {
         while (true) {
             System.out.println("Enter an index to access the list: ");
@@ -52,7 +55,7 @@ public class Exc {
         arr.add("d");
         arr.add("e");
         arr.add("f");
-arr.add("g");
+        arr.add("g");
         int z = 0;
         Arr(arr, z);
     }
