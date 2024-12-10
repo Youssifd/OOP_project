@@ -1,5 +1,7 @@
 package Vehicle;
 
+import Admin.Exc;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -58,7 +60,7 @@ public class Vehicle {
         return owner;
     }
 
-    public static boolean ChechExist(String licensePlate) {
+    public static boolean CheckExist(String licensePlate) {
         if (licensePlates.contains(licensePlate)) {
             return true;
         } else {
@@ -68,13 +70,20 @@ public class Vehicle {
         }
     }
 
+    public void getData() {
+        System.out.println("Vehicle ID: " + id);
+        System.out.println("Type: " + type);
+        System.out.println("License Plate: " + licensePlate);
+        System.out.println("Owner: " + owner);
+    }
+
     //    update by yousefelsayed
     public void addViolation(Traffic_Violation violation) {
         TV.add(violation);
     }
 
     //       *******
-    public static void addVehicles(ArrayList<Vehicle> vehicles) {
+    public static void addVehicles(ArrayList<Vehicle> vehicles,String OwnerName) {
         Scanner scanner = new Scanner(System.in);
         boolean continueInput = true;
 
@@ -94,9 +103,9 @@ public class Vehicle {
                 }
             }
 
-            System.out.println("Enter owner name:");
-            String owner = scanner.nextLine();
-            Vehicle vehicle = new Vehicle(type, licensePlate, owner);
+           /* System.out.println("Enter owner name:");
+            String owner = scanner.nextLine();*/
+            Vehicle vehicle = new Vehicle(type, licensePlate, OwnerName);
             vehicles.add(vehicle);
             System.out.println("Vehicle added: " + vehicle);
 
@@ -106,6 +115,52 @@ public class Vehicle {
                 continueInput = false;
             }
         }
+    }
+
+    public   void PayFine (){
+
+        //for owner
+        Scanner in = new Scanner(System.in);
+        if(TV.isEmpty()){
+            System.out.println("This vehicle has no fines.");
+            return;
+        }
+        //Show fines term
+        System.out.println("Violations found:");
+        for (int i = 0; i < TV.size(); i++) {
+            System.out.println("#" + (i + 1) + ":");
+            System.out.println("Violation ID: " + TV.get(i).getViolationID());
+            System.out.println("Violation Type: " + TV.get(i).getViolation_type());
+            System.out.println("Date: " + TV.get(i).getDate());
+            System.out.println("Zone: " + TV.get(i).getZoneName());
+            System.out.println("Fine Amount: " + TV.get(i).getFine_amount());
+            System.out.println("Issued by: " + TV.get(i).getWhoIssued());
+            System.out.println("Status: " + TV .get(i).Status);
+            System.out.println("_________________________");
+        }
+            char ch;
+        do {
+            System.out.println("Enter the number of the violation you want to pay the fine for(0 for exit):");
+            //check invalid term
+            int violationIndex = 0;
+            violationIndex = Exc.infinite(1, TV.size(), 1);
+            if (violationIndex == 0) return;
+            //Pay term
+            if (TV.get(violationIndex - 1).Status.equals("Not Paid")) {
+                TV.get(violationIndex - 1).Status = "Paid";
+                System.out.println("Fine paid successfully. :)");
+            } else {
+                System.out.println("This fine has already been paid.");
+            }
+            //check continue term
+            System.out.println("Do you want to pay another fine? (Y/N)");
+            ch = in.next().charAt(0);
+            while (ch != 'Y' && ch != 'y' && ch != 'N' && ch != 'n') {
+                System.out.println("Invalid input. Please enter Y or N.");
+                ch = in.next().charAt(0);
+            }
+
+        }while (ch != 'Y' && ch != 'y');
     }
 }
 

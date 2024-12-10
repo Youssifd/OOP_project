@@ -40,17 +40,14 @@ public class Main {
         ArrayList<Owner> owners = new ArrayList<>();
         ArrayList<Zone> zones = new ArrayList<>();
 
-        /*
-        File_Processing.Load_Accounts(Admins, TrafficOfficers, owners);
+
+        File_Processing.Load_Accounts(Admins, TrafficOfficers, owners, zones);
         File_Processing.Load_Zones(zones);
-        Admin.AdminPage(Admins, 0, owners, TrafficOfficers, zones, Traffic_Violation.tra, "");
-        TrafficOfficer.OfficerPage(TrafficOfficers, 1, owners);
-
+        /*Admin.AdminPage(Admins, 0, owners, TrafficOfficers, zones, Traffic_Violation.tra, "");
+        TrafficOfficer.OfficerPage(TrafficOfficers, 1, owners,zones);*/
+        Owner.OwnerPage(owners, 0);
         File_Processing.Save_Accounts(Admins, TrafficOfficers, owners);
-          */
-        /*
 
-         */
 
         String s = Display.Login(TrafficOfficers, Admins, owners);
 

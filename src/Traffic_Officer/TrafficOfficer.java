@@ -6,6 +6,7 @@ import Area.Zone;
 import Vehicle.*;
 
 import Account.Notification;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -47,8 +48,8 @@ public class TrafficOfficer extends Account implements display {
         System.out.println("Violation recorded successfully by officer: " + Name);
         o.get(OwnerIndex).vehicle.get(VehicleIndex).addViolation(TV);//for add violation to owner
         System.out.println("Violation added to Vehicle with License Plate: " + o.get(OwnerIndex).vehicle.get(VehicleIndex).getLicensePlate());
-        String  Message =Notification.StandardMessage(o.get(OwnerIndex).Name,TV);
-        Notification.sendNotification(o.get(OwnerIndex).notifications,Message);
+        String Message = Notification.StandardMessage(o.get(OwnerIndex).Name, TV);
+        Notification.sendNotification(o.get(OwnerIndex).notifications, Message);
     }
 
     @Override
@@ -137,12 +138,6 @@ public class TrafficOfficer extends Account implements display {
     }
 
 
-    protected void changePass(ArrayList<TrafficOfficer> TrafficOfficer, int index) {
-        out.print("Enter your new password: ");
-        TrafficOfficer.get(index).Password = Admin.cin.nextLine();
-        out.println("Password changed successfully!");
-    }
-
     public static void OfficerPage(ArrayList<TrafficOfficer> officer, int index, ArrayList<Owner> owners, ArrayList<Zone> z) {
         Scanner input = new Scanner(System.in);
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM-HH:mm");
@@ -169,7 +164,7 @@ public class TrafficOfficer extends Account implements display {
                     System.out.println("Enter Vehicle ID: ");
                     do {
                         Vehicle_Licence = input.next();
-                    } while (!Vehicle.ChechExist(Vehicle_Licence));
+                    } while (!Vehicle.CheckExist(Vehicle_Licence));
                     String LicensePlate = Vehicle_Licence;
                     String getVtype = " ";
                     for (int i = 0; i < owners.size(); i++) {
@@ -184,14 +179,15 @@ public class TrafficOfficer extends Account implements display {
                     int choice = 0;
                     if (getVtype.equals("Bike")) {
                         System.out.println("Choose Violation Type\n1- Speeding\n2- Parking\n3- Running Red Light\n4- No License Plate\n5- No Registration\n6- No Helmet");
+                        System.out.println("Enter your choice: ");
                         choice = Exc.infinite(choice, 6, 1);
 
                     } else {
                         System.out.println("Choose Violation Type\n1- Speeding\n2- Parking\n3- Running Red Light\n4- No License Plate\n5- No Registration\n");
+                        System.out.println("Enter your choice: ");
                         choice = Exc.infinite(choice, 5, 1);
 
                     }
-                    System.out.println("Enter your choice: ");
                     switch (choice) {
                         case 1:
                             Violation_type = "Speeding";
@@ -252,8 +248,8 @@ public class TrafficOfficer extends Account implements display {
                     date = formatter.format(new Date());
                     whoIssued = officer.get(index).Name;
                     zoneName = officer.get(index).assignedZone; // assignedZone not taken from user
-                    for(Zone zone: z){
-                        if(zone.getName().equals(zoneName)){
+                    for (Zone zone : z) {
+                        if (zone.getName().equals(zoneName)) {
                             zone.numViolationOccured++;
                         }
                     }
@@ -262,7 +258,7 @@ public class TrafficOfficer extends Account implements display {
                     Traffic_Violation.tra.add(violation);
                     break;
                 case 4:
-                    officer.get(index).changePass(officer, index);
+                    officer.get(index).changePass();
                     break;
                 case 5:
                     logout = true;
