@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.stream.Stream;
 
+import static java.lang.System.out;
+
 
 public class Main {
     public static Scanner input = new Scanner(System.in);
@@ -50,7 +52,20 @@ public class Main {
 
          */
 
+        String s = Display.Login(TrafficOfficers, Admins, owners);
 
+        if (s != null) {
+            String[] parts = s.split("-");
+            String name = parts[0];
+            int index = Integer.parseInt(parts[1]);
+            int type = Integer.parseInt(parts[2]);
+
+            switch (type) {
+                case 1 -> out.println("Welcome Admin: " + name);
+                case 2 -> out.println("Welcome Traffic Officer: " + name);
+                case 3 -> out.println("Welcome Owner: " + name);
+                default -> out.println("Unknown role.");
+            }
+        }
     }
-
 }

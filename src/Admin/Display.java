@@ -12,7 +12,7 @@ import static java.lang.System.out;
 
 public class Display {
 
-    public ArrayList<Owner> singup(ArrayList<Owner> arr) {
+    public static ArrayList<Owner> singup(ArrayList<Owner> arr) {
         char c;
         do {
             String ID, Email, Password, Name, Contact_info;
@@ -32,7 +32,7 @@ public class Display {
         return arr;
     }
 
-    public String Login(ArrayList<TrafficOfficer> TrafficOfficers, ArrayList<Admin> Admins, ArrayList<Owner> owners) {
+    public  static  String Login(ArrayList<TrafficOfficer> TrafficOfficers, ArrayList<Admin> Admins, ArrayList<Owner> owners) {
         int count = 0;
 
         do {
@@ -67,8 +67,8 @@ public class Display {
             out.println("Invalid username or password. Attempt " + count + "/5");
 
         } while (count < 5);
-
-        return null;
+Display.singup(owners);
+return null;
     }
 
 

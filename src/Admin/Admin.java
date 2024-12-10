@@ -118,15 +118,16 @@ public class Admin extends Account {
         return admins;
     }
 
-    protected void changePass(ArrayList<Admin> admins, int index) {
+    protected void changePass() {
         out.println("Note that you will need to login again to use this feature and you can change your password only.");
         out.print("Enter your new password: ");
-        admins.get(index).Password = Admin.cin.nextLine();
+        Password = Admin.cin.nextLine();
         out.println("Password changed successfully!");
     }
 
     public static void AdminPage(ArrayList<Admin> admin, int index, ArrayList<Owner> owner, ArrayList<TrafficOfficer> TrafficOfficer, ArrayList<Zone> Zone, ArrayList<Traffic_Violation> traffic_Violation, String by) {
         boolean logout = false;
+        ArrayList<Zone> zo=new ArrayList<>();
         System.out.println("Welcome " + admin.get(index).Name + "!");
         do {
             System.out.println("1- Add traffic lights and configure durations.\n2- update traffic lights and configure durations.\3- delete traffic lights and configure durations.\n" +
@@ -164,13 +165,13 @@ public class Admin extends Account {
                     Traffic_Violation.View_violations(traffic_Violation, by);// which violation-> Traffic_Violation.(traffic_Violation)static
                     break;
                 case 6:
-                    TrafficReport.generateFrequentViolationsReport(traffic_Violation);
+                  TrafficReport.generateReportBasedOnChoice(traffic_Violation,zo);
                     break;
                 case 7:
                     admin.get(index).addAdmins(admin, owner);
                     break;
                 case 8:
-                    admin.get(index).changePass(admin, index);
+                    admin.get(index).changePass();
                     break;
                 case 9:
                     admin.get(index).AddOfficer(TrafficOfficer, Zone);
