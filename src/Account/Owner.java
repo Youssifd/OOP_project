@@ -24,9 +24,9 @@ import static java.lang.System.out;
 public class Owner extends Account {
 
     //  contact number of the owner
-    Boolean isVerified = false; // Verification status (set by the admin)
+   // boolean isVerified = false; // Verification status (set by the admin)
     ArrayList<String> vehicles; // List to store the IDs of vehicles ( owned by this owner )
-    ArrayList<String> messages; // List to store messages sent to the owner
+     public ArrayList<Notification>  notifications = new ArrayList<>(); // List to store notifications
     public ArrayList<Vehicle> vehicle = new ArrayList<>();
     // 0# The Constructor
 
@@ -34,7 +34,7 @@ public class Owner extends Account {
         super(id, email, Password, Name);
         this.Contact = Contact_info;
         this.vehicles = new ArrayList<>(); // Initialize the list of vehicles
-        this.messages = new ArrayList<>(); // Initialize the list of messages
+
     }
 
     // 1# Method to add a vehicle to the owner's list
@@ -56,17 +56,19 @@ public class Owner extends Account {
     }
 
     // 4# Method to add a message to the owner's messages
-
-    public void addMessage(String message) {
-        messages.add(message);
+    public  int getNumOfNotificationsUnseen(){
+        // Method to get the number of unseen notifications
+        int count = 0;
+        for (Notification notification : notifications) {
+            if (!notification.isRead) {
+                count++;
+            }
+        }
+        return count;
     }
+
 
     // 5# Method to retrieve all messages sent to the owner
-
-    public ArrayList<String> getMessages() {
-        return messages;
-    }
-
 
     protected void changePass(ArrayList<Owner> Owners, int index) {
         out.print("Enter your new password: ");
@@ -79,8 +81,8 @@ public class Owner extends Account {
         System.out.println("Owner Name: " + Name);
         System.out.println("Contact Number: " + Contact);
         System.out.println("Email: " + Email);
-        System.out.println("Verification Status: " + (isVerified ? "Verified" : "Not Verified"));
         System.out.println("Owned Vehicles: " + vehicles);
-        System.out.println("Messages: " + messages);
+         // System.out.println("Verification Status: " + (isVerified ? "Verified" : "Not Verified"));
+        // System.out.println("Messages: " + messages);
     }
 }

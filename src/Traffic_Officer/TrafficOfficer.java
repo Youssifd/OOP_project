@@ -5,10 +5,10 @@ import Admin.*;
 import Area.Zone;
 import Vehicle.*;
 
+import Account.Notification;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Scanner;
 
 import static java.lang.System.out;
@@ -47,7 +47,8 @@ public class TrafficOfficer extends Account implements display {
         System.out.println("Violation recorded successfully by officer: " + Name);
         o.get(OwnerIndex).vehicle.get(VehicleIndex).addViolation(TV);//for add violation to owner
         System.out.println("Violation added to Vehicle with License Plate: " + o.get(OwnerIndex).vehicle.get(VehicleIndex).getLicensePlate());
-
+        String  Message =Notification.StandardMessage(o.get(OwnerIndex).Name,TV);
+        Notification.sendNotification(o.get(OwnerIndex).notifications,Message);
     }
 
     @Override
