@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import Admin.Admin;
 
+import static java.lang.System.out;
+
 public abstract class Account {
     public static int Acc_counter = 0;
     private final String id;
@@ -55,6 +57,41 @@ public abstract class Account {
             }
         }
         return input;
+    }
+    protected void changePass() {
+        out.println("Enter your current password: ");
+        String CurrentPassword = Admin.cin.nextLine();
+        do{
+            CurrentPassword = Admin.cin.nextLine();
+            if(!CurrentPassword.equals(Password)){
+                out.println("Do you want to exit? (Y/N)");
+                char ch;
+                do {
+                    ch = Admin.cin.next().charAt(0);
+                    if (ch == 'Y' || ch == 'y') return;
+                } while (ch != 'N' && ch != 'n');
+                out.println("Incorrect password! Please try again.");
+            }
+
+        }while (!CurrentPassword.equals(Password));
+
+        out.print("Enter your new password: ");
+        String NewPassword;
+        do{
+            NewPassword = Admin.cin.nextLine();
+            if(NewPassword.equals(Password)){
+                out.println("Do you want to exit? (Y/N)");
+                char ch;
+                do {
+                    ch = Admin.cin.next().charAt(0);
+                    if (ch == 'Y' || ch == 'y') return;
+                } while (ch != 'N' && ch != 'n');
+                out.println("The new password is the same as the old one. \nPlease enter a different password.");
+            }
+        }while(NewPassword.equals(Password));
+
+        Password = Admin.cin.nextLine();
+        out.println("Password changed successfully!");
     }
 
 
