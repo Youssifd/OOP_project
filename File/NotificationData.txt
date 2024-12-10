@@ -1,0 +1,24 @@
+OW-02 2
+TrafficPost-23:19,10/12-23:19,true
+Dear you,
+We are sorry to inform you that your vehicle with the plate number Bike-152 has been caught violating the traffic rules.
+The violation was issued on 10/12 at 23:19
+The violation was issued by youssif El-Sayed
+The violation was issued in the zone Zone2
+Violation Code is TV-01
+The fine for this violation is 200.0
+Please make sure to pay the fine as soon as possible to avoid any further actions.
+Best Regards,
+Traffic Violation System
+TrafficPost-23:39,10/12-23:39,true
+Dear you,
+We are sorry to inform you that your vehicle with the plate number Bike-152 has been caught violating the traffic rules.
+The violation was issued on 10/12 at 23:39
+The violation was issued by youssif El-Sayed
+The violation was issued in the zone Zone2
+Violation Code is TV-01
+The fine for this violation is 10000.0
+Please make sure to pay the fine as soon as possible to avoid any further actions.
+Best Regards,
+Traffic Violation System
+

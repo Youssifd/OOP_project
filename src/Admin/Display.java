@@ -24,11 +24,12 @@ public class Display {
             Name = Account.Unique("Enter your Name: ", Account.Names);
             out.print("Enter your Contact_info: ");
             Contact_info = Admin.cin.nextLine();
-            arr.add(new Owner(ID, Email, Password, Name, Contact_info));
+            arr.add(new Owner(ID, Name, Password, Email, Contact_info));
             out.println("Account created successfully!");
             out.print("Do you want to create another account? (y/n): ");
             c = Admin.cin.next().charAt(0);
         } while (c == 'y' || c == 'Y');
+        out.println("Have a nice day!");
         return arr;
     }
 
@@ -45,21 +46,21 @@ public class Display {
 
             for (int i = 0; i < Admins.size(); i++) {
                 if (Admins.get(i).Name.equals(name) && Admins.get(i).comparePassword(pass)) {
-                    return name + "-" + i + "-" + 1;
+                    return name + "," + i + "," + 1;
                 }
             }
 
 
             for (int i = 0; i < TrafficOfficers.size(); i++) {
                 if (TrafficOfficers.get(i).Name.equals(name) && TrafficOfficers.get(i).comparePassword(pass)) {
-                    return name + "-" + i + "-" + 2;
+                    return name + "," + i + "," + 2;
                 }
             }
 
 
             for (int i = 0; i < owners.size(); i++) {
                 if (owners.get(i).Name.equals(name) && owners.get(i).comparePassword(pass)) {
-                    return name + "-" + i + "-" + 3;
+                    return name + "," + i + "," + 3;
                 }
             }
 

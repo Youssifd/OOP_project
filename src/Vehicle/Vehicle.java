@@ -88,15 +88,25 @@ public class Vehicle {
         boolean continueInput = true;
 
         while (continueInput) {
-            System.out.println("Enter vehicle type (Car, Truck, Bike):");
-            String type = scanner.nextLine();
+            System.out.println("1- Bike\n2- Car\n3- Truck");
+            System.out.print("Enter vehicle type: ");
+            int choice = 0;
+            choice = Exc.infinite(choice, 4, 1);
+           String type="";
+            switch (choice){
+                case 1 -> type = "Bike";
+                case 2 -> type = "Car";
+                case 3 -> type = "Truck";
+            }
 
             String licensePlate;
             while (true) {
                 System.out.println("Enter license plate:");
                 licensePlate = scanner.nextLine();
-
-                if (licensePlates.contains("," + licensePlate + ",")) {
+                if(licensePlate.isEmpty()){
+                    continue;
+                } else
+                if (licensePlates.contains(licensePlate)) {
                     System.out.println("This license plate is already used. Please enter a unique one.");
                 } else {
                     break;
@@ -107,7 +117,7 @@ public class Vehicle {
             String owner = scanner.nextLine();*/
             Vehicle vehicle = new Vehicle(type, licensePlate, OwnerName);
             vehicles.add(vehicle);
-            System.out.println("Vehicle added: " + vehicle);
+            System.out.println("Vehicle added: " + vehicle.licensePlate);
 
             System.out.println("Do you want to add another vehicle? (yes/no):");
             String response = scanner.nextLine();

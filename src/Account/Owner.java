@@ -87,11 +87,11 @@ public class Owner extends Account {
         // Method to display the owner page
         Scanner input = new Scanner(System.in);
         out.println("Welcome, " + Owners.get(index).Name + "!");
-        out.println("You have " + Owners.get(index).NumOfNotseen() + " unseen notifications.");
 
         boolean logout = false;
         do {
 
+            out.println("You have " + Owners.get(index).NumOfNotseen() + " unseen notifications.");
             out.println("1. View Profile");//✓
             out.println("2. View Your Notifications");//✓
             out.println("3. View Your Vehicles");//✓
@@ -107,7 +107,7 @@ public class Owner extends Account {
                     Owners.get(index).displayOwnerDetails();
                     break;
                 case 2:
-                    if (Owners.get(index).NumOfNotseen() == 0) {
+                    if (Owners.get(index).notifications.isEmpty()) {
                         out.println("You have no notifications.");
                         break;
                     }
@@ -115,6 +115,10 @@ public class Owner extends Account {
                     break;
                 case 3:
                     boolean existFine = false;
+                    if (Owners.get(index).vehicle.isEmpty()) {
+                        out.println("You have no vehicles.");
+                        break;
+                    }
                     for (int i = 0, j = 0; i < Owners.get(index).vehicle.size(); i++) {
                         j = i + 1;
                         out.println("#" + j + ":-");
@@ -139,7 +143,6 @@ public class Owner extends Account {
                             Owners.get(index).vehicle.get(vehicleIndex - 1).PayFine();
 
                             out.println("Do you want to view another vehicle's fines? (Y/N)");
-                            ch = input.next().charAt(0);
                         } while (ch == 'Y' || ch == 'y');
                     }
 

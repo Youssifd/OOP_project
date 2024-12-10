@@ -1,14 +1,16 @@
 package Admin;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import static java.lang.System.out;
 
 public class Exc {
     public static int infinite(int num, int max, int min) {
         String input;
+        Scanner cin = new Scanner(System.in);
         while (true) {
-            input = Admin.cin.nextLine();
+            input = cin.nextLine();
             if (input.matches("\\d+")) {  // Check if the input contains only digits
                 try {
                     num = Integer.parseInt(input);

@@ -146,7 +146,7 @@ public class TrafficOfficer extends Account implements display {
         /*String Vehicle_ID,String Violation_type, String date, double fine_amount, String whoIssued*/
         out.println("Welcome " + officer.get(index).Name + " :)");
         do {
-            out.println("1- View the violations you added\n2- Search Violations added you\n3-Record Violation\n4-Change Password\n5-Logout");
+            out.println("1- View the violations you added\n2- Search Violations added you\n3- Record Violation\n4- Change Password\n5- Logout");
             out.print("Enter your choice: ");
             int choise = 0;
             choise = Exc.infinite(choise, 5, 1);
@@ -158,13 +158,29 @@ public class TrafficOfficer extends Account implements display {
                     officer.get(index).viewViolations(2);
                     break;
                 case 3:
-                    String Vehicle_Licence, Violation_type = " ", date, whoIssued, zoneName;
+                    String Vehicle_Licence=" ", Violation_type = " ", date, whoIssued, zoneName;
                     double fine_amount = 0;
-                    int ownerIndex = -1, vehicleIndex = -1;
+                    int ownerIndex = -1, vehicleIndex = -1, tryCounter = 1;
+                    char c;
+                    boolean exit = false;
                     System.out.println("Enter Vehicle ID: ");
                     do {
+                        tryCounter++;
+
                         Vehicle_Licence = input.next();
+                        if (tryCounter > 3) {
+                            out.println("do you want to try again? y/n");
+                            c = input.next().charAt(0);
+                            if (c == 'n' || c == 'N') {
+                                exit = true;
+                                break;
+                            }
+
+                        }
                     } while (!Vehicle.CheckExist(Vehicle_Licence));
+                    if (exit) {
+                        break;
+                    }
                     String LicensePlate = Vehicle_Licence;
                     String getVtype = " ";
                     for (int i = 0; i < owners.size(); i++) {

@@ -41,27 +41,59 @@ public class Main {
         ArrayList<Zone> zones = new ArrayList<>();
 
 
-        File_Processing.Load_Accounts(Admins, TrafficOfficers, owners, zones);
         File_Processing.Load_Zones(zones);
-        /*Admin.AdminPage(Admins, 0, owners, TrafficOfficers, zones, Traffic_Violation.tra, "");
-        TrafficOfficer.OfficerPage(TrafficOfficers, 1, owners,zones);*/
-        Owner.OwnerPage(owners, 0);
-        File_Processing.Save_Accounts(Admins, TrafficOfficers, owners);
+        File_Processing.Load_Accounts(Admins, TrafficOfficers, owners, zones);
+        File_Processing.Load_Notifications(owners);
+       /*
+        //turn_on_traffic_lights
+        for(Zone zone: zones){
+            for(Traffic_Lights traffic_light: zone.traffic_light){
+                traffic_light.Start();
+            }
+          }
+        */
+        out.println("========================================================================");
+        out.println("\t\t Welcome to Traffic Management System :) ");
+        out.println("\t\t=========================================");
+        while (true) {
+            out.println("1- Sign up\n2- Login\n3- Exit");
+            out.print("Enter your choice: ");
+            int choice = 0;
+            choice = Exc.infinite(choice, 3, 1);
+            if (choice == 1) {
+                Display.singup(owners);
+            } else if (choice == 2) {
 
+                String s = Display.Login(TrafficOfficers, Admins, owners);
 
-        String s = Display.Login(TrafficOfficers, Admins, owners);
+                if (s != null) {
+                    String[] parts = s.split(",");
+                    String name = parts[0];
+                    int index = Integer.parseInt(parts[1]);
+                    int type = Integer.parseInt(parts[2]);
 
-        if (s != null) {
-            String[] parts = s.split("-");
-            String name = parts[0];
-            int index = Integer.parseInt(parts[1]);
-            int type = Integer.parseInt(parts[2]);
+                    switch (type) {
+                        case 1 ->
+                                Admin.AdminPage(Admins, index, owners, TrafficOfficers, zones, Traffic_Violation.tra, name);
+                        case 2 -> TrafficOfficer.OfficerPage(TrafficOfficers, index, owners, zones);
+                        case 3 -> Owner.OwnerPage(owners, index);
+                        default -> out.println("Unknown role.");
+                    }
+                }
+            } else if (choice == 3) {
 
-            switch (type) {
-                case 1 -> out.println("Welcome Admin: " + name);
-                case 2 -> out.println("Welcome Traffic Officer: " + name);
-                case 3 -> out.println("Welcome Owner: " + name);
-                default -> out.println("Unknown role.");
+           /* //turn_off_traffic_lights
+            for(Zone zone: zones){
+                for(Traffic_Lights traffic_light: zone.traffic_light){
+                    traffic_light.Stop();
+                }
+            }
+*/
+
+              //  File_Processing.Save_Zones(zones);
+               // File_Processing.Save_Accounts(Admins, TrafficOfficers, owners);
+                File_Processing.Save_Notifications(owners);
+                System.exit(0);
             }
         }
     }

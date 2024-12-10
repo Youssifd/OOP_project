@@ -1,7 +1,7 @@
 package File_function;
 
 
-import Account.Owner;
+import Account.*;
 import Admin.Admin;
 import Traffic_Officer.TrafficOfficer;
 import Area.*;
@@ -14,6 +14,7 @@ import java.util.ArrayList;
 public class File_Processing {
 
     public static void Load_Data() {
+
     }
 
     public static void Sava_Data() {
@@ -161,6 +162,55 @@ public class File_Processing {
                 }
             }
 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void Save_Notifications(ArrayList<Owner> owners) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("File/NotificationData.txt"))) {
+            for (Owner OW : owners) {
+                if (OW.notifications.isEmpty()) continue;
+                bw.write(OW.getID() + " " + OW.notifications.size());//regex by space
+                bw.newLine();
+                for (Notification notfy : OW.notifications) {
+                    //body of notification in 10 lines
+                    // regex مختلف
+                    bw.write(notfy.title + "," + notfy.date+ "," + notfy.isRead);
+                    bw.newLine();
+                    bw.write(notfy.message);
+
+                }
+                bw.newLine();
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void Load_Notifications(ArrayList<Owner> owners) {
+        try (BufferedReader br = new BufferedReader(new FileReader("File/NotificationData.txt"))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(" ");
+                for (Owner OW : owners) {
+                    if (OW.getID().equals(data[0])) {
+                        int notification_count = Integer.parseInt(data[1]);
+                        for (int i = 0; i < notification_count; i++) {
+                            line = br.readLine();
+                            data = line.split(",");
+                            String collectMessage = "";
+                            for (int j = 0; j < 9; j++) {
+                                collectMessage += br.readLine() + "\n";
+                            }
+                            Notification notification = new Notification(data[0], data[1], collectMessage, Boolean.parseBoolean(data[2]));
+                            OW.notifications.add(notification);
+                        }
+                    }
+                }
+
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

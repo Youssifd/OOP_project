@@ -21,6 +21,12 @@ public class Notification {
         this.date = formatter.format(new Date());
         this.title = "TrafficPost-" + date.split("-")[1];
     }
+    public Notification(String title,String Date,String message,boolean isRead) {
+        this.message = message;
+        this.date = Date;
+        this.title = title;
+        this.isRead = isRead;
+    }
 
     public static void showNotification(ArrayList<Notification> notifications, int num) {
         //when entering the notification page
@@ -37,8 +43,10 @@ public class Notification {
         do {
             ch = input.next().charAt(0);
             if (ch == 'N' || ch == 'n') return;
+            else if (ch == 'Y' || ch == 'y') break;
+            else System.out.println("Invalid input, please enter Y or N");
 
-        } while (ch != 'Y' && ch != 'y');
+        } while (true);
 
         System.out.println("Enter the number of the notification you want to read or 0 to exit");
         int choice = 0;
@@ -65,7 +73,7 @@ public class Notification {
                 "The violation was issued on " + s[0] + " at " + s[1] + "\n" +
                 "The violation was issued by " + tv.getWhoIssued() + "\n" +
                 "The violation was issued in the zone " + tv.getZoneName() + "\n" +
-                "The violation was issued for " + tv.getViolationID() + "\n" +
+                "Violation Code is " + tv.getViolationID() + "\n" +
                 "The fine for this violation is " + tv.getFine_amount() + "\n" +
                 "Please make sure to pay the fine as soon as possible to avoid any further actions.\n" +
                 "Best Regards,\n" +

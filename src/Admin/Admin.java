@@ -26,18 +26,19 @@ public class Admin extends Account {
 
     public ArrayList<TrafficOfficer> AddOfficer(ArrayList<TrafficOfficer> arr, ArrayList<Zone> Zone) {
         char c;
+        Scanner Cin;
         String Id, Name, Email, Password, Contact, assignedZone;
         do {
-
+            Cin = new Scanner(System.in);
             Id = Account.Unique("Enter your ID: ", Account.ids);
             out.print("Enter your Email: ");
-            Email = Admin.cin.nextLine();
+            Email = Cin.nextLine();
             out.print("Enter your Password: ");
-            Password = Admin.cin.nextLine();
+            Password = Cin.nextLine();
             out.print("Enter your Name: ");
-            Name = Admin.cin.nextLine();
+            Name = Cin.nextLine();
             out.print("Enter your Contact_info: ");
-            Contact = Admin.cin.nextLine();
+            Contact = Cin.nextLine();
             for (int i = 0, j; i < Zone.size(); i++) {
                 j = i + 1;
                 out.println(j + "- " + Zone.get(i).getName());
@@ -50,7 +51,7 @@ public class Admin extends Account {
             arr.add(new TrafficOfficer(Id, Name, Email, Password, Contact, assignedZone));
             out.println("Account created successfully!");
             out.print("Do you want to create another account? (y/n): ");
-            c = Admin.cin.next().charAt(0);
+            c = Cin.next().charAt(0);
         } while (c == 'y' || c == 'Y');
         out.println("This offeceres are registered by Admin: " + this.Name);
         return arr;
@@ -112,7 +113,7 @@ public class Admin extends Account {
 
                 System.out.print("Do you want to create another account? (y/n): ");
                 continueAdding = Admin.cin.next().charAt(0);
-                Admin.cin.nextLine(); // Consume the leftover newline character.
+                Admin.cin.nextLine(); //  the leftover newline character.
             } while (continueAdding == 'y' || continueAdding == 'Y');
         }
         return admins;
@@ -126,16 +127,19 @@ public class Admin extends Account {
     }
 
     public static void AdminPage(ArrayList<Admin> admin, int index, ArrayList<Owner> owner, ArrayList<TrafficOfficer> TrafficOfficer, ArrayList<Zone> Zone, ArrayList<Traffic_Violation> traffic_Violation, String by) {
+        out.println("========================================================================");
         boolean logout = false;
         ArrayList<Zone> zo=new ArrayList<>();
         System.out.println("Welcome " + admin.get(index).Name + "!");
         do {
             System.out.println("1- Add traffic lights and configure durations.\n2- update traffic lights and configure durations.\3- delete traffic lights and configure durations.\n" +
                     "4- Add zone.\n5- View violations by vehicle or by zone.\n6- Generate traffic reports\n"
-                    + "7- Add new Admin.\n8- change my password.\n9- Add new Traffic Officer.\n10- Logout.\n");
+                    + "7- Add new Admin.\n8- change my password.\n9- Add new Traffic Officer.\n10- Logout.");
+            out.println("......");
+            out.print("Enter your choice: ");
             int a = 0, i = 0;
 
-            a = Exc.infinite(a, 10, 1);
+            a = Exc.infinite(0, 10, 1);
             if (a >= 1 && a <= 3) {
                 for (int x = 0, j; x < Zone.size(); x++) {
                     j = x + 1;
