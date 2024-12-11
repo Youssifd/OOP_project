@@ -178,7 +178,10 @@ public class File_Processing {
                     // regex مختلف
                     bw.write(notfy.title + "," + notfy.date+ "," + notfy.isRead);
                     bw.newLine();
-                    bw.write(notfy.message);
+                    /*
+                     * str[0] -> license plate , str[1] -> date , str[2] -> who issued , str[3] -> zone name , str[4] -> violation id , str[5] -> fine amount
+                     */
+                    bw.write(notfy.MessageData[0]+ ","+ notfy.MessageData[1]+ ","+ notfy.MessageData[2]+ ","+ notfy.MessageData[3]+ ","+ notfy.MessageData[4]+ ","+ notfy.MessageData[5]);
 
                 }
                 bw.newLine();
@@ -200,11 +203,10 @@ public class File_Processing {
                         for (int i = 0; i < notification_count; i++) {
                             line = br.readLine();
                             data = line.split(",");
-                            String collectMessage = "";
-                            for (int j = 0; j < 9; j++) {
-                                collectMessage += br.readLine() + "\n";
-                            }
-                            Notification notification = new Notification(data[0], data[1], collectMessage, Boolean.parseBoolean(data[2]));
+                            line = br.readLine();
+                            String[] collectMessage = line.split(",");
+
+                            Notification notification = new Notification(data[0], data[1], collectMessage, Boolean.parseBoolean(data[2]), OW.Name);
                             OW.notifications.add(notification);
                         }
                     }

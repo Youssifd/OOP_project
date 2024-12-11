@@ -15,4 +15,10 @@ AccID, Name, Email, Password ,Contact,Vehicle_Size
 ->Vehicle
 getId Type LicensePlate owner TV.size
 -->TV
-ViolationID,  VehicleLicense, ViolationType, Date, zoneName,  FineAmount, whoIssued, Status
+ViolationID, VehicleLicense, ViolationType, Date, zoneName, FineAmount, whoIssued, Status
+==============================================================================================================
+#NotificationData
+Owner_ID
+->Notification
+NotificationTitle , NotificationDate, NotificationStatus(NotificationRead|NotificationUnread)
+NotificationMessage->  license plate , date , who issued , zone name , violation id , fine amount

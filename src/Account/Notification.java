@@ -13,19 +13,23 @@ public class Notification {
     static Scanner input = new Scanner(System.in);
     public String message;
     public String date;
-    public String title;//
+    public String title;
+    public String[] MessageData;
     public boolean isRead = false;
 
-    public Notification(String message) {
+
+    public Notification(String message,String[] Data) {
         this.message = message;
+        this.MessageData = Data;
         this.date = formatter.format(new Date());
         this.title = "TrafficPost-" + date.split("-")[1];
     }
-    public Notification(String title,String Date,String message,boolean isRead) {
-        this.message = message;
+    public Notification(String title,String Date,String[] Data,boolean isRead,String OwnerName) {
         this.date = Date;
         this.title = title;
         this.isRead = isRead;
+        this.MessageData = Data;
+        this.message = StandardForFile(OwnerName,this.MessageData);
     }
 
     public static void showNotification(ArrayList<Notification> notifications, int num) {
@@ -55,15 +59,25 @@ public class Notification {
             num--;
             notifications.get(choice - 1).isRead = true;
         }
-        System.out.println("_____________" + notifications.get(choice - 1).title + "___________");
+        System.out.println("___________" + notifications.get(choice - 1).title + "___________");
         System.out.println("Sent on: " + notifications.get(choice - 1).date);
         System.out.println(notifications.get(choice - 1).message);
 
     }
 
-    public static void sendNotification(ArrayList<Notification> notifications, String message) {
-        Notification notification = new Notification(message);
-        notifications.add(notification);
+    public static String StandardForFile(String OwnerName,String[] Str ) {
+
+       String[] s = Str[1].split("-");
+        return "Dear " + OwnerName + ",\n" +
+                "We are sorry to inform you that your vehicle with the plate number " + Str[0] + " has been caught violating the traffic rules.\n" +//Str[0]->Vehicle_ID
+                "The violation was issued on " +s[0] + " at " + s[1] + "\n" +//Str[1] -> Date
+                "The violation was issued by " + Str[2] + "\n" +//Str[2] -> WhoIssued
+                "The violation was issued in the zone " + Str[3] + "\n" +//Str[3] -> ZoneName
+                "Violation Code is " + Str[4] + "\n" +// Str[4] -> ViolationID
+                "The fine for this violation is " + Str[5] + "\n" +//Str[5] -> Fine_amount
+                "Please make sure to pay the fine as soon as possible to avoid any further actions.\n" +
+                "Best Regards,\n" +
+                "Traffic Violation System";
     }
 
     public static String StandardMessage(String OwnerName, Traffic_Violation tv) {

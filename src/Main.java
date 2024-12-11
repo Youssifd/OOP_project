@@ -82,16 +82,16 @@ public class Main {
                 }
             } else if (choice == 3) {
 
-           /* //turn_off_traffic_lights
-            for(Zone zone: zones){
-                for(Traffic_Lights traffic_light: zone.traffic_light){
-                    traffic_light.Stop();
+                //turn_off_traffic_lights
+                for (Zone zone : zones) {
+                    for (Traffic_Lights traffic_light : zone.traffic_light) {
+                        traffic_light.Stop();
+                    }
                 }
-            }
-*/
 
-              //  File_Processing.Save_Zones(zones);
-               // File_Processing.Save_Accounts(Admins, TrafficOfficers, owners);
+
+                File_Processing.Save_Zones(zones);
+                File_Processing.Save_Accounts(Admins, TrafficOfficers, owners);
                 File_Processing.Save_Notifications(owners);
                 System.exit(0);
             }

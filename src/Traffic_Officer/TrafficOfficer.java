@@ -48,8 +48,10 @@ public class TrafficOfficer extends Account implements display {
         System.out.println("Violation recorded successfully by officer: " + Name);
         o.get(OwnerIndex).vehicle.get(VehicleIndex).addViolation(TV);//for add violation to owner
         System.out.println("Violation added to Vehicle with License Plate: " + o.get(OwnerIndex).vehicle.get(VehicleIndex).getLicensePlate());
-        String Message = Notification.StandardMessage(o.get(OwnerIndex).Name, TV);
-        Notification.sendNotification(o.get(OwnerIndex).notifications, Message);
+       // String Message = Notification.StandardMessage(o.get(OwnerIndex).Name, TV);
+//        Notification.sendNotification(o.get(OwnerIndex).notifications, Message);
+        o.get(OwnerIndex).sendNotification(TV);
+
     }
 
     @Override

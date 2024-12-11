@@ -17,9 +17,7 @@ public class Traffic_Violation {
     public String Status; // paid or not paid
     private final String whoIssued;//"Traffic Officer";
     private final String ZoneName;
-
-
-    boolean Seen = false;
+    //boolean Seen = false;
 
     public Traffic_Violation(String Vehicle_ID,
                              String Violation_type, String date, String zoneName, double fine_amount, String whoIssued) {

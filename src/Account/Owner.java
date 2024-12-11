@@ -15,7 +15,7 @@ public class Owner extends Account {
 package Account;
 
 import Admin.*;
-import Vehicle.Vehicle;
+import Vehicle.*;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -162,5 +162,17 @@ public class Owner extends Account {
             System.out.println("----------------------------");
         } while (!logout);
         System.out.println("===============================================\n");
+    }
+    public  void sendNotification(Traffic_Violation tv) {
+        String[] parts = new String[6];
+        parts[0] = tv.getVehicle_ID();
+        parts[1] = tv.getDate();
+        parts[2] = tv.getWhoIssued();
+        parts[3] = tv.getZoneName();
+        parts[4] = tv.getViolationID();
+        parts[5] = tv.getFine_amount()+"";
+        String message=  Notification.StandardMessage(Name,tv);
+        Notification notification = new Notification(message,parts);
+        notifications.add(notification);
     }
 }
