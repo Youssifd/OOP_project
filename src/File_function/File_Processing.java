@@ -23,10 +23,10 @@ public class File_Processing {
     public static void Save_Zones(ArrayList<Zone> zones) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter("File/ZoneData.txt"))) {
             for (Zone zone : zones) {
-                bw.write(zone.getID() + "," + zone.getName() + "," + zone.getLocation() + "," + zone.traffic_light.size());
+                bw.write(zone.getID() + "," + zone.getName() + "," + zone.getLocation() + "," +zone.numViolationOccured+ ","+ zone.traffic_lights.size());
                 bw.newLine();
                 //TrafficLightID TrafficLightLocation TrafficLightStatus TrafficDuration TrafficLightTime(red|yellow|green)
-                for (Traffic_Lights traffic_light : zone.traffic_light) {
+                for (Traffic_Lights traffic_light : zone.traffic_lights) {
                     bw.write(traffic_light.getID() + "," + traffic_light.getLocation() + "," + traffic_light.Status + "," + traffic_light.getDuration() + "," + traffic_light.redTime + "," + traffic_light.yellowTime + "," + traffic_light.greenTime);
                     bw.newLine();
                 }
@@ -43,8 +43,8 @@ public class File_Processing {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(",");
-                Zone zone = new Zone(data[0], data[1], data[2]);
-                int traffic_light_count = Integer.parseInt(data[3]);
+                Zone zone = new Zone(data[0], data[1], data[2], Integer.parseInt(data[3]));
+                int traffic_light_count = Integer.parseInt(data[4]);
                 for (int i = 0; i < traffic_light_count; i++) {
                     line = br.readLine();
                     data = line.split(",");
@@ -53,7 +53,7 @@ public class File_Processing {
                     traffic_light.redTime = Integer.parseInt(data[4]);
                     traffic_light.yellowTime = Integer.parseInt(data[5]);
                     traffic_light.greenTime = Integer.parseInt(data[6]);
-                    zone.traffic_light.add(traffic_light);
+                    zone.traffic_lights.add(traffic_light);
                 }
 
                 zones.add(zone);
@@ -100,7 +100,7 @@ public class File_Processing {
 
     }
 
-    public static void Load_Accounts(ArrayList<Admin> admins, ArrayList<TrafficOfficer> officers, ArrayList<Owner> owners, ArrayList<Zone> zones) {
+    public static void Load_Accounts(ArrayList<Admin> admins, ArrayList<TrafficOfficer> officers, ArrayList<Owner> owners) {
         try (BufferedReader br = new BufferedReader(new FileReader("File/AccData.txt"))) {
             String line = br.readLine();
             String[] data = line.split(",");
@@ -151,13 +151,6 @@ public class File_Processing {
                                 officer.addviolations(tv);
                             }
                         }
-                    }
-                }
-            }
-            for (Zone zone : zones) {
-                for (TrafficOfficer officer : officers) {
-                    if (officer.getassignedZone().equals(zone.getName())) {
-                        zone.numViolationOccured += officer.violations.size();
                     }
                 }
             }

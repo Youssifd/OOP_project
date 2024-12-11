@@ -42,7 +42,7 @@ public class Main {
 
 
         File_Processing.Load_Zones(zones);
-        File_Processing.Load_Accounts(Admins, TrafficOfficers, owners, zones);
+        File_Processing.Load_Accounts(Admins, TrafficOfficers, owners);
         File_Processing.Load_Notifications(owners);
        /*
         //turn_on_traffic_lights
@@ -84,7 +84,7 @@ public class Main {
 
                 //turn_off_traffic_lights
                 for (Zone zone : zones) {
-                    for (Traffic_Lights traffic_light : zone.traffic_light) {
+                    for (Traffic_Lights traffic_light : zone.traffic_lights) {
                         traffic_light.Stop();
                     }
                 }

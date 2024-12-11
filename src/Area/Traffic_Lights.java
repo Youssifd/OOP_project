@@ -134,6 +134,12 @@ public class Traffic_Lights implements Runnable {
         System.out.println("Duration: " + Duration);
     }
 
+    public static void viewTrafficLights(ArrayList<Traffic_Lights> Traffic_Lights) {
+        for (Traffic_Lights traffic_light : Traffic_Lights) {
+            traffic_light.Details();
+        }
+    }
+
     public static int checkDuration(int Duration) {
         if (Duration <= 1) {
             System.out.println("Invalid Duration :(");
@@ -150,14 +156,14 @@ public class Traffic_Lights implements Runnable {
         int temp = Traffic_Lights.size() + 1;
         String Location = location + "-" + temp;
         String Status = "";
-        System.out.println("Enter Duration(greater than 1): ");
+        System.out.println("Enter temp Duration for first time(greater than 1): ");
         int Duration = input.nextInt();
 
-        Duration = Area.Traffic_Lights.checkDuration(Duration);
+        Duration = checkDuration(Duration);
 
         System.out.println("1-Red\n2-Yellow\n3-Green\nEnter Status: ");
-        int choice = input.nextInt(); //check valid from admin class
-
+        int choice = 0; //check valid from admin class
+        choice = Exc.infinite(0, 3, 1);
         if (choice == 1) {
             Status = "Red";
         } else if (choice == 2) {
@@ -166,6 +172,7 @@ public class Traffic_Lights implements Runnable {
             Status = "Green";
         }
         Traffic_Lights.add(new Traffic_Lights(Location, Duration, Status));
+        System.out.println("Traffic Light added successfully!");
 
     }
 

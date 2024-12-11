@@ -129,61 +129,62 @@ public class Admin extends Account {
     public static void AdminPage(ArrayList<Admin> admin, int index, ArrayList<Owner> owner, ArrayList<TrafficOfficer> TrafficOfficer, ArrayList<Zone> Zone, ArrayList<Traffic_Violation> traffic_Violation, String by) {
         out.println("========================================================================");
         boolean logout = false;
-        ArrayList<Zone> zo=new ArrayList<>();
         System.out.println("Welcome " + admin.get(index).Name + "!");
         do {
-            System.out.println("1- Add traffic lights and configure durations.\n2- update traffic lights and configure durations.\3- delete traffic lights and configure durations.\n" +
-                    "4- Add zone.\n5- View violations by vehicle or by zone.\n6- Generate traffic reports\n"
-                    + "7- Add new Admin.\n8- change my password.\n9- Add new Traffic Officer.\n10- Logout.");
+            System.out.println("1- View exist zones.\n2- Add traffic lights.\n3- Update traffic lights.\n4- Delete traffic lights.\n5- Add zone.\n6- View violations by vehicle or by zone.\n7- Generate traffic reports.\n8- Add new Admin.\n9- Change my password.\n10- Add new Traffic Officer.\n11- Logout.");
             out.println("......");
             out.print("Enter your choice: ");
             int a = 0, i = 0;
 
-            a = Exc.infinite(0, 10, 1);
-            if (a >= 1 && a <= 3) {
+            a = Exc.infinite(0, 11, 1);
+            if (a >= 1 && a <= 4) {
                 for (int x = 0, j; x < Zone.size(); x++) {
                     j = x + 1;
                     out.println(j + "- " + Zone.get(x).getName());
-                    out.print("Enter Number assigned zone: ");
-                    int choice = 0;
-                    choice = Exc.infinite(choice, Zone.size(), 1);
-                    i = choice - 1;
                 }
+                out.print("Enter Number assigned zone: ");
+                int choice = 0;
+                choice = Exc.infinite(choice, Zone.size(), 1);
+                i = choice - 1;
 
             }
 
             switch (a) {
                 case 1:
-                    Zone.get(i).addTrafficLight();
+                    Zone.get(i).getInfo();
                     break;
                 case 2:
-                    Zone.get(i).editTrafficLight();
+                    Zone.get(i).addTrafficLight();
                     break;
                 case 3:
-                    Zone.get(i).removeTrafficLight();
+                    Zone.get(i).editTrafficLight();
                     break;
                 case 4:
-                    Admin.addZone(Zone);
+                    Zone.get(i).removeTrafficLight();
                     break;
-                case 5://make global object of Traffic_Violation
+                case 5:
+                    addZone(Zone);
+                    break;
+                case 6://make global object of Traffic_Violation
                     Traffic_Violation.View_violations(traffic_Violation, by);// which violation-> Traffic_Violation.(traffic_Violation)static
                     break;
-                case 6:
-                  TrafficReport.generateReportBasedOnChoice(traffic_Violation,zo);
-                    break;
                 case 7:
-                    admin.get(index).addAdmins(admin, owner);
+                  TrafficReport.generateReportBasedOnChoice(traffic_Violation,Zone);
                     break;
                 case 8:
-                    admin.get(index).changePass();
+                    admin.get(index).addAdmins(admin, owner);
                     break;
                 case 9:
-                    admin.get(index).AddOfficer(TrafficOfficer, Zone);
+                    admin.get(index).changePass();
                     break;
                 case 10:
+                    admin.get(index).AddOfficer(TrafficOfficer, Zone);
+                    break;
+                case 11:
                     logout = true;
                     break;
             }
+            out.println("......................");
         } while (!logout);
 
     }

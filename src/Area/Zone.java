@@ -1,10 +1,11 @@
 package Area;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Zone {
 
-    public ArrayList<Traffic_Lights> traffic_light = new ArrayList<>();
+    public ArrayList<Traffic_Lights> traffic_lights = new ArrayList<>();
     static int ZoneCounter = 0;
     public int numViolationOccured = 0;
     private final String ID;
@@ -20,7 +21,7 @@ public class Zone {
         this.Location = Location;
     }
 
-    public Zone(String ID, String Name, String Location) {
+    public Zone(String ID, String Name, String Location,int x) {
         //for loading from file
         this.ID = ID;
         ID = ID.split("-")[1];
@@ -28,6 +29,7 @@ public class Zone {
             ZoneCounter = Integer.parseInt(ID);
         this.Name = Name;
         this.Location = Location;
+        this.numViolationOccured = x;
     }
 
     public String getLocation() {
@@ -42,21 +44,34 @@ public class Zone {
         return ID;
     }
 
-    public void getinfo() {
+    public void getInfo() {
+        Scanner cin = new Scanner(System.in);
         System.out.println("Zone ID: " + ID);
         System.out.println("Zone Name: " + Name);
         System.out.println("Zone Location: " + Location);
+        char c;
+
+        System.out.println("Do you want to view Traffic Lights? (y to view): ");
+        c = cin.next().charAt(0);
+        if (c == 'y' || c == 'Y') {
+            for (Traffic_Lights traffic_light : traffic_lights) {
+                traffic_light.Details();
+            }
+        }
+
+
     }
 
     public void addTrafficLight() {
-        Traffic_Lights.addTrafficLight(traffic_light, Location);
+        Traffic_Lights.addTrafficLight(traffic_lights, Location);
+        getInfo();
     }
 
     public void removeTrafficLight() {
-        Traffic_Lights.delete(traffic_light);
+        Traffic_Lights.delete(traffic_lights);
     }
 
     public void editTrafficLight() {
-        Traffic_Lights.update(traffic_light);
+        Traffic_Lights.update(traffic_lights);
     }
 }
