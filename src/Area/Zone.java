@@ -1,5 +1,7 @@
 package Area;
 
+import Admin.Exc;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -21,7 +23,7 @@ public class Zone {
         this.Location = Location;
     }
 
-    public Zone(String ID, String Name, String Location,int x) {
+    public Zone(String ID, String Name, String Location, int x) {
         //for loading from file
         this.ID = ID;
         ID = ID.split("-")[1];
@@ -72,6 +74,61 @@ public class Zone {
     }
 
     public void editTrafficLight() {
-        Traffic_Lights.update(traffic_lights);
+        Scanner input = new Scanner(System.in);
+        String Location; //replace with ID
+        int s = 0;
+        boolean flag = false;
+        int index = 0;
+        while (!flag) {
+            System.out.print("Enter Location: ");
+            Location = input.next();
+            for (int i = 0; i < traffic_lights.size(); i++) {
+                if (traffic_lights.get(i).getLocation().equals(Location)) {
+                    // location not unique -> must be Zone location + special char (e.g. - )
+                    // or use ID instead of location
+                    flag = true;
+                    index = i;
+                    break;
+                }
+            }
+            if (!flag) {
+                System.out.println("Invalid Location");
+            }
+        }
+        System.out.println("1-Edit Time\n2-Edit Status\nEnter Choice: ");
+        s = Exc.infinite(s, 2, 1);
+        if (s == 1) {
+            System.out.println("1-Red\n2-Yellow\n3-Green\nEnter Status: ");
+            s = Exc.infinite(s, 3, 1);
+            System.out.println("Enter Duration: ");
+            int Duration = input.nextInt();
+            switch (s) {
+                case 3:
+                    traffic_lights.get(index).EditTimeLights(Duration, "Green");
+                    break;
+                case 2:
+                    traffic_lights.get(index).EditTimeLights(Duration, "Yellow");
+                    break;
+                case 1:
+                    traffic_lights.get(index).EditTimeLights(Duration, "Red");
+                    break;
+            }
+        } else if (s == 2) {
+            System.out.println("Note: Duration will be the same as the previous one");
+            System.out.println("1-Red\n2-Yellow\n3-Green\nEnter Status: ");
+            s = Exc.infinite(s, 3, 1);
+            switch (s) {
+                case 1:
+                    traffic_lights.get(index).ConfigurationByAdmin("Red");
+                    break;
+                case 2:
+                    traffic_lights.get(index).ConfigurationByAdmin("Yellow");
+                    break;
+                case 3:
+                    traffic_lights.get(index).ConfigurationByAdmin("Green");
+                    break;
+            }
+        }
+
     }
 }

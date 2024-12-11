@@ -7,10 +7,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Traffic_Lights implements Runnable {
-    /*
-     * Has an ID, Location, Status (Red/Green/Yellow), and Duration.
-     * Operates on a cycle or as configured by an admin.
-     */
+
     public static Scanner input = new Scanner(System.in);
     public static int Traffic_counter = 0;
     public int redTime = 25;
@@ -89,19 +86,24 @@ public class Traffic_Lights implements Runnable {
     }
 
 
-    public void ConfigurationByAdmin(int Duration, String Status) {
-        if (Duration < 1) {
-            System.out.println("Invalid Duration :(");
-            System.out.println("Enter Duration: ");
-            Duration = input.nextInt();
-            ConfigurationByAdmin(Duration, Status); //Recursion to enter a valid Duration
-            return;
+    public void ConfigurationByAdmin(String Status) {
+        switch (Status) {
+            case "Red" -> Duration = redTime;
+            case "Green" -> Duration = greenTime;
+            case "Yellow" -> Duration = yellowTime;
+            default -> {
+                System.out.println("Invalid Status");
+                return;
+            }
+
         }
-        this.Duration = Duration;
         this.Status = Status;
+
+
     }
 
     public void EditTimeLights(int Duration, String Status) {
+        Duration = checkDuration(Duration);
         switch (Status) {
             case "Red":
                 redTime = Duration;
@@ -134,11 +136,6 @@ public class Traffic_Lights implements Runnable {
         System.out.println("Duration: " + Duration);
     }
 
-    public static void viewTrafficLights(ArrayList<Traffic_Lights> Traffic_Lights) {
-        for (Traffic_Lights traffic_light : Traffic_Lights) {
-            traffic_light.Details();
-        }
-    }
 
     public static int checkDuration(int Duration) {
         if (Duration <= 1) {
@@ -173,64 +170,6 @@ public class Traffic_Lights implements Runnable {
         }
         Traffic_Lights.add(new Traffic_Lights(Location, Duration, Status));
         System.out.println("Traffic Light added successfully!");
-
-    }
-
-    public static void update(ArrayList<Traffic_Lights> trafficLightsList) {
-        String Location; //replace with ID
-        int s = 0;
-        boolean flag = false;
-        int index = 0;
-        while (!flag) {
-            System.out.print("Enter Location: ");
-            Location = input.next();
-            for (int i = 0; i < trafficLightsList.size(); i++) {
-                if (trafficLightsList.get(i).getLocation().equals(Location)) {
-                    // location not unique -> must be Zone location + special char (e.g. '-')
-                    // or use ID instead of location
-                    flag = true;
-                    index = i;
-                    break;
-                }
-            }
-            if (!flag) {
-                System.out.println("Invalid Location");
-            }
-        }
-        System.out.println("1-Edit Time\n2-Edit Status\nEnter Choice: ");
-        s = Exc.infinite(s, 2, 1);
-        if (s == 1) {
-            System.out.println("1-Red\n2-Yellow\n3-Green\nEnter Status: ");
-            s = Exc.infinite(s, 3, 1);
-            System.out.println("Enter Duration: ");
-            int Duration = input.nextInt();
-            Duration = Traffic_Lights.checkDuration(Duration);
-            switch (s) {
-                case 3:
-                    trafficLightsList.get(index).EditTimeLights(Duration, "Green");
-                    break;
-                case 2:
-                    trafficLightsList.get(index).EditTimeLights(Duration, "Yellow");
-                    break;
-                case 1:
-                    trafficLightsList.get(index).EditTimeLights(Duration, "Red");
-                    break;
-            }
-        } else if (flag) {
-            System.out.println("1-Red\n2-Yellow\n3-Green\nEnter Status: ");
-            s = Exc.infinite(s, 3, 1);
-            switch (s) {
-                case 3:
-                    trafficLightsList.get(index).ConfigurationByAdmin(trafficLightsList.get(index).greenTime, "Green");
-                    break;
-                case 2:
-                    trafficLightsList.get(index).ConfigurationByAdmin(trafficLightsList.get(index).yellowTime, "Yellow");
-                    break;
-                case 1:
-                    trafficLightsList.get(index).ConfigurationByAdmin(trafficLightsList.get(index).redTime, "Red");
-                    break;
-            }
-        }
 
     }
 
