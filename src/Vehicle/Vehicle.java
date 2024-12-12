@@ -153,7 +153,7 @@ public class Vehicle {
             System.out.println("Enter the number of the violation you want to pay the fine for(0 for exit):");
             //check invalid term
             int violationIndex = 0;
-            violationIndex = Exc.infinite(1, TV.size(), 1);
+            violationIndex = Exc.infinite(1, TV.size(), 0);
             if (violationIndex == 0) return;
             //Pay term
             if (TV.get(violationIndex - 1).Status.equals("Not Paid")) {
