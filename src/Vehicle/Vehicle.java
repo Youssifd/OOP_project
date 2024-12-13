@@ -103,6 +103,7 @@ public class Vehicle {
             while (true) {
                 System.out.println("Enter license plate:");
                 licensePlate = scanner.nextLine();
+
                 if(licensePlate.isEmpty()){
                     continue;
                 } else

@@ -50,7 +50,10 @@ public class Display {
             Email = validateEmail();
         out.print("Enter your Password: ");
             Password = Admin.cin.nextLine();
-            Name = Account.Unique("Enter your Name: ", Account.Names);
+           
+
+                 Name =  Account.Unique("Enter your Name: ", Account.Names);
+
             out.print("Enter your Contact_info: ");
             Contact_info = Admin.cin.nextLine();
             arr.add(new Owner(ID, Name, Password, Email, Contact_info));
@@ -112,6 +115,7 @@ return null;
         owners.add(new Owner("2", "<EMAIL>", "N", "you", "MS"));
         TrafficOfficers.add(new TrafficOfficer("3", "MM", "<EMAIL>", "M", "w", "555555555555555"));
 
+Display.singup(owners);
         Display display = new Display();
         String s = display.Login(TrafficOfficers, Admins, owners);
 
@@ -120,7 +124,6 @@ return null;
             String name = parts[0];
             int index = Integer.parseInt(parts[1]);
             int type = Integer.parseInt(parts[2]);
-
             switch (type) {
                 case 1 -> out.println("Welcome Admin: " + name);
                 case 2 -> out.println("Welcome Traffic Officer: " + name);
