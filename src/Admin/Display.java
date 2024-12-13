@@ -116,7 +116,7 @@ return null;
         String s = display.Login(TrafficOfficers, Admins, owners);
 
         if (s != null) {
-            String[] parts = s.split("-");
+            String[] parts = s.split(",");
             String name = parts[0];
             int index = Integer.parseInt(parts[1]);
             int type = Integer.parseInt(parts[2]);

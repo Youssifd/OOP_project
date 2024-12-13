@@ -47,6 +47,17 @@ public class Exc {
             }
         }
     }
+    public static boolean vald(String input) {
+        while (true) {
+            if (input.contains(",")) {
+                System.out.println("Error: The value cannot contain a comma. Please try again.");
+                System.out.print("Enter new value: ");
+                input = Admin.cin.nextLine(); // Assuming Admin.cin is a valid Scanner object
+            } else {
+                return true;
+            }
+        }
+    }
 
     public static void main(String[] args) {
         int x = 5;
@@ -59,7 +70,9 @@ public class Exc {
         arr.add("f");
         arr.add("g");
         int z = 0;
-        Arr(arr, z);
+      //  Arr(arr, z);
+        String o=Admin.cin.nextLine();
+        vald(o);
     }
 }
 

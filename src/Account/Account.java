@@ -2,7 +2,7 @@ package Account;
 
 import java.util.ArrayList;
 
-import Admin.Admin;
+import Admin.*;
 
 import static java.lang.System.out;
 
@@ -49,16 +49,24 @@ public static ArrayList<String> Emails=new ArrayList<>();
         System.out.print(prompt);
         while (true) {
             input = Admin.cin.nextLine();
-            if (!existingValues.contains(input)) {
-                existingValues.add(input);
-                break;
-            } else {
+
+            // Check if input contains a comma
+         Exc.vald(input);
+
+            // Check if input is unique
+            if (existingValues.contains(input)) {
                 System.out.println("Error: This value is already used. Please try again.");
                 System.out.print("Enter new value: ");
+            }
+            // Valid input
+            else {
+                existingValues.add(input);
+                break;
             }
         }
         return input;
     }
+
     protected void changePass() {
         out.println("Enter your current password: ");
         String CurrentPassword = Admin.cin.nextLine();

@@ -6,3 +6,4 @@ TL-02,Location2-1,Yellow,5,25,5,20
 
 Z-003,Zone3,Location3,0,1
 TL-03,Location3-1,Red,25,25,5,20
+
