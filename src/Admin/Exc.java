@@ -22,10 +22,10 @@ public class Exc {
                         out.print("Enter a valid choice: ");
                     }
                 } catch (NumberFormatException e) {
-                    System.out.println("Invalid input. Please enter a valid integer.");
+                    System.out.print("Invalid input. Please enter a valid integer: ");
                 }
             } else {
-                System.out.println("Invalid input ✕.\nPlease enter a valid number: ");
+                System.out.print("Invalid input ✕.\nPlease enter a valid number: ");
             }
         }
 

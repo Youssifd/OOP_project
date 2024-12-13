@@ -18,7 +18,7 @@ public abstract class Account {
     public String Contact;
     public static ArrayList<String> Names = new ArrayList<>();
     public static ArrayList<String> ids = new ArrayList<>();
-
+public static ArrayList<String> Emails=new ArrayList<>();
     public Account(String ID, String Email, String Password, String Name) {
         this.id = ID;
         this.Email = Email;
@@ -26,6 +26,7 @@ public abstract class Account {
         this.Name = Name;
         Names.add(Name);
         ids.add(ID);
+        Emails.add(Email);
         Acc_counter++;
     }
 

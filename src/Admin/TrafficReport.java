@@ -15,29 +15,34 @@ public class TrafficReport {
     // دالة لاختيار التقرير بناءً على نوعه
     public static void generateReportBasedOnChoice(ArrayList<Traffic_Violation> trafficViolations,ArrayList<Zone> zones) {
         // تسأل المستخدم عن نوع التقرير
-        System.out.println("Choose the type of report you want:");
-        System.out.println("1. High-Density Zones Report based on Time");
-        System.out.println("2. Most Violated Zone");
-        System.out.println("3. Most Frequent Violation Type");
+        char c=0;
+        do {
+            System.out.println("Choose the type of report you want:");
+            System.out.println("1. High-Density Zones Report based on Time");
+            System.out.println("2. Most Violated Zone");
+            System.out.println("3. Most Frequent Violation Type");
 
-        // قراءة اختيار المستخدم
+            // قراءة اختيار المستخدم
 
-        int choice=0;
-        choice = Exc.infinite(choice, 3, 1);
-          // لتجاوز السطر الفارغ بعد قراءة الاختيار
+            int choice = 0;
+            choice = Exc.infinite(choice, 3, 1);
+            // لتجاوز السطر الفارغ بعد قراءة الاختيار
 
-        switch (choice) {
-            case 1:
-                generateHighDensityZonesReportBasedOnTime(); // تقرير المناطق بناءً على الوقت
-                break;
-            case 2:
-                reportbymostviolation(zones); // تقرير أكثر أنواع المخالفات تكراراً
-                break;
-            case 3:
-                generateM(trafficViolations); // تقرير أكثر منطقة فيها مخالفات
-                break;
+            switch (choice) {
+                case 1:
+                    generateHighDensityZonesReportBasedOnTime(); // تقرير المناطق بناءً على الوقت
+                    break;
+                case 2:
+                    reportbymostviolation(zones); // تقرير أكثر أنواع المخالفات تكراراً
+                    break;
+                case 3:
+                    generateM(trafficViolations); // تقرير أكثر منطقة فيها مخالفات
+                    break;
 
-        }
+            }
+            System.out.print("Do you want to continue(y/n): ");
+           c=Admin.cin.next().charAt(0);
+        } while (c=='y'||c=='Y');
     }
 
     // تقرير المناطق بناءً على الوقت
@@ -72,18 +77,19 @@ public class TrafficReport {
         String congestionCause = getCongestionCause(userTime);
 
         // طباعة التقرير
-        System.out.println("Time Period: " + userTime + " | Congestion Cause: " + congestionCause);
+        System.out.println("Time Period: " + userTime + " | " + congestionCause);
         System.out.println(" Zones Report (Generated at: " + reportTime + "):");
     }
 
     // تحديد سبب الازدحام بناءً على الوقت
     private static String getCongestionCause(LocalTime time) {
         if (time.isAfter(LocalTime.of(14, 0)) && time.isBefore(LocalTime.of(17, 0))) {
-            return "خروج الموظفين والطلاب"+"Higly Congested " ;
+            return "There is traffic congestion during this period due to employees leaving work and students leaving schools and universities" ;
         } else if (time.isAfter(LocalTime.of(7, 0)) && time.isBefore(LocalTime.of(9, 0))) {
-            return "الذروة الصباحية" + "Medium Congested " ;
+            return "\n" +
+                    "There is traffic congestion during this period due to employees heading to work and students heading to schools and universities" ;
         } else {
-            return "لا يوجد ازدحام ملحوظ" + "Low Congested ";
+            return "There is no noticeable traffic congestion during this period";
         }
     }
 

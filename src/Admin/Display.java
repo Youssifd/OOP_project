@@ -11,15 +11,44 @@ import java.util.ArrayList;
 import static java.lang.System.out;
 
 public class Display {
+    public static String validateEmail() {
+        // التعبير النمطي للتحقق من صحة البريد الإلكتروني
+        String emailRegex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+
+        String email;
+
+        while (true) {
+            // طلب البريد الإلكتروني من المستخدم
+            System.out.print("Enter your Email: ");
+            email = Admin.cin.nextLine();
+
+            // التحقق من صحة صيغة البريد الإلكتروني
+            if (!email.matches(emailRegex)) {
+                System.out.println("Invalid email format. Please try again.");
+                continue; // إعادة طلب الإدخال من المستخدم
+            }
+
+            // التحقق من أن البريد الإلكتروني غير موجود مسبقًا
+            if (Account.Emails.contains(email)) {
+                System.out.println("This email already exists. Please enter a different email.");
+                continue; // إعادة طلب الإدخال من المستخدم
+            }
+
+            // إذا كان البريد الإلكتروني صحيحًا وغير موجود مسبقًا
+            break;
+        }
+
+        return email;
+    }
 
     public static ArrayList<Owner> singup(ArrayList<Owner> arr) {
         char c;
         do {
             String ID, Email, Password, Name, Contact_info;
             ID = Account.Unique("Enter your ID: ", Account.ids);
-            out.print("Enter your Email: ");
-            Email = Admin.cin.nextLine();
-            out.print("Enter your Password: ");
+
+            Email = validateEmail();
+        out.print("Enter your Password: ");
             Password = Admin.cin.nextLine();
             Name = Account.Unique("Enter your Name: ", Account.Names);
             out.print("Enter your Contact_info: ");
@@ -28,6 +57,7 @@ public class Display {
             out.println("Account created successfully!");
             out.print("Do you want to create another account? (y/n): ");
             c = Admin.cin.next().charAt(0);
+            Admin.cin.nextLine();
         } while (c == 'y' || c == 'Y');
         out.println("Have a nice day!");
         return arr;
