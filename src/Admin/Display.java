@@ -56,7 +56,7 @@ public class Display {
 
             out.print("Enter your Contact_info: ");
             Contact_info = Admin.cin.nextLine();
-            arr.add(new Owner(ID, Name, Password, Email, Contact_info));
+            arr.add(new Owner(ID, Name,  Email,Password, Contact_info));
             out.println("Account created successfully!");
             out.print("Do you want to create another account? (y/n): ");
             c = Admin.cin.next().charAt(0);
