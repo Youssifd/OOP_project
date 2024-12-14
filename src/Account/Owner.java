@@ -27,7 +27,7 @@ public class Owner extends Account {
 
     //  contact number of the owner
     // boolean isVerified = false; // Verification status (set by the admin)
-    ArrayList<String> vehicles; // List to store the IDs of vehicles ( owned by this owner )
+  //  ArrayList<String> vehicles; // List to store the IDs of vehicles ( owned by this owner )
     public ArrayList<Notification> notifications = new ArrayList<>(); // List to store notifications
     public ArrayList<Vehicle> vehicle = new ArrayList<>();
     // 0# The Constructor
@@ -35,27 +35,15 @@ public class Owner extends Account {
     public Owner(String id, String Name, String email, String Password, String Contact_info) {
         super(id, email, Password, Name);
         this.Contact = Contact_info;
-        this.vehicles = new ArrayList<>(); // Initialize the list of vehicles
 
     }
 
     // 1# Method to add a vehicle to the owner's list
 
-    public void addVehicle(String vehicleID) {
-        vehicles.add(vehicleID);
-    }
-
-    // 2# Method to remove a vehicle from the owner's list
-
-    public boolean removeVehicle(String vehicleID) {
-        return vehicles.remove(vehicleID);
-    }
 
     // 3# Method to retrieve all vehicles owned by the owner
 
-    public ArrayList<String> getVehicles() {
-        return vehicles;
-    }
+
 
     // 4# Method to add a message to the owner's messages
     public int NumOfNotseen() {
@@ -78,7 +66,7 @@ public class Owner extends Account {
         System.out.println("Owner Name: " + Name);
         System.out.println("Contact Number: " + Contact);
         System.out.println("Email: " + Email);
-        System.out.println("Owned Vehicles: " + vehicles);
+
         // System.out.println("Verification Status: " + (isVerified ? "Verified" : "Not Verified"));
         // System.out.println("Messages: " + messages);
     }

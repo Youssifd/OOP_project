@@ -67,10 +67,19 @@ public class Main {
                 String s = Display.Login(TrafficOfficers, Admins, owners);
 
                 if (s != null) {
+                    int index=-1;
+                    int type=-1;
                     String[] parts = s.split(",");
                     String name = parts[0];
-                    int index = Integer.parseInt(parts[1]);
-                    int type = Integer.parseInt(parts[2]);
+                    try {
+                     index = Integer.parseInt(parts[1]);
+                     type = Integer.parseInt(parts[2]);
+
+                    }catch (NumberFormatException e){
+                        out.println("Error: Invalid return");
+                        out.println("Exiting...");
+                        System.exit(0);
+                    }
 
                     switch (type) {
                         case 1 ->

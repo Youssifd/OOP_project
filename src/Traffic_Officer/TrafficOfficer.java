@@ -38,10 +38,6 @@ public class TrafficOfficer extends Account implements display {
         return assignedZone;
     }
 
-    public void setassignedZone(String assignedZone) {
-        this.assignedZone = assignedZone;
-    }
-
     public void recordvolation(Traffic_Violation TV, ArrayList<Owner> o, int OwnerIndex, int VehicleIndex) {
 
         violations.add(TV);//for add violation to officer

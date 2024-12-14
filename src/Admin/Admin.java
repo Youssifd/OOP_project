@@ -119,12 +119,7 @@ public class Admin extends Account {
         return admins;
     }
 
-    protected void changePass() {
-        out.println("Note that you will need to login again to use this feature and you can change your password only.");
-        out.print("Enter your new password: ");
-        Password = Admin.cin.nextLine();
-        out.println("Password changed successfully!");
-    }
+
 
     public static void AdminPage(ArrayList<Admin> admin, int index, ArrayList<Owner> owner, ArrayList<TrafficOfficer> TrafficOfficer, ArrayList<Zone> Zone, ArrayList<Traffic_Violation> traffic_Violation, String by) {
         out.println("========================================================================");
