@@ -6,11 +6,13 @@ import Area.*;
 import Vehicle.*;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 
 import static java.lang.System.out;
 
 public class Display {
+
     public static String validateEmail() {
         // التعبير النمطي للتحقق من صحة البريد الإلكتروني
         String emailRegex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
@@ -67,15 +69,17 @@ public class Display {
     }
 
     public  static  String Login(ArrayList<TrafficOfficer> TrafficOfficers, ArrayList<Admin> Admins, ArrayList<Owner> owners) {
+        Scanner z=new Scanner(System.in);
         int count = 0;
-
+char c;
+boolean b=false;
         do {
             String name;
             String pass;
             out.print("Enter username: ");
-            name = Admin.cin.nextLine();
+            name = z.nextLine();
             out.print("Enter Password: ");
-            pass = Admin.cin.nextLine();
+            pass = z.nextLine();
 
             for (int i = 0; i < Admins.size(); i++) {
                 if (Admins.get(i).Name.equals(name) && Admins.get(i).comparePassword(pass)) {
@@ -99,9 +103,18 @@ public class Display {
 
             count++;
             out.println("Invalid username or password. Attempt " + count + "/5");
-
+        out.print("Do you want to continue: ");
+        c=z.next().charAt(0);
+        if (c=='n'||c=='N') {
+            b=true;
+            break;
+        }
+        z.nextLine();
         } while (count < 5);
-Display.singup(owners);
+        if (!b) {
+            System.out.println("No attempts are available. Please sign up.");
+            Display.singup(owners);
+        }
 return null;
     }
 
