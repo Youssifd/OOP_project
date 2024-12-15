@@ -58,9 +58,9 @@ public class Admin extends Account {
     }
 
     public static void addZone(ArrayList<Zone> zones) {
-        out.println("Enter the name of the zone: ");
+        out.print("Enter the name of the zone: ");
         String name = cin.nextLine();
-        out.println("Enter the Location of the zone: ");
+        out.print("Enter the Location of the zone: ");
         String Loc = cin.nextLine();
         Zone zone = new Zone(name, Loc);
         zones.add(zone);
@@ -96,16 +96,14 @@ public class Admin extends Account {
             }
             System.out.println("No owner found with the given ID.");
         } else {
-            System.out.println("This Admin does not have an account.");
             do {
-                id = Account.Unique("Enter their new username: ", Account.ids);
-                System.out.print("Enter your Email: ");
+                id = Account.Unique("Enter their Id: ", Account.ids);
+                System.out.print("Enter their Email: ");
                 email = Admin.cin.nextLine();
-                System.out.print("Enter your Password: ");
+                System.out.print("Enter their Password: ");
                 password = Admin.cin.nextLine();
-                System.out.print("Enter your Name: ");
-                name = Admin.cin.nextLine();
-                System.out.print("Enter your Contact_info: ");
+                name = Account.Unique("Enter their name: ",Account.Names);
+                System.out.print("Enter their Contact_info: ");
                 contact = Admin.cin.nextLine();
 
                 admins.add(new Admin(id, name, email, password, contact));

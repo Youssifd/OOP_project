@@ -1,6 +1,7 @@
 package Account;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import Admin.*;
 
@@ -75,15 +76,17 @@ public static ArrayList<String> Emails=new ArrayList<>();
     }
 
     protected void changePass() {
-        out.println("Enter your current password: ");
-        String CurrentPassword = Admin.cin.nextLine();
+        out.print("Enter your current password: ");
+        String CurrentPassword;
+        Scanner input;
         do{
-            CurrentPassword = Admin.cin.nextLine();
+            input =new Scanner(System.in);
+            CurrentPassword = input.nextLine();
             if(!CurrentPassword.equals(Password)){
                 out.println("Do you want to exit? (Y/N)");
                 char ch;
                 do {
-                    ch = Admin.cin.next().charAt(0);
+                    ch = input.next().charAt(0);
                     if (ch == 'Y' || ch == 'y') return;
                 } while (ch != 'N' && ch != 'n');
                 out.println("Incorrect password! Please try again.");
@@ -91,22 +94,29 @@ public static ArrayList<String> Emails=new ArrayList<>();
 
         }while (!CurrentPassword.equals(Password));
 
-        out.print("Enter your new password: ");
         String NewPassword;
+        int count=0;
         do{
-            NewPassword = Admin.cin.nextLine();
+            input =new Scanner(System.in);
+        out.print("Enter your new password: ");
+
+            NewPassword = input.nextLine();
             if(NewPassword.equals(Password)){
+
+                out.println("The new password is the same as the old one.");
+                if (count>2) {
                 out.println("Do you want to exit? (Y/N)");
+
                 char ch;
-                do {
-                    ch = Admin.cin.next().charAt(0);
-                    if (ch == 'Y' || ch == 'y') return;
-                } while (ch != 'N' && ch != 'n');
-                out.println("The new password is the same as the old one. \nPlease enter a different password.");
+                ch = input.next().charAt(0);
+                if (ch == 'Y' || ch == 'y')
+                    return;
             }
+            }
+            count++;
         }while(NewPassword.equals(Password));
 
-        Password = Admin.cin.nextLine();
+        Password = NewPassword;
         out.println("Password changed successfully!");
     }
 
