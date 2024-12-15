@@ -62,13 +62,11 @@ public class Owner extends Account {
 
     // Method to display owner details
 
-    public void displayOwnerDetails() {
+    @Override
+    public void getInfo(){
         System.out.println("Owner Name: " + Name);
         System.out.println("Contact Number: " + Contact);
         System.out.println("Email: " + Email);
-
-        // System.out.println("Verification Status: " + (isVerified ? "Verified" : "Not Verified"));
-        // System.out.println("Messages: " + messages);
     }
 
     public static void OwnerPage(ArrayList<Owner> Owners, int index) {
@@ -92,7 +90,7 @@ public class Owner extends Account {
             choice = Exc.infinite(1, 6, 1);
             switch (choice) {
                 case 1:
-                    Owners.get(index).displayOwnerDetails();
+                    Owners.get(index).getInfo();
                     break;
                 case 2:
                     if (Owners.get(index).notifications.isEmpty()) {

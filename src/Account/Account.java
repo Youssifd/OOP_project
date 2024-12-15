@@ -43,6 +43,10 @@ public static ArrayList<String> Emails=new ArrayList<>();
     public String getID() {
         return id;
     }
+    public void getInfo(){
+        out.println("Your Name: "+Name +"\nYour Email: "+ Email+"\nYour Contact: "+Contact);
+
+    }
 
 
     public static String Unique(String prompt, ArrayList<String> existingValues) {

@@ -98,10 +98,10 @@ public class Main {
                     }
                 }
 
-
                 File_Processing.Save_Zones(zones);
                 File_Processing.Save_Accounts(Admins, TrafficOfficers, owners);
                 File_Processing.Save_Notifications(owners);
+                out.println("Exiting...");
                 System.exit(0);
             }
         }
