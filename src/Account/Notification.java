@@ -37,9 +37,9 @@ public class Notification {
         for (int i = 0, j = 0; i < notifications.size(); i++) {
             j = i + 1;
             if (notifications.get(i).isRead) {
-                System.out.println(j + "- " + notifications.get(i).title + " (Seen)");
+                System.out.println(j + "- " + notifications.get(i).title + " ✓✓");
             } else {
-                System.out.println(j + "- " + notifications.get(i).title + " (Unseen)");
+                System.out.println(j + "- " + notifications.get(i).title + " ✓" );
             }
         }
         System.out.println("You Want view a notification? ? (Y/N)");
