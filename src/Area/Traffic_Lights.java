@@ -169,6 +169,7 @@ public class Traffic_Lights implements Runnable {
             Status = "Green";
         }
         Traffic_Lights.add(new Traffic_Lights(Location, Duration, Status));
+        Traffic_Lights.get(Traffic_Lights.size() - 1).Start();
         System.out.println("Traffic Light added successfully!");
 
     }
