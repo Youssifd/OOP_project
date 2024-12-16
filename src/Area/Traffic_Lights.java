@@ -1,21 +1,20 @@
-package Traffic;
+package Area;
 
+
+import Admin.*;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Traffic_Lights implements Runnable {
-    /*
-     * Has an ID, Location, Status (Red/Green/Yellow), and Duration.
-     * Operates on a cycle or as configured by an admin.
-     */
+
     public static Scanner input = new Scanner(System.in);
     public static int Traffic_counter = 0;
-    int redTime = 25;
-    int greenTime = 20;
-    int yellowTime = 5;
-    private String ID;
-    private String Location;
+    public int redTime = 25;
+    public int greenTime = 20;
+    public int yellowTime = 5;
+    private final String ID;
+    private final String Location;
     public String Status;//Red/Green/Yellow
     private int Duration;
     private Boolean isRunning = true;   //to stop Traffic light
@@ -31,6 +30,19 @@ public class Traffic_Lights implements Runnable {
         this.Location = Location;
         this.Duration = Duration;
         this.Status = Status;
+    }
+
+    public Traffic_Lights(String ID, String Location, int Duration, String Status, int[] arr) {
+        this.ID = ID;
+        ID = ID.split("-")[1];
+        this.Location = Location;
+        this.Duration = Duration;
+        this.Status = Status;
+        this.redTime = arr[0];
+        this.yellowTime = arr[1];
+        this.greenTime = arr[2];
+        if (Integer.parseInt(ID) > Traffic_counter)
+            Traffic_counter = Integer.parseInt(ID);
     }
 
     public void run() {
@@ -74,19 +86,24 @@ public class Traffic_Lights implements Runnable {
     }
 
 
-    public void ConfigurationByAdmin(int Duration, String Status) {
-        if (Duration < 1) {
-            System.out.println("Invalid Duration :(");
-            System.out.println("Enter Duration: ");
-            Duration = input.nextInt();
-            ConfigurationByAdmin(Duration, Status); //Recursion to enter a valid Duration
-            return;
+    public void ConfigurationByAdmin(String Status) {
+        switch (Status) {
+            case "Red" -> Duration = redTime;
+            case "Green" -> Duration = greenTime;
+            case "Yellow" -> Duration = yellowTime;
+            default -> {
+                System.out.println("Invalid Status");
+                return;
+            }
+
         }
-        this.Duration = Duration;
         this.Status = Status;
+
+
     }
 
     public void EditTimeLights(int Duration, String Status) {
+        Duration = checkDuration(Duration);
         switch (Status) {
             case "Red":
                 redTime = Duration;
@@ -111,14 +128,17 @@ public class Traffic_Lights implements Runnable {
     public int getDuration() {
         return Duration;
     }
+
     public void Details() {
         System.out.println("ID: " + ID);
         System.out.println("Location: " + Location);
         System.out.println("Status: " + Status);
         System.out.println("Duration: " + Duration);
     }
-    public static int  checkDuration(int Duration){
-        if(Duration<=1){
+
+
+    public static int checkDuration(int Duration) {
+        if (Duration <= 1) {
             System.out.println("Invalid Duration :(");
             System.out.println("Enter Duration: ");
             Duration = input.nextInt();
@@ -127,26 +147,51 @@ public class Traffic_Lights implements Runnable {
         }
         return Duration;
     }
-    public static  void addTrafficLight(ArrayList<Traffic_Lights> Traffic_Lights){
-        System.out.println("Enter Location: ");
-        String Location = input.next();
-        String Status="";
-        System.out.println("Enter Duration(greater than 1): ");
+
+    public static void addTrafficLight(ArrayList<Traffic_Lights> Traffic_Lights, String location) {
+        // System.out.println("Enter Location: ");
+        int temp = Traffic_Lights.size() + 1;
+        String Location = location + "-" + temp;
+        String Status = "";
+        System.out.println("Enter temp Duration for first time(greater than 1): ");
         int Duration = input.nextInt();
 
-        Duration= Traffic.Traffic_Lights.checkDuration(Duration);
+        Duration = checkDuration(Duration);
 
         System.out.println("1-Red\n2-Yellow\n3-Green\nEnter Status: ");
-        int choice = input.nextInt(); //check valid from admin class
-
-        if(choice==1 ){
-            Status="Red";
-        }else if(choice==2){
-          Status= "Yellow";
-        }else if(choice==3){
-            Status="Green";
+        int choice = 0; //check valid from admin class
+        choice = Exc.infinite(0, 3, 1);
+        if (choice == 1) {
+            Status = "Red";
+        } else if (choice == 2) {
+            Status = "Yellow";
+        } else if (choice == 3) {
+            Status = "Green";
         }
-            Traffic_Lights.add(new Traffic_Lights(Location, Duration, Status));
+        Traffic_Lights.add(new Traffic_Lights(Location, Duration, Status));
+        Traffic_Lights.get(Traffic_Lights.size() - 1).Start();
+        System.out.println("Traffic Light added successfully!");
 
     }
+
+    public static void delete(ArrayList<Traffic_Lights> trafficLightsList) {
+        String Location; //replace with ID
+        boolean flag = false;
+        while (!flag) {
+            System.out.print("Enter Location: ");
+            Location = input.next();
+            for (int i = 0; i < trafficLightsList.size(); i++) {
+                if (trafficLightsList.get(i).getLocation().equals(Location)) {
+                    flag = true;
+                    trafficLightsList.remove(i);
+                    break;
+                }
+            }
+            if (!flag) {
+                System.out.println("Invalid Location");
+            }
+        }
+    }
+
 }
+
