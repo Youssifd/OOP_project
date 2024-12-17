@@ -83,7 +83,7 @@ public class Main {
 
                     switch (type) {
                         case 1 ->
-                                Admin.AdminPage(Admins, index, owners, TrafficOfficers, zones, Traffic_Violation.tra, name);
+                                Admin.AdminPage(Admins, index, owners, TrafficOfficers, zones, Traffic_Violation.tra);
                         case 2 -> TrafficOfficer.OfficerPage(TrafficOfficers, index, owners, zones);
                         case 3 -> Owner.OwnerPage(owners, index);
                         default -> out.println("Unknown role.");

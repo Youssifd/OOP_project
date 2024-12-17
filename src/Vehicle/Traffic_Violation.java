@@ -102,21 +102,24 @@ public class Traffic_Violation {
         this.fine_amount = fine_amount;
     }
 
-    public static void View_Details(ArrayList<Traffic_Violation> traffic_Violation) {
+    public static void View_Details(ArrayList<Traffic_Violation> TV) {
         //for officer
-        for (Traffic_Violation tv : traffic_Violation) {
-            System.out.println("Violation found:");
-            System.out.println("TracksViolationID: " + tv.getViolationID());
-            System.out.println("Vehicle ID: " + tv.getVehicle_ID());
-            System.out.println("Violation Type: " + tv.getViolation_type());
-            System.out.println("Date: " + tv.getDate());
-            System.out.println("Fine Amount: " + tv.getFine_amount());
-            System.out.println("---------------------------------------");
+        for (int i = 0; i < TV.size(); i++) {
+            System.out.println("#" + (i + 1) + ":");
+            System.out.println("Violation ID: " + TV.get(i).getViolationID());
+            System.out.println("Violation Type: " + TV.get(i).getViolation_type());
+            System.out.println("Date: " + TV.get(i).getDate());
+            System.out.println("Zone: " + TV.get(i).getZoneName());
+            System.out.println("Fine Amount: " + TV.get(i).getFine_amount());
+            System.out.println("Issued by: " + TV.get(i).getWhoIssued());
+            System.out.println("Status: " + TV .get(i).Status);
+            System.out.println("_________________________");
         }
     }
 
-    public static void View_violations(ArrayList<Traffic_Violation> traffic_Violation, String by) {
+    public static void View_violations(ArrayList<Traffic_Violation> traffic_Violation) {
         //for owner
+        String by;
         System.out.println("Do you want view violations by Zone or vechicle?\\n1-Zone\\n2-Vehicle\\nEnter Choice: ");
         int choice = 0;
         choice = Exc.infinite(choice, 2, 1);
