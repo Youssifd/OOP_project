@@ -119,7 +119,7 @@ public class Admin extends Account {
 
 
 
-    public static void AdminPage(ArrayList<Admin> admin, int index, ArrayList<Owner> owner, ArrayList<TrafficOfficer> TrafficOfficer, ArrayList<Zone> Zone, ArrayList<Traffic_Violation> traffic_Violation, String by) {
+    public static void AdminPage(ArrayList<Admin> admin, int index, ArrayList<Owner> owner, ArrayList<TrafficOfficer> TrafficOfficer, ArrayList<Zone> Zone, ArrayList<Traffic_Violation> traffic_Violation) {
         out.println("========================================================================");
         boolean logout = false;
         System.out.println("Welcome " + admin.get(index).Name + "!");
@@ -159,7 +159,7 @@ public class Admin extends Account {
                     addZone(Zone);
                     break;
                 case 6://make global object of Traffic_Violation
-                    Traffic_Violation.View_violations(traffic_Violation, by);// which violation-> Traffic_Violation.(traffic_Violation)static
+                    Traffic_Violation.View_violations(traffic_Violation);// which violation-> Traffic_Violation.(traffic_Violation)static
                     break;
                 case 7:
                   TrafficReport.generateReportBasedOnChoice(traffic_Violation,Zone);
