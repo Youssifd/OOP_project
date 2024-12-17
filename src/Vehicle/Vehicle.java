@@ -138,17 +138,7 @@ public class Vehicle {
         }
         //Show fines term
         System.out.println("Violations found:");
-        for (int i = 0; i < TV.size(); i++) {
-            System.out.println("#" + (i + 1) + ":");
-            System.out.println("Violation ID: " + TV.get(i).getViolationID());
-            System.out.println("Violation Type: " + TV.get(i).getViolation_type());
-            System.out.println("Date: " + TV.get(i).getDate());
-            System.out.println("Zone: " + TV.get(i).getZoneName());
-            System.out.println("Fine Amount: " + TV.get(i).getFine_amount());
-            System.out.println("Issued by: " + TV.get(i).getWhoIssued());
-            System.out.println("Status: " + TV .get(i).Status);
-            System.out.println("_________________________");
-        }
+        Traffic_Violation.View_Details(TV);
             char ch;
         do {
             System.out.println("Enter the number of the violation you want to pay the fine for(0 for exit):");
