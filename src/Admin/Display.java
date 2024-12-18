@@ -50,15 +50,15 @@ public class Display {
             ID = Exc.Unique("Enter your ID: ", Account.ids);
 
             Email = validateEmail();
-        out.print("Enter your Password: ");
+            out.print("Enter your Password: ");
             Password = Admin.cin.nextLine();
-           
 
-                 Name =  Exc.Unique("Enter your Name: ", Account.Names);
+
+            Name = Exc.Unique("Enter your Name: ", Account.Names);
 
             out.print("Enter your Contact_info: ");
             Contact_info = Admin.cin.nextLine();
-            arr.add(new Owner(ID, Name,  Email,Password, Contact_info));
+            arr.add(new Owner(ID, Name, Email, Password, Contact_info));
             out.println("Account created successfully!");
             out.print("Do you want to create another account? (y/n): ");
             c = Admin.cin.next().charAt(0);
@@ -68,11 +68,11 @@ public class Display {
         return arr;
     }
 
-    public  static  String Login(ArrayList<TrafficOfficer> TrafficOfficers, ArrayList<Admin> Admins, ArrayList<Owner> owners) {
-        Scanner z=new Scanner(System.in);
+    public static String Login(ArrayList<TrafficOfficer> TrafficOfficers, ArrayList<Admin> Admins, ArrayList<Owner> owners) {
+        Scanner z = new Scanner(System.in);
         int count = 0;
-char c;
-boolean b=false;
+        char c;
+        boolean b = false;
         do {
             String name;
             String pass;
@@ -103,49 +103,19 @@ boolean b=false;
 
             count++;
             out.println("Invalid username or password. Attempt " + count + "/5");
-        out.print("Do you want to continue: ");
-        c=z.next().charAt(0);
-        if (c=='n'||c=='N') {
-            b=true;
-            break;
-        }
-        z.nextLine();
+            out.print("Do you want to continue: ");
+            c = z.next().charAt(0);
+            if (c == 'n' || c == 'N') {
+                b = true;
+                break;
+            }
+            z.nextLine();
         } while (count < 5);
         if (!b) {
             System.out.println("No attempts are available. Please sign up.");
             Display.singup(owners);
         }
-return null;
-    }
-
-
-    public static void main(String[] args) {
-        ArrayList<TrafficOfficer> TrafficOfficers = new ArrayList<>();
-        ArrayList<Admin> Admins = new ArrayList<>();
-        ArrayList<Owner> owners = new ArrayList<>();
-
-        Admins.add(new Admin("1", "Marwan", "<EMAIL>", "MS", "123"));
-        owners.add(new Owner("2", "<EMAIL>", "N", "you", "MS"));
-        TrafficOfficers.add(new TrafficOfficer("3", "MM", "<EMAIL>", "M", "w", "555555555555555"));
-
-Display.singup(owners);
-        Display display = new Display();
-        String s = display.Login(TrafficOfficers, Admins, owners);
-
-        if (s != null) {
-            String[] parts = s.split(",");
-            String name = parts[0];
-            int index = Integer.parseInt(parts[1]);
-            int type = Integer.parseInt(parts[2]);
-            switch (type) {
-                case 1 -> out.println("Welcome Admin: " + name);
-                case 2 -> out.println("Welcome Traffic Officer: " + name);
-                case 3 -> out.println("Welcome Owner: " + name);
-                default -> out.println("Unknown role.");
-            }
-        } else {
-            out.println("Login failed after 5 attempts.");
-        }
+        return null;
     }
 }
 

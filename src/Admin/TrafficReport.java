@@ -141,9 +141,4 @@ public class TrafficReport {
         System.out.println("\nFrequent Violations Report (Generated at: " + reportTime + "):");
 
     }
-
-    public static void main(String[] args) {
-
-
-    }
 }

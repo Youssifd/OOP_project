@@ -27,22 +27,22 @@ public class Owner extends Account {
 
     //  contact number of the owner
     // boolean isVerified = false; // Verification status (set by the admin)
-  //  ArrayList<String> vehicles; // List to store the IDs of vehicles ( owned by this owner )
+    //  ArrayList<String> vehicles; // List to store the IDs of vehicles ( owned by this owner )
     public ArrayList<Notification> notifications = new ArrayList<>(); // List to store notifications
     public ArrayList<Vehicle> vehicle = new ArrayList<>();
     // 0# The Constructor
-public static int ownerscount=0;
+    public static int ownerscount = 0;
+
     public Owner(String id, String Name, String email, String Password, String Contact_info) {
         super(id, email, Password, Name);
         this.Contact = Contact_info;
-ownerscount++;
+        ownerscount++;
     }
 
     // 1# Method to add a vehicle to the owner's list
 
 
     // 3# Method to retrieve all vehicles owned by the owner
-
 
 
     // 4# Method to add a message to the owner's messages
@@ -63,7 +63,7 @@ ownerscount++;
     // Method to display owner details
 
     @Override
-    public void getInfo(){
+    public void getInfo() {
         System.out.println("Owner Name: " + Name);
         System.out.println("Contact Number: " + Contact);
         System.out.println("Email: " + Email);
@@ -109,13 +109,16 @@ ownerscount++;
                         j = i + 1;
                         out.println("#" + j + ":-");
                         Owners.get(index).vehicle.get(i).getData();
-                        if (Owners.get(index).vehicle.get(i).TV.isEmpty()) {
+                        if (!Owners.get(index).vehicle.get(i).TV.isEmpty()) {
                             existFine = true;
                         }
-                        out.println("_________________________");
+                        if (i != Owners.get(index).vehicle.size() - 1)
+                            out.println("_________________________");
                     }
 
+
                     if (existFine) {
+                        out.println("_________________________");
                         out.println("Do you want to view a fine? (Y/N)");
 
                         char ch;
@@ -149,16 +152,17 @@ ownerscount++;
         } while (!logout);
         System.out.println("===============================================\n");
     }
-    public  void sendNotification(Traffic_Violation tv) {
+
+    public void sendNotification(Traffic_Violation tv) {
         String[] parts = new String[6];
         parts[0] = tv.getVehicle_ID();
         parts[1] = tv.getDate();
         parts[2] = tv.getWhoIssued();
         parts[3] = tv.getZoneName();
         parts[4] = tv.getViolationID();
-        parts[5] = tv.getFine_amount()+"";
-        String message=  Notification.StandardMessage(Name,tv);
-        Notification notification = new Notification(message,parts);
+        parts[5] = tv.getFine_amount() + "";
+        String message = Notification.StandardMessage(Name, tv);
+        Notification notification = new Notification(message, parts);
         notifications.add(notification);
     }
 }

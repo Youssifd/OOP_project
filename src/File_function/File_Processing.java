@@ -23,7 +23,7 @@ public class File_Processing {
     public static void Save_Zones(ArrayList<Zone> zones) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter("File/ZoneData.txt"))) {
             for (Zone zone : zones) {
-                bw.write(zone.getID() + "," + zone.getName() + "," + zone.getLocation() + "," +zone.numViolationOccured+ ","+ zone.traffic_lights.size());
+                bw.write(zone.getID() + "," + zone.getName() + "," + zone.getLocation() + "," + zone.numViolationOccured + "," + zone.traffic_lights.size());
                 bw.newLine();
                 //TrafficLightID TrafficLightLocation TrafficLightStatus TrafficDuration TrafficLightTime(red|yellow|green)
                 for (Traffic_Lights traffic_light : zone.traffic_lights) {
@@ -68,15 +68,19 @@ public class File_Processing {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter("File/AccData.txt"))) {
             bw.write(admins.size() + "," + officers.size() + "," + owners.size());
             bw.newLine();
+            bw.write("------------------------------------------------------------");
+            bw.newLine();
             for (Admin admin : admins) {
                 bw.write(admin.getID() + "," + admin.Name + "," + admin.Email + "," + admin.getPassword() + "," + admin.Contact);
                 bw.newLine();
             }
+            bw.write("------------------------------------------------------------");
             bw.newLine();
             for (TrafficOfficer officer : officers) {
                 bw.write(officer.getID() + "," + officer.Name + "," + officer.Email + "," + officer.getPassword() + "," + officer.Contact + "," + officer.getassignedZone());
                 bw.newLine();
             }
+            bw.write("------------------------------------------------------------");
             bw.newLine();
             for (Owner owner : owners) {
                 bw.write(owner.getID() + "," + owner.Name + "," + owner.Email + "," + owner.getPassword() + "," + owner.Contact + "," + owner.vehicle.size());
@@ -93,6 +97,7 @@ public class File_Processing {
                     // bw.newLine();
 
                 }
+                bw.newLine();
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -107,6 +112,7 @@ public class File_Processing {
             int admin_count = Integer.parseInt(data[0]);
             int officer_count = Integer.parseInt(data[1]);
             int owner_count = Integer.parseInt(data[2]);
+            br.readLine();
             for (int i = 0; i < admin_count; i++) {
                 line = br.readLine();
                 data = line.split(",");
@@ -142,6 +148,7 @@ public class File_Processing {
 
                 }
                 owners.add(owner);
+                br.readLine();
             }
             //load violations to officers
             for (TrafficOfficer officer : officers) {
@@ -167,16 +174,18 @@ public class File_Processing {
                 if (OW.notifications.isEmpty()) continue;
                 bw.write(OW.getID() + " " + OW.notifications.size());//regex by space
                 bw.newLine();
-                for (Notification notfy : OW.notifications) {
+                for (Notification n : OW.notifications) {
                     //body of notification in 10 lines
                     // regex مختلف
-                    bw.write(notfy.title + "," + notfy.date+ "," + notfy.isRead);
+                    bw.write(n.title + "," + n.date + "," + n.isRead);
                     bw.newLine();
                     /*
                      * str[0] -> license plate , str[1] -> date , str[2] -> who issued , str[3] -> zone name , str[4] -> violation id , str[5] -> fine amount
                      */
-                    bw.write(notfy.MessageData[0]+ ","+ notfy.MessageData[1]+ ","+ notfy.MessageData[2]+ ","+ notfy.MessageData[3]+ ","+ notfy.MessageData[4]+ ","+ notfy.MessageData[5]);
-
+                    bw.write(n.MessageData[0] + "," + n.MessageData[1] + "," + n.MessageData[2] + "," + n.MessageData[3] + "," + n.MessageData[4] + "," + n.MessageData[5]);
+                    bw.newLine();
+                    bw.write("------------------------------------------------------------");
+                    bw.newLine();
                 }
                 bw.newLine();
             }
@@ -202,7 +211,9 @@ public class File_Processing {
 
                             Notification notification = new Notification(data[0], data[1], collectMessage, Boolean.parseBoolean(data[2]), OW.Name);
                             OW.notifications.add(notification);
+                            br.readLine();
                         }
+                        br.readLine();
                     }
                 }
 
