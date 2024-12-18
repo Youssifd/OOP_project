@@ -136,6 +136,7 @@ public class File_Processing {
                         data = line.split(",");
                         Traffic_Violation tv = new Traffic_Violation(data[0], data[1], data[2], data[3], data[4], Double.parseDouble(data[5]), data[6], data[7]);
                         vehicle.TV.add(tv);
+                        Traffic_Violation.tra.add(tv);
                     }
                     owner.vehicle.add(vehicle);
 
