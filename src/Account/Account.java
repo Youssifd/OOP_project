@@ -49,35 +49,7 @@ public static ArrayList<String> Emails=new ArrayList<>();
     }
 
 
-    public static String Unique(String prompt, ArrayList<String> existingValues) {
-        String input;
-        System.out.print(prompt);
-        while (true) {
-            input = Admin.cin.nextLine();
 
-            // Check if input contains a comma
-
-                if (input.contains(",")) {
-                    System.out.println("Error: The value cannot contain a comma. Please try again.");
-                    System.out.print("Enter new value: ");
-                    continue;
-                } else {
-                    if (existingValues.contains(input)) {
-                        System.out.println("Error: This value is already used. Please try again.");
-                        System.out.print("Enter new value: ");
-                    }
-                    // Valid input
-                    else {
-                        existingValues.add(input);
-                        break;
-                    }
-                }
-                }
-                return input;
-
-            // Check if input is unique
-
-    }
 
     protected void changePass() {
         out.print("Enter your current password: ");

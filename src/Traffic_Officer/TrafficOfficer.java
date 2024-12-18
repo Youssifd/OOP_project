@@ -17,7 +17,7 @@ import static java.lang.System.out;
 public class TrafficOfficer extends Account implements display {
     private String assignedZone;
     public ArrayList<Traffic_Violation> violations;//list ->ArrayList
-
+public static int officercount=0;
     public TrafficOfficer(String Id, String Name, String Email, String Password, String Contact, String assignedZone) {
         super(Id, Email, Password, Name);
 
@@ -28,6 +28,7 @@ public class TrafficOfficer extends Account implements display {
             this.assignedZone = assignedZone;
         }
         this.violations = new ArrayList<Traffic_Violation>();
+        officercount++;
     }
 
     public void addviolations(Traffic_Violation violation) {

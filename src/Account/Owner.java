@@ -31,11 +31,11 @@ public class Owner extends Account {
     public ArrayList<Notification> notifications = new ArrayList<>(); // List to store notifications
     public ArrayList<Vehicle> vehicle = new ArrayList<>();
     // 0# The Constructor
-
+public static int ownerscount=0;
     public Owner(String id, String Name, String email, String Password, String Contact_info) {
         super(id, email, Password, Name);
         this.Contact = Contact_info;
-
+ownerscount++;
     }
 
     // 1# Method to add a vehicle to the owner's list

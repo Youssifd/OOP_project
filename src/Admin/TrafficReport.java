@@ -3,11 +3,13 @@ package Admin;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+
 import java.util.Scanner;
 
+import Account.Owner;
 import Area.Zone;
+import File_function.File_Processing;
+import Traffic_Officer.TrafficOfficer;
 import Vehicle.Traffic_Violation;
 
 public class TrafficReport {
@@ -17,10 +19,10 @@ public class TrafficReport {
         // تسأل المستخدم عن نوع التقرير
         char c=0;
         do {
-            System.out.println("Choose the type of report you want:");
             System.out.println("1. High-Density Zones Report based on Time");
             System.out.println("2. Most Violated Zone");
             System.out.println("3. Most Frequent Violation Type");
+            System.out.print("Choose the type of report you want: ");
 
             // قراءة اختيار المستخدم
 
@@ -94,16 +96,15 @@ public class TrafficReport {
     }
 
     // تقرير أكثر نوع من المخالفات تكراراً
-    public static void reportbymostviolation( ArrayList<Zone> zones) {
+    public static void reportbymostviolation( ArrayList<Zone> z ) {
         DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
         String reportTime = LocalTime.now().format(timeFormatter);
-        System.out.println("\nMost Violated Zone Report:");// الوقت الحالي
-
-    for (int i = 0; i < zones.size(); i++)
-    {
-        if (zones.get(i).numViolationOccured>=0)
-            System.out.println(zones.get(i).getName()+" | Violations: "+zones.get(i).numViolationOccured);
-    }
+        System.out.println("\nMost Violated Zone Report:");// الوقت الحاليfor
+        for (int i=0;i< z.size();i++)
+            if (z.get(i).numViolationOccured>0)
+            {
+                System.out.println(z.get(i).getName()+" | Violations: "+z.get(i).numViolationOccured);
+            }
         // إعداد بيانات التقرير
         // حساب تكرار كل نوع من المخالفات
         // طباعة التقرير
@@ -116,33 +117,33 @@ public class TrafficReport {
             String reportTime = LocalTime.now().format(timeFormatter);
  int []arr=new int[6];
         for (int i = 0; i < trafficViolations.size(); i++) {
+
             if (trafficViolations.get(i).getViolation_type().equals("Speeding"))
                 arr[0]++;
-            else if (trafficViolations.get(i).getViolation_type().equals("Stop"))
+            else if (trafficViolations.get(i).getViolation_type().equals("Parking"))
                 arr[1]++;
-            else if (trafficViolations.get(i).getViolation_type().equals("Road_kill"))
+            else if (trafficViolations.get(i).getViolation_type().equals("Running Red Light"))
             arr[2]++;
-            else if (trafficViolations.get(i).getViolation_type().equals("Traffic_Jam"))
+            else if (trafficViolations.get(i).getViolation_type().equals("No License Plate"))
             arr[3]++;
-            else if (trafficViolations.get(i).getViolation_type().equals("Yielding"))
+            else if (trafficViolations.get(i).getViolation_type().equals("No Registration"))
             arr[4]++;
-            else if (trafficViolations.get(i).getViolation_type().equals("Dangerous_Vehicle"))
+            else if (trafficViolations.get(i).getViolation_type().equals("No Helmet"))
             arr[5]++;
         }
         System.out.println("\nFrequent Violations Report:");
         System.out.println("Speeding: " + arr[0]);
-        System.out.println("Stop: " + arr[1]);
-        System.out.println("Road_kill: " + arr[2]);
-        System.out.println("Traffic_Jam: " + arr[3]);
-        System.out.println("Yielding: " + arr[4]);
-        System.out.println("Dangerous_Vehicle: " + arr[5]);
+        System.out.println("Parking: " + arr[1]);
+        System.out.println("Running Red Light: " + arr[2]);
+        System.out.println("No License Plate: " + arr[3]);
+        System.out.println("No Registration: " + arr[4]);
+        System.out.println("No Helmet: " + arr[5]);
         System.out.println("\nFrequent Violations Report (Generated at: " + reportTime + "):");
 
     }
 
     public static void main(String[] args) {
-        ArrayList<Traffic_Violation> trafficViolations = new ArrayList<>();
-        ArrayList<Zone> zones = new ArrayList<>();
-        TrafficReport.generateReportBasedOnChoice(trafficViolations,zones);
+
+
     }
 }

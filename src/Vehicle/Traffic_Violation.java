@@ -120,8 +120,9 @@ public class Traffic_Violation {
     public static void View_violations(ArrayList<Traffic_Violation> traffic_Violation) {
         //for owner
         String by;
-        System.out.println("Do you want view violations by Zone or vechicle?\\n1-Zone\\n2-Vehicle\\nEnter Choice: ");
+        System.out.print("Do you want view violations by Zone or vechicle?\n1-Zone\n2-Vehicle\nEnter Choice: ");
         int choice = 0;
+        System.out.println(traffic_Violation.size());
         choice = Exc.infinite(choice, 2, 1);
         if (choice == 2) {
             System.out.println("Enter Vehicle ID: ");
@@ -155,6 +156,9 @@ public class Traffic_Violation {
             }
 
         }
+    }
+    public static void main(String[] args) {
+        System.out.println(Traffic_Violation.tra.size());
     }
 }
 

@@ -49,6 +49,7 @@ public class Main {
         for(Zone zone: zones){
             for(Traffic_Lights traffic_light: zone.traffic_lights){
                 traffic_light.Start();
+
             }
           }
 

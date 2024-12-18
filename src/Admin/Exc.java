@@ -11,42 +11,54 @@ public class Exc {
         Scanner cin = new Scanner(System.in);
         while (true) {
             input = cin.nextLine();
-            if (input.matches("\\d+")) {  // Check if the input contains only digits
-                try {
-                    num = Integer.parseInt(input);
-                    if (num >= min && num <= max) {
-                        return num;
-                    } else {
-                        out.println("-------------------");
-                        out.println("Invalid Choice!");
-                        out.print("Enter a valid choice: ");
-                    }
-                } catch (NumberFormatException e) {
-                    System.out.print("Invalid input. Please enter a valid integer: ");
-                }
-            } else {
-                System.out.print("Invalid input ✕.\nPlease enter a valid number: ");
-            }
-        }
-
-    }
-
-    public static void Arr(ArrayList<?> arr, int index) {
-        while (true) {
-            System.out.println("Enter an index to access the list: ");
-            index = Admin.cin.nextInt();
+            // Check if the input contains only digits
             try {
-                if (index >= 0 && index < arr.size()) {
-                    System.out.println("Item at index " + index + ": " + arr.get(index));
-                    return;
+                num = Integer.parseInt(input);
+                if (num >= min && num <= max) {
+                    return num;
                 } else {
-                    System.out.println("Invalid index. Please try again.");
+                    out.println("-------------------");
+                    out.println("Invalid Choice!");
+                    out.print("Enter a valid choice: ");
                 }
-            } catch (IndexOutOfBoundsException exp) {
-                System.out.println("Invalid index. Please try again.");
+            } catch (NumberFormatException e) {
+                System.out.print("Invalid input ✕.\n" +
+                        "Please enter a valid number: ");
             }
         }
+
     }
+
+    public static String Unique(String prompt, ArrayList<String> existingValues) {
+        String input;
+        System.out.print(prompt);
+        while (true) {
+            input = Admin.cin.nextLine();
+
+            // Check if input contains a comma
+
+            if (input.contains(",")) {
+                System.out.println("Error: The value cannot contain a comma. Please try again.");
+                System.out.print("Enter new value: ");
+                continue;
+            } else {
+                if (existingValues.contains(input)) {
+                    System.out.println("Error: This value is already used. Please try again.");
+                    System.out.print("Enter new value: ");
+                }
+                // Valid input
+                else {
+                    existingValues.add(input);
+                    break;
+                }
+            }
+        }
+        return input;
+
+        // Check if input is unique
+
+    }
+
     public static String vald(String input) {
         while (true) {
             if (input.contains(",")) {
@@ -59,21 +71,7 @@ public class Exc {
         }
     }
 
-    public static void main(String[] args) {
-        int x = 5;
-        ArrayList<String> arr = new ArrayList<>(x);
-        arr.add("a");
-        arr.add("b");
-        arr.add("c");
-        arr.add("d");
-        arr.add("e");
-        arr.add("f");
-        arr.add("g");
-        int z = 0;
-      //  Arr(arr, z);
-        String o=Admin.cin.nextLine();
-        vald(o);
-    }
+
 }
 
 

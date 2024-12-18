@@ -47,14 +47,14 @@ public class Display {
         char c;
         do {
             String ID, Email, Password, Name, Contact_info;
-            ID = Account.Unique("Enter your ID: ", Account.ids);
+            ID = Exc.Unique("Enter your ID: ", Account.ids);
 
             Email = validateEmail();
         out.print("Enter your Password: ");
             Password = Admin.cin.nextLine();
            
 
-                 Name =  Account.Unique("Enter your Name: ", Account.Names);
+                 Name =  Exc.Unique("Enter your Name: ", Account.Names);
 
             out.print("Enter your Contact_info: ");
             Contact_info = Admin.cin.nextLine();
