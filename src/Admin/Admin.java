@@ -159,12 +159,12 @@ out.print("Do you want to continue (y/n): ");
         boolean logout = false;
         System.out.println("Welcome " + admin.get(index).Name + "!");
         do {
-            System.out.println("1- View exist zones.\n2- Add traffic lights.\n3- Update traffic lights.\n4- Delete traffic lights.\n5- Add zone.\n6- View violations by vehicle or by zone.\n7- Generate traffic reports.\n8- Add new Admin.\n9- Change my password.\n10- Add new Traffic Officer.\n11- View your information.\n12- Details about the number of users.\n13- Logout.");
+            System.out.println("1- View exist zones.\n2- Add traffic lights.\n3- Update traffic lights.\n4- Delete traffic lights.\n5- Add zone.\n6- View violations by vehicle or by zone.\n7- Generate traffic reports.\n8- Add new Admin.\n9- Change my password.\n10- Add new Traffic Officer.\n11- View your information.\n12- Details about the number of users.\n13- Calculate and Display Averages\n14- Logout.");
             out.println("......");
             out.print("Enter your choice: ");
             int a = 0, i = 0;
 
-            a = Exc.infinite(0, 13, 1);
+            a = Exc.infinite(0, 14, 1);
             if (a >= 1 && a <= 4) {
                 for (int  j= 0 ; j < Zone.size(); j++) {
 
@@ -215,6 +215,9 @@ out.print("Do you want to continue (y/n): ");
                admin.get(i).details();
                     break;
                 case 13:
+                    TrafficReport.avg(traffic_Violation);
+                    break;
+                case 14:
                     logout = true;
                     break;
             }

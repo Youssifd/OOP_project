@@ -13,7 +13,7 @@ import Traffic_Officer.TrafficOfficer;
 import Vehicle.Traffic_Violation;
 
 public class TrafficReport {
-
+public static int []arr=new int[6];
     // دالة لاختيار التقرير بناءً على نوعه
     public static void generateReportBasedOnChoice(ArrayList<Traffic_Violation> trafficViolations,ArrayList<Zone> zones) {
         // تسأل المستخدم عن نوع التقرير
@@ -115,7 +115,7 @@ public class TrafficReport {
     public static void generateM(ArrayList<Traffic_Violation> trafficViolations) {
         DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
             String reportTime = LocalTime.now().format(timeFormatter);
- int []arr=new int[6];
+
         for (int i = 0; i < trafficViolations.size(); i++) {
 
             if (trafficViolations.get(i).getViolation_type().equals("Speeding"))
@@ -140,5 +140,128 @@ public class TrafficReport {
         System.out.println("No Helmet: " + arr[5]);
         System.out.println("\nFrequent Violations Report (Generated at: " + reportTime + "):");
 
+    }
+    public static void avg(ArrayList<Traffic_Violation> trafficViolations) {
+        TrafficReport.z(trafficViolations);
+        Scanner input;
+        Integer x = 0;
+        double average=0;
+        int totalViolations = 0;
+            x+=arr[0]*3*100;
+            x+=arr[1]*3*50;
+            x+=arr[2]*3*150;
+            x+=arr[3]*3*1500;
+            x+=arr[4]*3*5000;
+            x+=arr[5]*200;
+        for (int count : arr) {
+            totalViolations += count; // اجمع عدد المخالفات من كل نوع
+        }
+
+
+            char p;
+        int a=0;
+        System.out.println("1- for all\n2- for each type\n3- specific type");
+        do {
+            input=new Scanner(System.in);
+        System.out.print("Enter your choice: ");
+        a=Exc.infinite(a,3,1);
+        switch (a)
+        {
+            case 1:
+                if (totalViolations > 0) {
+                    average = (double) x / totalViolations; // احسب المتوسط
+
+                } else {
+                    System.out.println("No violations to calculate an average.");
+                }
+                System.out.println("Average of total violations =  " + average);
+               break;
+            case 2:
+                System.out.println("Average of each type:");
+
+                if (arr[0] > 0) {
+                    System.out.println("1- Speeding: " + ((double) arr[0] * 3 * 100) / arr[0]);
+                } else {
+                    System.out.println("1- Speeding: No violations");
+                }
+
+                if (arr[1] > 0) {
+                    System.out.println("2- Parking: " + ((double) arr[1] * 3 * 50) / arr[1]);
+                } else {
+                    System.out.println("2- Parking: No violations");
+                }
+
+                if (arr[2] > 0) {
+                    System.out.println("3- Running Red Light: " + ((double) arr[2] * 3 * 150) / arr[2]);
+                } else {
+                    System.out.println("3- Running Red Light: No violations");
+                }
+
+                if (arr[3] > 0) {
+                    System.out.println("4- No License Plate: " + ((double) arr[3] * 3 * 1500) / arr[3]);
+                } else {
+                    System.out.println("4- No License Plate: No violations");
+                }
+
+                if (arr[4] > 0) {
+                    System.out.println("5- No Registration: " + ((double) arr[4] * 3 * 5000) / arr[4]);
+                } else {
+                    System.out.println("5- No Registration: No violations");
+                }
+
+                if (arr[5] > 0) {
+                    System.out.println("6- No Helmet: " + ((double) arr[5] * 200) / arr[5]);
+                } else {
+                    System.out.println("6- No Helmet: No violations");
+                }
+
+                break;
+            case 3:
+                System.out.println("1- Speeding");
+                System.out.println("2- Parking");
+                System.out.println("3- Running Red Light");
+                System.out.println("4- No License Plate");
+                System.out.println("5- No Registration");
+                System.out.println("6- No Helmet");
+
+                String[] types = {"Speeding", "Parking", "Running Red Light", "No License Plate", "No Registration", "No Helmet"};
+                int[] multipliers = {300, 150, 450, 4500, 15000, 200};
+
+                System.out.print("Enter number of type: ");
+                int type = Exc.infinite(0, 6, 1); // إدخال صحيح بين 1 و 6
+
+// التحقق من صحة الإدخال
+
+                    if (arr[type - 1] > 0) { // التحقق من وجود مخالفات لهذا النوع
+                        System.out.println(types[type - 1] + ": " + arr[type - 1] * multipliers[type - 1]);
+                    } else {
+                        System.out.println(types[type - 1] + ": No violations");
+                    }
+
+
+                break;
+        }
+        System.out.print("Do you want to continue (y/n):  ");
+        p=input.nextLine().charAt(0);
+        } while (p=='y'||p=='Y');
+    }
+    public static int[] z(ArrayList<Traffic_Violation> trafficViolations)
+    {
+        for (int i = 0; i < trafficViolations.size(); i++) {
+
+            if (trafficViolations.get(i).getViolation_type().equals("Speeding"))
+                arr[0]++;
+            else if (trafficViolations.get(i).getViolation_type().equals("Parking"))
+                arr[1]++;
+            else if (trafficViolations.get(i).getViolation_type().equals("Running Red Light"))
+                arr[2]++;
+            else if (trafficViolations.get(i).getViolation_type().equals("No License Plate"))
+                arr[3]++;
+            else if (trafficViolations.get(i).getViolation_type().equals("No Registration"))
+                arr[4]++;
+            else if (trafficViolations.get(i).getViolation_type().equals("No Helmet"))
+                arr[5]++;
+        }
+        return arr;
     }
 }
