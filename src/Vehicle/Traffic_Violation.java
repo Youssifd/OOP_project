@@ -5,6 +5,7 @@ import Admin.Admin;
 import Admin.Exc;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Traffic_Violation {
     public static int TV_counter = 0;
@@ -118,54 +119,61 @@ public class Traffic_Violation {
     }
 
     public static void View_violations(ArrayList<Traffic_Violation> traffic_Violation) {
-        //for owner
+        Scanner scan;
+        char c;
         String by;
-        System.out.print("Do you want view violations by Zone or vechicle?\n1-Zone\n2-Vehicle\nEnter Choice: ");
-        int choice = 0;
-        boolean found = false;
-        System.out.println(traffic_Violation.size());
-        choice = Exc.infinite(choice, 2, 1);
-        if (choice == 2) {
-            System.out.println("Enter Vehicle ID: ");
-            by = Admin.cin.next();
+        System.out.println("Do you want view violations by Zone or vechicle?\n1-Zone\n2-Vehicle");
+        do {
+            System.out.print("Enter your choice: ");
+            scan = new Scanner(System.in);
+            int choice = 0;
+            boolean found = false;
 
-            for (Traffic_Violation trafficViolation : traffic_Violation) {
-                if (trafficViolation.getVehicle_ID().equals(by)) {
-                    System.out.println("TracksViolationID: " + trafficViolation.getViolationID());
-                    System.out.println("Vehicle ID: " + trafficViolation.getVehicle_ID());
-                    System.out.println("Violation Type: " + trafficViolation.getViolation_type());
-                    System.out.println("Date: " + trafficViolation.getDate());
-                    System.out.println("Fine Amount: " + trafficViolation.getFine_amount());
-                    System.out.println("---------------------------------------");
-                    found = true;
+            choice = Exc.infinite(choice, 2, 1);
+            if (choice == 2) {
+                System.out.println("Enter Vehicle ID: ");
+                by = Admin.cin.next();
+
+                for (Traffic_Violation trafficViolation : traffic_Violation) {
+                    if (trafficViolation.getVehicle_ID().equals(by)) {
+                        System.out.println("TracksViolationID: " + trafficViolation.getViolationID());
+                        System.out.println("Vehicle ID: " + trafficViolation.getVehicle_ID());
+                        System.out.println("Violation Type: " + trafficViolation.getViolation_type());
+                        System.out.println("Date: " + trafficViolation.getDate());
+                        System.out.println("Fine Amount: " + trafficViolation.getFine_amount());
+                        System.out.println("---------------------------------------");
+                        found = true;
+
+                    }
+                }
+                if (!found) {
+                    System.out.println("No Violations Found");
+                }
+
+            } else {
+
+                System.out.print("Enter Zone: ");
+                by = Admin.cin.next();
+                for (Traffic_Violation trafficViolation : traffic_Violation) {
+                    if (trafficViolation.getZoneName().equals(by)) {
+                        System.out.println("TracksViolationID: " + trafficViolation.getViolationID());
+                        System.out.println("Vehicle ID: " + trafficViolation.getVehicle_ID());
+                        System.out.println("Violation Type: " + trafficViolation.getViolation_type());
+                        System.out.println("Date: " + trafficViolation.getDate());
+                        System.out.println("Fine Amount: " + trafficViolation.getFine_amount());
+                        System.out.println("---------------------------------------");
+                        found = true;
+                    }
 
                 }
-            }
-            if (!found) {
-                System.out.println("No Violations Found");
-            }
-
-        } else {
-
-            System.out.println("Enter Zone: ");
-            by = Admin.cin.next();
-            for (Traffic_Violation trafficViolation : traffic_Violation) {
-                if (trafficViolation.getZoneName().equals(by)) {
-                    System.out.println("TracksViolationID: " + trafficViolation.getViolationID());
-                    System.out.println("Vehicle ID: " + trafficViolation.getVehicle_ID());
-                    System.out.println("Violation Type: " + trafficViolation.getViolation_type());
-                    System.out.println("Date: " + trafficViolation.getDate());
-                    System.out.println("Fine Amount: " + trafficViolation.getFine_amount());
-                    System.out.println("---------------------------------------");
-                    found = true;
+                if (!found) {
+                    System.out.println("No Violations Found");
                 }
-                // لحد ما ربنا يكرم بال zone
-            }
-            if (!found) {
-                System.out.println("No Violations Found");
-            }
 
-        }
+            }
+            System.out.print("Do you want continue(y/n): ");
+            c=scan.nextLine().charAt(0);
+        } while (c=='y'||c=='Y');
     }
 }
 

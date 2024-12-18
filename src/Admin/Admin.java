@@ -30,14 +30,14 @@ public class Admin extends Account {
         String Id, Name, Email, Password, Contact, assignedZone;
         do {
             Cin = new Scanner(System.in);
-            Id = Exc.Unique("Enter your ID: ", Account.ids);
+            Id = Exc.Unique("Enter ID: ", Account.ids);
 
             Email = Display.validateEmail();
-            out.print("Enter your Password: ");
+            out.print("Enter Password: ");
             Password = Cin.nextLine();
 
-            Name = Exc.Unique("Enter your Name: ",Account.Names);
-            out.print("Enter your Contact_info: ");
+            Name = Exc.Unique("Enter Name: ",Account.Names);
+            out.print("Enter Contact_info: ");
             Contact = Cin.nextLine();
             for (int i = 0, j; i < Zone.size(); i++) {
                 j = i + 1;
@@ -116,7 +116,7 @@ do {
     }
     out.print("Do you want continue (y/n): ");
     c=Admin.cin.nextLine().charAt(0);
- //   Admin.cin.nextLine();
+
 } while (c=='Y'||c=='y');
         return admins;
     }
@@ -154,15 +154,15 @@ out.print("Do you want to continue (y/n): ");
        } while (true);
    }
 
-    public static void AdminPage(ArrayList<Admin> admin, int index, ArrayList<Owner> owner, ArrayList<TrafficOfficer> TrafficOfficer, ArrayList<Zone> Zone, ArrayList<Traffic_Violation> traffic_Violation) {
+    public static void AdminPage(ArrayList<Admin> admin, int Adminindex, ArrayList<Owner> owner, ArrayList<TrafficOfficer> TrafficOfficer, ArrayList<Zone> Zone, ArrayList<Traffic_Violation> traffic_Violation) {
         out.println("========================================================================");
         boolean logout = false;
-        System.out.println("Welcome " + admin.get(index).Name + "!");
+        System.out.println("Welcome " + admin.get(Adminindex).Name + "!");
         do {
             System.out.println("1- View exist zones.\n2- Add traffic lights.\n3- Update traffic lights.\n4- Delete traffic lights.\n5- Add zone.\n6- View violations by vehicle or by zone.\n7- Generate traffic reports.\n8- Add new Admin.\n9- Change my password.\n10- Add new Traffic Officer.\n11- View your information.\n12- Details about the number of users.\n13- Calculate and Display Averages\n14- Logout.");
             out.println("......");
             out.print("Enter your choice: ");
-            int a = 0, i = 0;
+            int a = 0, zoneindex = 0;
 
             a = Exc.infinite(0, 14, 1);
             if (a >= 1 && a <= 4) {
@@ -173,22 +173,22 @@ out.print("Do you want to continue (y/n): ");
                 out.print("Enter Number assigned zone: ");
                 int choice = 0;
                 choice = Exc.infinite(choice, Zone.size(), 1);
-                i = choice - 1;
+                zoneindex = choice - 1;
 
             }
 
             switch (a) {
                 case 1:
-                    Zone.get(i).getInfo();
+                    Zone.get(zoneindex).getInfo();
                     break;
                 case 2:
-                    Zone.get(i).addTrafficLight();
+                    Zone.get(zoneindex).addTrafficLight();
                     break;
                 case 3:
-                    Zone.get(i).editTrafficLight();
+                    Zone.get(zoneindex).editTrafficLight();
                     break;
                 case 4:
-                    Zone.get(i).removeTrafficLight();
+                    Zone.get(zoneindex).removeTrafficLight();
                     break;
                 case 5:
                     addZone(Zone);
@@ -200,19 +200,19 @@ out.print("Do you want to continue (y/n): ");
                   TrafficReport.generateReportBasedOnChoice(traffic_Violation,Zone);
                     break;
                 case 8:
-                    admin.get(index).addAdmins(admin, owner);
+                    admin.get(Adminindex).addAdmins(admin, owner);
                     break;
                 case 9:
-                    admin.get(index).changePass();
+                    admin.get(Adminindex).changePass();
                     break;
                 case 10:
-                    admin.get(index).AddOfficer(TrafficOfficer, Zone);
+                    admin.get(Adminindex).AddOfficer(TrafficOfficer, Zone);
                     break;
                 case 11:
-                    admin.get(i).toString();
+                   out.println(admin.get(Adminindex));
                     break;
                 case 12:
-               admin.get(i).details();
+               admin.get(Adminindex).details();
                     break;
                 case 13:
                     TrafficReport.avg(traffic_Violation);
@@ -226,9 +226,9 @@ out.print("Do you want to continue (y/n): ");
 
     }
 
-    @Override
     public String toString() {
-        return "Admin name: " + Name+"\nAdmin id: " + getID()+"\nAdmin Email: "+ Email+"\nAdmin contact" + this.Contact;
+        return "Admin Name: " + this.Name + "\nAdmin ID: " + this.getID() +
+                "\nAdmin Email: " + this.Email + "\nAdmin Contact: " + this.Contact;
     }
 
 }

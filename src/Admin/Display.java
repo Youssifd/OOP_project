@@ -21,7 +21,7 @@ public class Display {
 
         while (true) {
             // طلب البريد الإلكتروني من المستخدم
-            System.out.print("Enter your Email: ");
+            System.out.print("Enter  Email: ");
             email = Admin.cin.nextLine();
 
             // التحقق من صحة صيغة البريد الإلكتروني

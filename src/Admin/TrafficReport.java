@@ -42,7 +42,7 @@ public static int []arr=new int[6];
                     break;
 
             }
-            System.out.print("Do you want to continue(y/n): ");
+            System.out.print("Do you want to continue generate report (y/n): ");
            c=Admin.cin.next().charAt(0);
         } while (c=='y'||c=='Y');
     }
@@ -51,13 +51,16 @@ public static int []arr=new int[6];
     public static void generateHighDensityZonesReportBasedOnTime() {
         // قراءة الوقت من المستخدم
         String inputTime;
+        Scanner cin;
+        char c;
+      do {
         LocalTime userTime = null;
         boolean validTime = false;
-
         // التأكد من أن المستخدم يدخل وقتًا صحيحًا
+            cin = new Scanner(System.in);
         while (!validTime) {
             System.out.print("Enter the time (HH:mm:ss): ");
-            inputTime = Admin.cin.nextLine();
+            inputTime = cin.nextLine();
 
             // تحقق من تنسيق الوقت باستخدام تعبير منتظم
             if (inputTime.matches("^([01]?[0-9]|2[0-3]):([0-5]?[0-9]):([0-5]?[0-9])$")) {
@@ -81,6 +84,9 @@ public static int []arr=new int[6];
         // طباعة التقرير
         System.out.println("Time Period: " + userTime + " | " + congestionCause);
         System.out.println(" Zones Report (Generated at: " + reportTime + "):");
+        System.out.print("Do you want to generate based on another time (y/n): ");
+        c=cin.nextLine().charAt(0);
+    } while (c=='y'||c=='Y');
     }
 
     // تحديد سبب الازدحام بناءً على الوقت
@@ -169,48 +175,47 @@ public static int []arr=new int[6];
         {
             case 1:
                 if (totalViolations > 0) {
-                    average = (double) x / totalViolations; // احسب المتوسط
 
+                System.out.println("Average of total violations =  " + x);
                 } else {
                     System.out.println("No violations to calculate an average.");
                 }
-                System.out.println("Average of total violations =  " + average);
                break;
             case 2:
                 System.out.println("Average of each type:");
 
                 if (arr[0] > 0) {
-                    System.out.println("1- Speeding: " + ((double) arr[0] * 3 * 100) / arr[0]);
+                    System.out.println("1- Speeding: " +  arr[0] * 3 * 100);
                 } else {
                     System.out.println("1- Speeding: No violations");
                 }
 
                 if (arr[1] > 0) {
-                    System.out.println("2- Parking: " + ((double) arr[1] * 3 * 50) / arr[1]);
+                    System.out.println("2- Parking: " + arr[1] * 3 * 50);
                 } else {
                     System.out.println("2- Parking: No violations");
                 }
 
                 if (arr[2] > 0) {
-                    System.out.println("3- Running Red Light: " + ((double) arr[2] * 3 * 150) / arr[2]);
+                    System.out.println("3- Running Red Light: " +  arr[2] * 3 * 150);
                 } else {
                     System.out.println("3- Running Red Light: No violations");
                 }
 
                 if (arr[3] > 0) {
-                    System.out.println("4- No License Plate: " + ((double) arr[3] * 3 * 1500) / arr[3]);
+                    System.out.println("4- No License Plate: " +  arr[3] * 3 * 1500);
                 } else {
                     System.out.println("4- No License Plate: No violations");
                 }
 
                 if (arr[4] > 0) {
-                    System.out.println("5- No Registration: " + ((double) arr[4] * 3 * 5000) / arr[4]);
+                    System.out.println("5- No Registration: " +  arr[4] * 3 * 5000) ;
                 } else {
                     System.out.println("5- No Registration: No violations");
                 }
 
                 if (arr[5] > 0) {
-                    System.out.println("6- No Helmet: " + ((double) arr[5] * 200) / arr[5]);
+                    System.out.println("6- No Helmet: " +  arr[5] * 200) ;
                 } else {
                     System.out.println("6- No Helmet: No violations");
                 }
