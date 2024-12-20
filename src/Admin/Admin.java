@@ -115,12 +115,12 @@ public class Admin extends Account {
                     admins.add(new Admin(id, name, email, password, contact));
                     System.out.println("Account created successfully!");
 
-                    System.out.print("Do you want to create another account? (y/n): ");
+                    System.out.print("Do you want to continue add another admin not have account: ");
                     continueAdding = Admin.cin.next().charAt(0);
                     Admin.cin.nextLine();
                 } while (continueAdding == 'y' || continueAdding == 'Y');
             }
-            out.print("Do you want continue (y/n): ");
+            out.print("Do you want continue create another account? (y/n): ");
             c = Admin.cin.nextLine().charAt(0);
 
         } while (c == 'Y' || c == 'y');
