@@ -15,10 +15,10 @@ public class Traffic_Lights implements Runnable {
     public int yellowTime = 5;
     private final String ID;
     private final String Location;
-    public String Status;//Red/Green/Yellow
+    public String Status;//Red|Green|Yellow
     private int Duration;
     private Boolean isRunning = true;   //to stop Traffic light
-    public Thread thread; // for starting and stopping the thread of the traffic light
+    public Thread thread;
 
     public Traffic_Lights(String Location, int Duration, String Status) {
         Traffic_counter++;
@@ -68,7 +68,6 @@ public class Traffic_Lights implements Runnable {
     }
 
     private void Auto_Change_Status() {
-        //Operates on a cycle automatically
         switch (Status) {
             case "Red":
                 Status = "Green";
@@ -149,7 +148,7 @@ public class Traffic_Lights implements Runnable {
     }
 
     public static void addTrafficLight(ArrayList<Traffic_Lights> Traffic_Lights, String location) {
-        // System.out.println("Enter Location: ");
+        
         int temp = Traffic_Lights.size() + 1;
         String Location = location + "-" + temp;
         String Status = "";
