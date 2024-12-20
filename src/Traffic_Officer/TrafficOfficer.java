@@ -79,9 +79,9 @@ public class TrafficOfficer extends Account  {
             }
 
         } else if (ch == 2) {
-            System.out.println(" what is the type");
-            String type = input.next();
-            if (type == null || type.trim().isEmpty()) {
+            System.out.println("what is Violation  type");
+            String type = input.nextLine();
+            if (type == null || type.isEmpty()) {
                 System.out.println("Invalid violation type! Please enter a valid type.");
                 return;
             }

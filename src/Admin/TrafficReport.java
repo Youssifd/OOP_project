@@ -4,22 +4,26 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
+
 import Area.Zone;
 import Vehicle.Traffic_Violation;
 
 public class TrafficReport {
     public static int[] arr = new int[6];
-public static int  totalViolations=0;
+    public static int totalViolations = 0;
 
     public static void generateReportBasedOnChoice(ArrayList<Traffic_Violation> trafficViolations, ArrayList<Zone> zones) {
-      z(trafficViolations);
         char c = 0;
         do {
+            totalViolations=  0;
+            totalViolations = trafficViolations.size();
+
+
+            z(trafficViolations);
             System.out.println("1. High-Density Zones Report based on Time");
             System.out.println("2. Most Violated Zone");
             System.out.println("3. Most Frequent Violation Type");
             System.out.print("Choose the type of report you want: ");
-
 
 
             int choice = 0;
@@ -117,7 +121,7 @@ public static int  totalViolations=0;
 
 
         System.out.println("\nFrequent Violations Report:");
-        System.out.println("Frequent Violations Report: "+ totalViolations);
+        System.out.println("Frequent Violations Report: " + totalViolations);
         System.out.println("Speeding: " + arr[0]);
         System.out.println("Parking: " + arr[1]);
         System.out.println("Running Red Light: " + arr[2]);
@@ -150,7 +154,7 @@ public static int  totalViolations=0;
             switch (a) {
                 case 1:
                     if (totalViolations > 0) {
-                        System.out.println("Frequent Violations Report: "+ totalViolations);
+                        System.out.println("Frequent Violations Report: " + trafficViolations.size());
                         System.out.println("Average of total violations =  " + x);
                     } else {
                         System.out.println("No violations to calculate an average.");
@@ -211,9 +215,8 @@ public static int  totalViolations=0;
                     int type = Exc.infinite(0, 6, 1);
 
 
-
                     if (arr[type - 1] > 0) {
-                        System.out.println("Frequent Violations Report: "+ arr[type-1]);
+                        System.out.println("Frequent Violations Report: " + arr[type - 1]);
                         System.out.println(types[type - 1] + ": " + arr[type - 1] * multipliers[type - 1]);
                     } else {
                         System.out.println(types[type - 1] + ": No violations");
@@ -228,6 +231,9 @@ public static int  totalViolations=0;
     }
 
     public static void z(ArrayList<Traffic_Violation> trafficViolations) {
+        for( int i: arr){
+            i = 0;
+        }
         for (int i = 0; i < trafficViolations.size(); i++) {
 
             if (trafficViolations.get(i).getViolation_type().equals("Speeding"))
