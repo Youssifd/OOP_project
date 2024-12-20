@@ -10,14 +10,15 @@ import Vehicle.Traffic_Violation;
 
 public class TrafficReport {
     public static int[] arr = new int[6];
-    public static int totalViolations = 0;
+
 
     public static void generateReportBasedOnChoice(ArrayList<Traffic_Violation> trafficViolations, ArrayList<Zone> zones) {
         char c = 0;
         do {
-            totalViolations=  0;
-            totalViolations = trafficViolations.size();
 
+
+            for (int i=0;i<arr.length;i++)
+                arr[i]=0;
 
             z(trafficViolations);
             System.out.println("1. High-Density Zones Report based on Time");
@@ -38,7 +39,7 @@ public class TrafficReport {
                     reportbymostviolation(zones);
                     break;
                 case 3:
-                    generateM();
+                    generateM(trafficViolations);
                     break;
 
             }
@@ -115,13 +116,13 @@ public class TrafficReport {
     }
 
 
-    public static void generateM() {
+    public static void generateM(ArrayList<Traffic_Violation> trafficViolations) {
         DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
         String reportTime = LocalTime.now().format(timeFormatter);
 
 
         System.out.println("\nFrequent Violations Report:");
-        System.out.println("Frequent Violations Report: " + totalViolations);
+        System.out.println("Frequent Violations Report: " + (trafficViolations.size()+1));
         System.out.println("Speeding: " + arr[0]);
         System.out.println("Parking: " + arr[1]);
         System.out.println("Running Red Light: " + arr[2]);
@@ -133,28 +134,31 @@ public class TrafficReport {
     }
 
     public static void avg(ArrayList<Traffic_Violation> trafficViolations) {
-        TrafficReport.z(trafficViolations);
         Scanner input;
-        Integer x = 0;
+        Integer x ;
+System.out.println("Note that this is not the exact price; it is an approximate range.");
+        char p;
+        int a = 0;
+        System.out.println("1- for all\n2- for each type\n3- specific type");
 
+        do {
+            x=0;
+            for (int i=0;i<arr.length;i++)
+                arr[i]=0;
+        z(trafficViolations);
         x += arr[0] * 3 * 100;
         x += arr[1] * 3 * 50;
         x += arr[2] * 3 * 150;
         x += arr[3] * 3 * 1500;
         x += arr[4] * 3 * 5000;
         x += arr[5] * 200;
-
-        char p;
-        int a = 0;
-        System.out.println("1- for all\n2- for each type\n3- specific type");
-        do {
             input = new Scanner(System.in);
             System.out.print("Enter your choice: ");
             a = Exc.infinite(a, 3, 1);
             switch (a) {
                 case 1:
-                    if (totalViolations > 0) {
-                        System.out.println("Frequent Violations Report: " + trafficViolations.size());
+                    if (trafficViolations.size() > 0) {
+                        System.out.println("Frequent Violations Report: " + (trafficViolations.size()+1));
                         System.out.println("Average of total violations =  " + x);
                     } else {
                         System.out.println("No violations to calculate an average.");
@@ -209,13 +213,14 @@ public class TrafficReport {
                     System.out.println("6- No Helmet");
 
                     String[] types = {"Speeding", "Parking", "Running Red Light", "No License Plate", "No Registration", "No Helmet"};
-                    int[] multipliers = {300, 150, 450, 4500, 15000, 200};
+                    int[] multipliers = {100, 50, 150, 1500, 5000, 200};
 
                     System.out.print("Enter number of type: ");
                     int type = Exc.infinite(0, 6, 1);
 
 
                     if (arr[type - 1] > 0) {
+                      
                         System.out.println("Frequent Violations Report: " + arr[type - 1]);
                         System.out.println(types[type - 1] + ": " + arr[type - 1] * multipliers[type - 1]);
                     } else {
@@ -249,8 +254,6 @@ public class TrafficReport {
             else if (trafficViolations.get(i).getViolation_type().equals("No Helmet"))
                 arr[5]++;
         }
-        for (int count : arr) {
-            totalViolations += count;
-        }
+
     }
 }
