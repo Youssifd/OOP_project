@@ -14,29 +14,29 @@ import static java.lang.System.out;
 public class Display {
 
     public static String validateEmail() {
-        // التعبير النمطي للتحقق من صحة البريد الإلكتروني
+
         String emailRegex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
 
         String email;
 
         while (true) {
-            // طلب البريد الإلكتروني من المستخدم
+
             System.out.print("Enter  Email: ");
             email = Admin.cin.nextLine();
 
-            // التحقق من صحة صيغة البريد الإلكتروني
+
             if (!email.matches(emailRegex)) {
                 System.out.println("Invalid email format. Please try again.");
-                continue; // إعادة طلب الإدخال من المستخدم
+                continue;
             }
 
-            // التحقق من أن البريد الإلكتروني غير موجود مسبقًا
+
             if (Account.Emails.contains(email)) {
                 System.out.println("This email already exists. Please enter a different email.");
-                continue; // إعادة طلب الإدخال من المستخدم
+                continue;
             }
 
-            // إذا كان البريد الإلكتروني صحيحًا وغير موجود مسبقًا
+
             break;
         }
 

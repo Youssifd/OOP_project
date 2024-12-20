@@ -3,21 +3,16 @@ package Admin;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-
 import java.util.Scanner;
-
-import Account.Owner;
 import Area.Zone;
-import File_function.File_Processing;
-import Traffic_Officer.TrafficOfficer;
 import Vehicle.Traffic_Violation;
 
 public class TrafficReport {
     public static int[] arr = new int[6];
+public static int  totalViolations=0;
 
-    // دالة لاختيار التقرير بناءً على نوعه
     public static void generateReportBasedOnChoice(ArrayList<Traffic_Violation> trafficViolations, ArrayList<Zone> zones) {
-        // تسأل المستخدم عن نوع التقرير
+      z(trafficViolations);
         char c = 0;
         do {
             System.out.println("1. High-Density Zones Report based on Time");
@@ -25,21 +20,21 @@ public class TrafficReport {
             System.out.println("3. Most Frequent Violation Type");
             System.out.print("Choose the type of report you want: ");
 
-            // قراءة اختيار المستخدم
+
 
             int choice = 0;
             choice = Exc.infinite(choice, 3, 1);
-            // لتجاوز السطر الفارغ بعد قراءة الاختيار
+
 
             switch (choice) {
                 case 1:
-                    generateHighDensityZonesReportBasedOnTime(); // تقرير المناطق بناءً على الوقت
+                    generateHighDensityZonesReportBasedOnTime();
                     break;
                 case 2:
-                    reportbymostviolation(zones); // تقرير أكثر أنواع المخالفات تكراراً
+                    reportbymostviolation(zones);
                     break;
                 case 3:
-                    generateM(trafficViolations); // تقرير أكثر منطقة فيها مخالفات
+                    generateM();
                     break;
 
             }
@@ -48,27 +43,27 @@ public class TrafficReport {
         } while (c == 'y' || c == 'Y');
     }
 
-    // تقرير المناطق بناءً على الوقت
+
     public static void generateHighDensityZonesReportBasedOnTime() {
-        // قراءة الوقت من المستخدم
+
         String inputTime;
         Scanner cin;
         char c;
         do {
             LocalTime userTime = null;
             boolean validTime = false;
-            // التأكد من أن المستخدم يدخل وقتًا صحيحًا
+
             cin = new Scanner(System.in);
             while (!validTime) {
                 System.out.print("Enter the time (HH:mm:ss): ");
                 inputTime = cin.nextLine();
 
-                // تحقق من تنسيق الوقت باستخدام تعبير منتظم
+
                 if (inputTime.matches("^([01]?[0-9]|2[0-3]):([0-5]?[0-9]):([0-5]?[0-9])$")) {
                     try {
                         DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-                        userTime = LocalTime.parse(inputTime, timeFormatter); // وقت المستخدم
-                        validTime = true;  // الإدخال صحيح
+                        userTime = LocalTime.parse(inputTime, timeFormatter);
+                        validTime = true;
                     } catch (Exception e) {
                         System.out.println("Invalid time format. Please enter the time in HH:mm:ss format.");
                     }
@@ -77,12 +72,11 @@ public class TrafficReport {
                 }
             }
 
-            String reportTime = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")); // الوقت الحالي
+            String reportTime = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
 
-            // تحديد سبب الازدحام بناءً على الوقت
+
             String congestionCause = getCongestionCause(userTime);
 
-            // طباعة التقرير
             System.out.println("Time Period: " + userTime + " | " + congestionCause);
             System.out.println(" Zones Report (Generated at: " + reportTime + "):");
             System.out.print("Do you want to generate based on another time (y/n): ");
@@ -90,7 +84,7 @@ public class TrafficReport {
         } while (c == 'y' || c == 'Y');
     }
 
-    // تحديد سبب الازدحام بناءً على الوقت
+
     private static String getCongestionCause(LocalTime time) {
         if (time.isAfter(LocalTime.of(14, 0)) && time.isBefore(LocalTime.of(17, 0))) {
             return "There is traffic congestion during this period due to employees leaving work and students leaving schools and universities";
@@ -102,42 +96,28 @@ public class TrafficReport {
         }
     }
 
-    // تقرير أكثر نوع من المخالفات تكراراً
+
     public static void reportbymostviolation(ArrayList<Zone> z) {
         DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
         String reportTime = LocalTime.now().format(timeFormatter);
-        System.out.println("\nMost Violated Zone Report:");// الوقت الحاليfor
+        System.out.println("\nMost Violated Zone Report:");
         for (int i = 0; i < z.size(); i++)
             if (z.get(i).numViolationOccured > 0) {
                 System.out.println(z.get(i).getName() + " | Violations: " + z.get(i).numViolationOccured);
             }
-        // إعداد بيانات التقرير
-        // حساب تكرار كل نوع من المخالفات
-        // طباعة التقرير
+
+
         System.out.println("\nFrequent Violations Report (Generated at: " + reportTime + "):");
     }
 
-    // تقرير أكثر منطقة فيها مخالفات
-    public static void generateM(ArrayList<Traffic_Violation> trafficViolations) {
+
+    public static void generateM() {
         DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
         String reportTime = LocalTime.now().format(timeFormatter);
 
-        for (int i = 0; i < trafficViolations.size(); i++) {
 
-            if (trafficViolations.get(i).getViolation_type().equals("Speeding"))
-                arr[0]++;
-            else if (trafficViolations.get(i).getViolation_type().equals("Parking"))
-                arr[1]++;
-            else if (trafficViolations.get(i).getViolation_type().equals("Running Red Light"))
-                arr[2]++;
-            else if (trafficViolations.get(i).getViolation_type().equals("No License Plate"))
-                arr[3]++;
-            else if (trafficViolations.get(i).getViolation_type().equals("No Registration"))
-                arr[4]++;
-            else if (trafficViolations.get(i).getViolation_type().equals("No Helmet"))
-                arr[5]++;
-        }
         System.out.println("\nFrequent Violations Report:");
+        System.out.println("Frequent Violations Report: "+ totalViolations);
         System.out.println("Speeding: " + arr[0]);
         System.out.println("Parking: " + arr[1]);
         System.out.println("Running Red Light: " + arr[2]);
@@ -152,18 +132,13 @@ public class TrafficReport {
         TrafficReport.z(trafficViolations);
         Scanner input;
         Integer x = 0;
-        double average = 0;
-        int totalViolations = 0;
+
         x += arr[0] * 3 * 100;
         x += arr[1] * 3 * 50;
         x += arr[2] * 3 * 150;
         x += arr[3] * 3 * 1500;
         x += arr[4] * 3 * 5000;
         x += arr[5] * 200;
-        for (int count : arr) {
-            totalViolations += count; // اجمع عدد المخالفات من كل نوع
-        }
-
 
         char p;
         int a = 0;
@@ -175,7 +150,7 @@ public class TrafficReport {
             switch (a) {
                 case 1:
                     if (totalViolations > 0) {
-
+                        System.out.println("Frequent Violations Report: "+ totalViolations);
                         System.out.println("Average of total violations =  " + x);
                     } else {
                         System.out.println("No violations to calculate an average.");
@@ -233,11 +208,12 @@ public class TrafficReport {
                     int[] multipliers = {300, 150, 450, 4500, 15000, 200};
 
                     System.out.print("Enter number of type: ");
-                    int type = Exc.infinite(0, 6, 1); // إدخال صحيح بين 1 و 6
+                    int type = Exc.infinite(0, 6, 1);
 
-// التحقق من صحة الإدخال
 
-                    if (arr[type - 1] > 0) { // التحقق من وجود مخالفات لهذا النوع
+
+                    if (arr[type - 1] > 0) {
+                        System.out.println("Frequent Violations Report: "+ arr[type-1]);
                         System.out.println(types[type - 1] + ": " + arr[type - 1] * multipliers[type - 1]);
                     } else {
                         System.out.println(types[type - 1] + ": No violations");
@@ -251,7 +227,7 @@ public class TrafficReport {
         } while (p == 'y' || p == 'Y');
     }
 
-    public static int[] z(ArrayList<Traffic_Violation> trafficViolations) {
+    public static void z(ArrayList<Traffic_Violation> trafficViolations) {
         for (int i = 0; i < trafficViolations.size(); i++) {
 
             if (trafficViolations.get(i).getViolation_type().equals("Speeding"))
@@ -267,6 +243,8 @@ public class TrafficReport {
             else if (trafficViolations.get(i).getViolation_type().equals("No Helmet"))
                 arr[5]++;
         }
-        return arr;
+        for (int count : arr) {
+            totalViolations += count;
+        }
     }
 }

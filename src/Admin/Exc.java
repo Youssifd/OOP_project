@@ -11,7 +11,7 @@ public class Exc {
         Scanner cin = new Scanner(System.in);
         while (true) {
             input = cin.nextLine();
-            // Check if the input contains only digits
+
             try {
                 num = Integer.parseInt(input);
                 if (num >= min && num <= max) {
@@ -35,18 +35,18 @@ public class Exc {
         while (true) {
             input = Admin.cin.nextLine();
 
-            // Check if input contains a comma
+
 
             if (input.contains(",")) {
                 System.out.println("Error: The value cannot contain a comma. Please try again.");
                 System.out.print("Enter new value: ");
-                continue;
+
             } else {
                 if (existingValues.contains(input)) {
                     System.out.println("Error: This value is already used. Please try again.");
                     System.out.print("Enter new value: ");
                 }
-                // Valid input
+
                 else {
                     existingValues.add(input);
                     break;
@@ -55,7 +55,7 @@ public class Exc {
         }
         return input;
 
-        // Check if input is unique
+
 
     }
 

@@ -53,18 +53,25 @@ public class Admin extends Account {
             out.print("Do you want to create another account? (y/n): ");
             c = Cin.next().charAt(0);
         } while (c == 'y' || c == 'Y');
-        out.println("This offeceres are registered by Admin: " + this.Name);
+        out.println("This officers. are registered by Admin: " + this.Name);
         return arr;
     }
 
     public static void addZone(ArrayList<Zone> zones) {
-        out.print("Enter the name of the zone: ");
-        String name = cin.nextLine();
-        out.print("Enter the Location of the zone: ");
-        String Loc = cin.nextLine();
-        Zone zone = new Zone(name, Loc);
-        zones.add(zone);
-        out.println("Zone ID: " + zone.getID() + ",added successfully!");
+        Scanner s;
+        char c;
+        do {
+            s=new Scanner(System.in);
+            out.print("Enter the name of the zone: ");
+            String name = cin.nextLine();
+            out.print("Enter the Location of the zone: ");
+            String Loc = cin.nextLine();
+            Zone zone = new Zone(name, Loc);
+            zones.add(zone);
+            out.println("Zone ID: " + zone.getID() + ",added successfully!");
+            out.print("Do you want add another zone: ");
+            c=s.next().charAt(0);
+        } while (c=='y'||c=='Y');
     }
 
     public ArrayList<Admin> addAdmins(ArrayList<Admin> admins, ArrayList<Owner> owners) {
@@ -111,7 +118,7 @@ public class Admin extends Account {
 
                     System.out.print("Do you want to create another account? (y/n): ");
                     continueAdding = Admin.cin.next().charAt(0);
-                    Admin.cin.nextLine(); //  the leftover newline character.
+                    Admin.cin.nextLine();
                 } while (continueAdding == 'y' || continueAdding == 'Y');
             }
             out.print("Do you want continue (y/n): ");
@@ -178,7 +185,7 @@ public class Admin extends Account {
 
             switch (a) {
                 case 1:
-                    Zone.get(zoneindex).getInfo();
+                    Zone.get(zoneindex).ViewZoneInfo();
                     break;
                 case 2:
                     Zone.get(zoneindex).addTrafficLight();
