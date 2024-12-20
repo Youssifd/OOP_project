@@ -36,7 +36,7 @@ public class Admin extends Account {
             out.print("Enter Password: ");
             Password = Cin.nextLine();
 
-            Name = Exc.Unique("Enter Name: ",Account.Names);
+            Name = Exc.Unique("Enter Name: ", Account.Names);
             out.print("Enter Contact_info: ");
             Contact = Cin.nextLine();
             for (int i = 0, j; i < Zone.size(); i++) {
@@ -69,90 +69,89 @@ public class Admin extends Account {
 
     public ArrayList<Admin> addAdmins(ArrayList<Admin> admins, ArrayList<Owner> owners) {
         String id, name = "", email, password, contact;
-        char hasAccount, continueAdding,c;
-do {
-    System.out.print("Does this Admin already have an account? (y/n): ");
-    hasAccount = Admin.cin.next().charAt(0);
-    Admin.cin.nextLine();
-
-    if (hasAccount == 'y' || hasAccount == 'Y') {
-        System.out.print("Enter their ID: ");
-        id = Admin.cin.nextLine();
-
-        for (Owner owner : owners) {
-            if (owner.getID().equals(id)) {
-
-                name = Exc.Unique("Enter their new username: ", Account.Names);
-
-                email = owner.Email;
-                contact = owner.Contact;
-                System.out.print("Enter their password: ");
-                password = Admin.cin.nextLine();
-
-                admins.add(new Admin(id, name, email, password, contact));
-                System.out.println("Admin added successfully!");
-                return admins;
-            }
-        }
-        System.out.println("No owner found with the given ID.");
-
-    } else {
+        char hasAccount, continueAdding, c;
         do {
-            id = Exc.Unique("Enter their Id: ", Account.ids);
-            email = Display.validateEmail();
-            System.out.print("Enter their Password: ");
-            password = Admin.cin.nextLine();
-            name = Exc.Unique("Enter their name: ", Account.Names);
-            System.out.print("Enter their Contact_info: ");
-            contact = Admin.cin.nextLine();
+            System.out.print("Does this Admin already have an account? (y/n): ");
+            hasAccount = Admin.cin.next().charAt(0);
+            Admin.cin.nextLine();
 
-            admins.add(new Admin(id, name, email, password, contact));
-            System.out.println("Account created successfully!");
+            if (hasAccount == 'y' || hasAccount == 'Y') {
+                System.out.print("Enter their ID: ");
+                id = Admin.cin.nextLine();
 
-            System.out.print("Do you want to create another account? (y/n): ");
-            continueAdding = Admin.cin.next().charAt(0);
-            Admin.cin.nextLine(); //  the leftover newline character.
-        } while (continueAdding == 'y' || continueAdding == 'Y');
-    }
-    out.print("Do you want continue (y/n): ");
-    c=Admin.cin.nextLine().charAt(0);
+                for (Owner owner : owners) {
+                    if (owner.getID().equals(id)) {
 
-} while (c=='Y'||c=='y');
+                        name = Exc.Unique("Enter their new username: ", Account.Names);
+
+                        email = owner.Email;
+                        contact = owner.Contact;
+                        System.out.print("Enter their password: ");
+                        password = Admin.cin.nextLine();
+
+                        admins.add(new Admin(id, name, email, password, contact));
+                        System.out.println("Admin added successfully!");
+                        return admins;
+                    }
+                }
+                System.out.println("No owner found with the given ID.");
+
+            } else {
+                do {
+                    id = Exc.Unique("Enter their Id: ", Account.ids);
+                    email = Display.validateEmail();
+                    System.out.print("Enter their Password: ");
+                    password = Admin.cin.nextLine();
+                    name = Exc.Unique("Enter their name: ", Account.Names);
+                    System.out.print("Enter their Contact_info: ");
+                    contact = Admin.cin.nextLine();
+
+                    admins.add(new Admin(id, name, email, password, contact));
+                    System.out.println("Account created successfully!");
+
+                    System.out.print("Do you want to create another account? (y/n): ");
+                    continueAdding = Admin.cin.next().charAt(0);
+                    Admin.cin.nextLine(); //  the leftover newline character.
+                } while (continueAdding == 'y' || continueAdding == 'Y');
+            }
+            out.print("Do you want continue (y/n): ");
+            c = Admin.cin.nextLine().charAt(0);
+
+        } while (c == 'Y' || c == 'y');
         return admins;
     }
 
-   public void details()
-   {
-     Scanner c;
-     char q;
-     int i=0;
-     out.println("you can show how many users include admins officers owners");
-     out.print("1- Admins\n2- Officers\n3- Users\n4- Count for all\n");
-       do {
-           c = new Scanner(System.in);
-     out.print("Enter your choice: ");
-     i = Exc.infinite(i,4,1);
-           switch (i) {
-               case 1:
-             out.println(Admin.Admincounter);
-                break;
-               case 2:
-                   out.println(TrafficOfficer.officercount);
-                   break;
-               case 3:
-                   out.println(Owner.ownerscount);
-                   break;
-               case 4:
-                   out.println(Account.Acc_counter);
+    public void details() {
+        Scanner c;
+        char q;
+        int i = 0;
+        out.println("you can show how many users include admins officers owners");
+        out.print("1- Admins\n2- Officers\n3- Users\n4- Count for all\n");
+        do {
+            c = new Scanner(System.in);
+            out.print("Enter your choice: ");
+            i = Exc.infinite(i, 4, 1);
+            switch (i) {
+                case 1:
+                    out.println(Admin.Admincounter);
+                    break;
+                case 2:
+                    out.println(TrafficOfficer.officercount);
+                    break;
+                case 3:
+                    out.println(Owner.ownerscount);
+                    break;
+                case 4:
+                    out.println(Account.Acc_counter);
 
-                   break;
-           }
-out.print("Do you want to continue (y/n): ");
-           q=c.nextLine().charAt(0);
-           if (q=='n'||q=='N')
-               return;
-       } while (true);
-   }
+                    break;
+            }
+            out.print("Do you want to continue (y/n): ");
+            q = c.nextLine().charAt(0);
+            if (q == 'n' || q == 'N')
+                return;
+        } while (true);
+    }
 
     public static void AdminPage(ArrayList<Admin> admin, int Adminindex, ArrayList<Owner> owner, ArrayList<TrafficOfficer> TrafficOfficer, ArrayList<Zone> Zone, ArrayList<Traffic_Violation> traffic_Violation) {
         out.println("========================================================================");
@@ -166,9 +165,9 @@ out.print("Do you want to continue (y/n): ");
 
             a = Exc.infinite(0, 14, 1);
             if (a >= 1 && a <= 4) {
-                for (int  j= 0 ; j < Zone.size(); j++) {
+                for (int j = 0; j < Zone.size(); j++) {
 
-                    out.println(j+1 + "- " + Zone.get(j).getName());
+                    out.println(j + 1 + "- " + Zone.get(j).getName());
                 }
                 out.print("Enter Number assigned zone: ");
                 int choice = 0;
@@ -197,7 +196,7 @@ out.print("Do you want to continue (y/n): ");
                     Traffic_Violation.View_violations(traffic_Violation);// which violation-> Traffic_Violation.(traffic_Violation)static
                     break;
                 case 7:
-                  TrafficReport.generateReportBasedOnChoice(traffic_Violation,Zone);
+                    TrafficReport.generateReportBasedOnChoice(traffic_Violation, Zone);
                     break;
                 case 8:
                     admin.get(Adminindex).addAdmins(admin, owner);
@@ -209,10 +208,10 @@ out.print("Do you want to continue (y/n): ");
                     admin.get(Adminindex).AddOfficer(TrafficOfficer, Zone);
                     break;
                 case 11:
-                   out.println(admin.get(Adminindex));
+                    out.println(admin.get(Adminindex));
                     break;
                 case 12:
-               admin.get(Adminindex).details();
+                    admin.get(Adminindex).details();
                     break;
                 case 13:
                     TrafficReport.avg(traffic_Violation);

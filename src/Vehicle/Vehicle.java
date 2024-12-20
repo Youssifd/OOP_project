@@ -79,7 +79,7 @@ public class Vehicle {
     }
 
     //       *******
-    public static void addVehicles(ArrayList<Vehicle> vehicles,String OwnerName) {
+    public static void addVehicles(ArrayList<Vehicle> vehicles, String OwnerName) {
         Scanner scanner = new Scanner(System.in);
         boolean continueInput = true;
 
@@ -88,8 +88,8 @@ public class Vehicle {
             System.out.print("Enter vehicle type: ");
             int choice = 0;
             choice = Exc.infinite(choice, 4, 1);
-           String type="";
-            switch (choice){
+            String type = "";
+            switch (choice) {
                 case 1 -> type = "Bike";
                 case 2 -> type = "Car";
                 case 3 -> type = "Truck";
@@ -100,10 +100,9 @@ public class Vehicle {
                 System.out.println("Enter license plate:");
                 licensePlate = scanner.nextLine();
 
-                if(licensePlate.isEmpty()){
+                if (licensePlate.isEmpty()) {
                     continue;
-                } else
-                if (licensePlates.contains(licensePlate)) {
+                } else if (licensePlates.contains(licensePlate)) {
                     System.out.println("This license plate is already used. Please enter a unique one.");
                 } else {
                     break;
@@ -124,18 +123,18 @@ public class Vehicle {
         }
     }
 
-    public   void PayFine (){
+    public void PayFine() {
 
         //for owner
         Scanner in = new Scanner(System.in);
-        if(TV.isEmpty()){
+        if (TV.isEmpty()) {
             System.out.println("This vehicle has no fines.");
             return;
         }
         //Show fines term
         System.out.println("Violations found:");
         Traffic_Violation.View_Details(TV);
-            char ch;
+        char ch;
         do {
             System.out.println("Enter the number of the violation you want to pay the fine for(0 for exit):");
             //check invalid term
@@ -157,7 +156,7 @@ public class Vehicle {
                 ch = in.next().charAt(0);
             }
 
-        }while (ch != 'Y' && ch != 'y');
+        } while (ch != 'Y' && ch != 'y');
     }
 }
 

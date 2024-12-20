@@ -15,9 +15,10 @@ import java.util.Scanner;
 import static java.lang.System.out;
 
 public class TrafficOfficer extends Account implements display {
-    private String assignedZone;
+    private final String assignedZone;
     public ArrayList<Traffic_Violation> violations;//list ->ArrayList
-public static int officercount=0;
+    public static int officercount = 0;
+
     public TrafficOfficer(String Id, String Name, String Email, String Password, String Contact, String assignedZone) {
         super(Id, Email, Password, Name);
 
@@ -45,7 +46,7 @@ public static int officercount=0;
         System.out.println("Violation recorded successfully by officer: " + Name);
         o.get(OwnerIndex).vehicle.get(VehicleIndex).addViolation(TV);//for add violation to owner
         System.out.println("Violation added to Vehicle with License Plate: " + o.get(OwnerIndex).vehicle.get(VehicleIndex).getLicensePlate());
-       // String Message = Notification.StandardMessage(o.get(OwnerIndex).Name, TV);
+        // String Message = Notification.StandardMessage(o.get(OwnerIndex).Name, TV);
 //        Notification.sendNotification(o.get(OwnerIndex).notifications, Message);
         o.get(OwnerIndex).sendNotification(TV);
 
@@ -157,7 +158,7 @@ public static int officercount=0;
                     officer.get(index).viewViolations(2);
                     break;
                 case 3:
-                    String Vehicle_Licence=" ", Violation_type = " ", date, whoIssued, zoneName;
+                    String Vehicle_Licence = " ", Violation_type = " ", date, whoIssued, zoneName;
                     double fine_amount = 0;
                     int ownerIndex = -1, vehicleIndex = -1, tryCounter = 1;
                     char c;

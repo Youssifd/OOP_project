@@ -10,11 +10,11 @@ import java.util.Scanner;
 public class Traffic_Violation {
     public static int TV_counter = 0;
     public static ArrayList<Traffic_Violation> tra = new ArrayList<>();
-    private String TracksViolationID;
+    private final String TracksViolationID;
     private final String Vehicle_ID;
-    private String Violation_type;
-    private String date;
-    private double fine_amount;
+    private final String Violation_type;
+    private final String date;
+    private final double fine_amount;
     public String Status; // paid or not paid
     private final String whoIssued;//"Traffic Officer";
     private final String ZoneName;
@@ -154,8 +154,8 @@ public class Traffic_Violation {
 
             }
             System.out.print("Do you want continue(y/n): ");
-            c=scan.nextLine().charAt(0);
-        } while (c=='y'||c=='Y');
+            c = scan.nextLine().charAt(0);
+        } while (c == 'y' || c == 'Y');
     }
 }
 

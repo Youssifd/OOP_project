@@ -19,7 +19,8 @@ public abstract class Account {
     public String Contact;
     public static ArrayList<String> Names = new ArrayList<>();
     public static ArrayList<String> ids = new ArrayList<>();
-public static ArrayList<String> Emails=new ArrayList<>();
+    public static ArrayList<String> Emails = new ArrayList<>();
+
     public Account(String ID, String Email, String Password, String Name) {
         this.id = ID;
         this.Email = Email;
@@ -43,8 +44,9 @@ public static ArrayList<String> Emails=new ArrayList<>();
     public String getID() {
         return id;
     }
-    public void getInfo(){
-        out.println("Your Name: "+Name +"\nYour Email: "+ Email+"\nYour Contact: "+Contact);
+
+    public void getInfo() {
+        out.println("Your Name: " + Name + "\nYour Email: " + Email + "\nYour Contact: " + Contact);
 
     }
 
@@ -52,10 +54,10 @@ public static ArrayList<String> Emails=new ArrayList<>();
         out.print("Enter your current password: ");
         String CurrentPassword;
         Scanner input;
-        do{
-            input =new Scanner(System.in);
+        do {
+            input = new Scanner(System.in);
             CurrentPassword = input.nextLine();
-            if(!CurrentPassword.equals(Password)){
+            if (!CurrentPassword.equals(Password)) {
                 out.println("Do you want to exit? (Y/N)");
                 char ch;
                 do {
@@ -65,29 +67,29 @@ public static ArrayList<String> Emails=new ArrayList<>();
                 out.println("Incorrect password! Please try again.");
             }
 
-        }while (!CurrentPassword.equals(Password));
+        } while (!CurrentPassword.equals(Password));
 
         String NewPassword;
-        int count=0;
-        do{
-            input =new Scanner(System.in);
-        out.print("Enter your new password: ");
+        int count = 0;
+        do {
+            input = new Scanner(System.in);
+            out.print("Enter your new password: ");
 
             NewPassword = input.nextLine();
-            if(NewPassword.equals(Password)){
+            if (NewPassword.equals(Password)) {
 
                 out.println("The new password is the same as the old one.");
-                if (count>2) {
-                out.println("Do you want to exit? (Y/N)");
+                if (count > 2) {
+                    out.println("Do you want to exit? (Y/N)");
 
-                char ch;
-                ch = input.next().charAt(0);
-                if (ch == 'Y' || ch == 'y')
-                    return;
-            }
+                    char ch;
+                    ch = input.next().charAt(0);
+                    if (ch == 'Y' || ch == 'y')
+                        return;
+                }
             }
             count++;
-        }while(NewPassword.equals(Password));
+        } while (NewPassword.equals(Password));
 
         Password = NewPassword;
         out.println("Password changed successfully!");

@@ -46,7 +46,7 @@ public class Zone {
         return ID;
     }
 
-    public void getInfo() {
+    public void ViewZoneInfo() {
         Scanner cin = new Scanner(System.in);
         System.out.println("Zone ID: " + ID);
         System.out.println("Zone Name: " + Name);
@@ -60,17 +60,31 @@ public class Zone {
                 traffic_light.Details();
             }
         }
-
-
     }
 
     public void addTrafficLight() {
         Traffic_Lights.addTrafficLight(traffic_lights, Location);
-        getInfo();
+        ViewZoneInfo();
     }
 
     public void removeTrafficLight() {
-        Traffic_Lights.delete(traffic_lights);
+        Scanner input = new Scanner(System.in);
+        String Location; //replace with ID
+        boolean flag = false;
+        while (!flag) {
+            System.out.print("Enter Location: ");
+            Location = input.next();
+            for (int i = 0; i < traffic_lights.size(); i++) {
+                if (traffic_lights.get(i).getLocation().equals(Location)) {
+                    flag = true;
+                    traffic_lights.remove(i);
+                    break;
+                }
+            }
+            if (!flag) {
+                System.out.println("Invalid Location");
+            }
+        }
     }
 
     public void editTrafficLight() {

@@ -46,12 +46,12 @@ public class Main {
         File_Processing.Load_Notifications(owners);
 
         //turn_on_traffic_lights
-        for(Zone zone: zones){
-            for(Traffic_Lights traffic_light: zone.traffic_lights){
+        for (Zone zone : zones) {
+            for (Traffic_Lights traffic_light : zone.traffic_lights) {
                 traffic_light.Start();
 
             }
-          }
+        }
 
         out.println("========================================================================");
         out.println("\t\t Welcome to Traffic Management System :) ");
@@ -68,23 +68,22 @@ public class Main {
                 String s = Display.Login(TrafficOfficers, Admins, owners);
 
                 if (s != null) {
-                    int index=-1;
-                    int type=-1;
+                    int index = -1;
+                    int type = -1;
                     String[] parts = s.split(",");
                     String name = parts[0];
                     try {
-                     index = Integer.parseInt(parts[1]);
-                     type = Integer.parseInt(parts[2]);
+                        index = Integer.parseInt(parts[1]);
+                        type = Integer.parseInt(parts[2]);
 
-                    }catch (NumberFormatException e){
+                    } catch (NumberFormatException e) {
                         out.println("Error: Invalid return");
                         out.println("Exiting...");
                         System.exit(0);
                     }
 
                     switch (type) {
-                        case 1 ->
-                                Admin.AdminPage(Admins, index, owners, TrafficOfficers, zones, Traffic_Violation.tra);
+                        case 1 -> Admin.AdminPage(Admins, index, owners, TrafficOfficers, zones, Traffic_Violation.tra);
                         case 2 -> TrafficOfficer.OfficerPage(TrafficOfficers, index, owners, zones);
                         case 3 -> Owner.OwnerPage(owners, index);
                         default -> out.println("Unknown role.");

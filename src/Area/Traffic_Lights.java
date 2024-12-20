@@ -174,24 +174,5 @@ public class Traffic_Lights implements Runnable {
 
     }
 
-    public static void delete(ArrayList<Traffic_Lights> trafficLightsList) {
-        String Location; //replace with ID
-        boolean flag = false;
-        while (!flag) {
-            System.out.print("Enter Location: ");
-            Location = input.next();
-            for (int i = 0; i < trafficLightsList.size(); i++) {
-                if (trafficLightsList.get(i).getLocation().equals(Location)) {
-                    flag = true;
-                    trafficLightsList.remove(i);
-                    break;
-                }
-            }
-            if (!flag) {
-                System.out.println("Invalid Location");
-            }
-        }
-    }
-
 }
 
