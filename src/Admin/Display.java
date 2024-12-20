@@ -2,8 +2,7 @@ package Admin;
 
 import Account.*;
 import Traffic_Officer.*;
-import Area.*;
-import Vehicle.*;
+
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -43,7 +42,7 @@ public class Display {
         return email;
     }
 
-    public static ArrayList<Owner> singup(ArrayList<Owner> arr) {
+    public static void singup(ArrayList<Owner> arr) {
         char c;
         do {
             String ID, Email, Password, Name, Contact_info;
@@ -65,7 +64,7 @@ public class Display {
             Admin.cin.nextLine();
         } while (c == 'y' || c == 'Y');
         out.println("Have a nice day!");
-        return arr;
+
     }
 
     public static String Login(ArrayList<TrafficOfficer> TrafficOfficers, ArrayList<Admin> Admins, ArrayList<Owner> owners) {

@@ -2,11 +2,11 @@ package Admin;
 
 import Account.*;
 
-import Area.*; // Ensure that the 'Zone' class is defined in the 'Area' package and accessible from this module.
+import Area.*;
 import Traffic_Officer.TrafficOfficer;
 import Vehicle.Traffic_Violation;
 
-import java.awt.geom.Area;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -14,7 +14,7 @@ import static java.lang.System.out;
 
 public class Admin extends Account {
     public static int Admincounter = 0;
-    //  public String Contact;
+
 
     public static Scanner cin = new Scanner(System.in);
 
@@ -47,7 +47,6 @@ public class Admin extends Account {
             int choice = 0;
             choice = Exc.infinite(choice, Zone.size(), 1);
             assignedZone = Zone.get(choice - 1).getName();
-            //String Id, String Name, String Email, String Password, String Contact, String assignedZone
             arr.add(new TrafficOfficer(Id, Name, Email, Password, Contact, assignedZone));
             out.println("Account created successfully!");
             out.print("Do you want to create another account? (y/n): ");
@@ -150,7 +149,6 @@ public class Admin extends Account {
                     break;
                 case 4:
                     out.println(Account.Acc_counter);
-
                     break;
             }
             out.print("Do you want to continue (y/n): ");
@@ -199,8 +197,8 @@ public class Admin extends Account {
                 case 5:
                     addZone(Zone);
                     break;
-                case 6://make global object of Traffic_Violation
-                    Traffic_Violation.View_violations(traffic_Violation);// which violation-> Traffic_Violation.(traffic_Violation)static
+                case 6:
+                    Traffic_Violation.View_violations(traffic_Violation);
                     break;
                 case 7:
                     TrafficReport.generateReportBasedOnChoice(traffic_Violation, Zone);
