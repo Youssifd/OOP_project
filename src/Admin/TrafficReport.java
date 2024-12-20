@@ -213,7 +213,7 @@ System.out.println("Note that this is not the exact price; it is an approximate 
                     System.out.println("6- No Helmet");
 
                     String[] types = {"Speeding", "Parking", "Running Red Light", "No License Plate", "No Registration", "No Helmet"};
-                    int[] multipliers = {100, 50, 150, 1500, 5000, 200};
+                    int[] multipliers = {300, 150, 450, 4500, 15000, 200};
 
                     System.out.print("Enter number of type: ");
                     int type = Exc.infinite(0, 6, 1);
