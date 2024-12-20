@@ -48,9 +48,6 @@ public static ArrayList<String> Emails=new ArrayList<>();
 
     }
 
-
-
-
     protected void changePass() {
         out.print("Enter your current password: ");
         String CurrentPassword;

@@ -56,10 +56,6 @@ public class Vehicle {
         return licensePlate;
     }
 
-    public String getOwner() {
-        return owner;
-    }
-
     public static boolean CheckExist(String licensePlate) {
         if (licensePlates.contains(licensePlate)) {
             return true;

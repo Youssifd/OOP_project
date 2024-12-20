@@ -69,38 +69,20 @@ public class Traffic_Violation {
         return whoIssued;
     }
 
-    public void setTracksViolationID(String tracksViolationID) {
-        TracksViolationID = tracksViolationID;
-    }
-
     public String getVehicle_ID() {
         return Vehicle_ID;
     }
-
 
     public String getViolation_type() {
         return Violation_type;
     }
 
-    public void setViolation_type(String violation_type) {
-        Violation_type = violation_type;
-    }
-
-
     public String getDate() {
         return date;
     }
 
-    public void setDate(String date) {
-        this.date = date;
-    }
-
     public double getFine_amount() {
         return fine_amount;
-    }
-
-    public void setFine_amount(double fine_amount) {
-        this.fine_amount = fine_amount;
     }
 
     public static void View_Details(ArrayList<Traffic_Violation> TV) {

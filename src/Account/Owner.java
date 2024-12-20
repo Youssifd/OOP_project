@@ -161,7 +161,7 @@ public class Owner extends Account {
         parts[3] = tv.getZoneName();
         parts[4] = tv.getViolationID();
         parts[5] = tv.getFine_amount() + "";
-        String message = Notification.StandardMessage(Name, tv);
+        String message = Notification.StandardMessage(Name, parts);
         Notification notification = new Notification(message, parts);
         notifications.add(notification);
     }
