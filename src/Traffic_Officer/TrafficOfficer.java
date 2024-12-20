@@ -54,12 +54,7 @@ public class TrafficOfficer extends Account  {
 
     public void viewViolations(int ch) {
         Scanner input = new Scanner(System.in);
-        /*  System.out.println("Enter 1 if you want view violations \nEnter 2 if you want violation by specific type  ");
-        Scanner input = new Scanner(System.in);*/
 
-       /* do {
-//            int choise =input.nextInt();
-            do {*/
         if (ch == 1) {
             if (violations.isEmpty()) {
                 System.out.println("No violations recorded yet.");
@@ -72,60 +67,65 @@ public class TrafficOfficer extends Account  {
                     System.out.println("Vehicle ID: " + tv.getVehicle_ID());
                     System.out.println("Violation Type: " + tv.getViolation_type());
                     System.out.println("Date: " + tv.getDate());
-                    System.out.println("Fine Amount: " + tv.getFine_amount());
+                    System.out.println("Fine Amount: " + tv.getFine_amount()+" $");
                     System.out.println("---------------------------------------");
                 }
                 System.out.println("==========================================================");
             }
 
         } else if (ch == 2) {
-            System.out.println("what is Violation  type");
-            String type = input.nextLine();
-            if (type == null || type.isEmpty()) {
-                System.out.println("Invalid violation type! Please enter a valid type.");
-                return;
-            }
-            System.out.println("===== Searching for Violations of Type: " + type + " =====");
+            System.out.println("Choose Violation Type\n1- Speeding\n2- Parking\n3- Running Red Light\n4- No License Plate\n5- No Registration\n");
+            System.out.println("Enter your choice: ");
+            String Violation_type = " ";
+            int choice = 0;
+            choice = Exc.infinite(choice, 5, 1);
+
+        switch (choice) {
+            case 1:
+                Violation_type = "Speeding";
+                break;
+            case 2:
+                Violation_type = "Parking";
+                break;
+            case 3:
+                Violation_type = "Running Red Light";
+                break;
+            case 4:
+                Violation_type = "No License Plate";
+
+                break;
+            case 5:
+                Violation_type = "No Registration";
+                break;
+            case 6:
+                Violation_type = "No Helmet";
+                break;
+
+        }
+
+            System.out.println("===== Searching for Violations of Type: " + Violation_type + " =====");
             boolean found = false;
 
             for (Traffic_Violation tv : violations) {
-                if (tv.getViolation_type().equalsIgnoreCase(type)) {
-//                            System.out.println(violation); //view address
-                    System.out.println("Violation found:");
+                if (tv.getViolation_type().equals(Violation_type)) {
+
                     System.out.println("TracksViolationID: " + tv.getViolationID());
                     System.out.println("Vehicle ID: " + tv.getVehicle_ID());
                     System.out.println("Violation Type: " + tv.getViolation_type());
                     System.out.println("Date: " + tv.getDate());
-                    System.out.println("Fine Amount: " + tv.getFine_amount());
+                    System.out.println("Fine Amount: " + tv.getFine_amount()+" $");
                     System.out.println("---------------------------------------");
                     found = true;
                 }
             }
 
             if (!found) {
-                System.out.println("No violations found for type: " + type);
+                System.out.println("No violations found for type: " + Violation_type);
             }
             System.out.println("==================================================");
 
         }
-                /*else {
-                    System.out.println("Invalid number ! Please enter a valid numer 1 or 2 .");
-                }
-           } while (choise == 1 || choise == 2);
-            System.out.println("Do You Want opration again y|n");
-            c = input.next().charAt(0);
-        } while (c == 'y' || c == 'Y');*/
-
-//    private int rewardPoints = 0;
-//    public void updateRewardPoints() {
-//        if (violations.size() % 10 == 0) {
-//            rewardPoints += 50;
-//            System.out.println("Congratulations " + Name + "! You Have earned 50 reward points. Total: " + rewardPoints);
-//        }
-//    }
-
     }
-
 
     public static void OfficerPage(ArrayList<TrafficOfficer> officer, int index, ArrayList<Owner> owners, ArrayList<Zone> z) {
         Scanner input = new Scanner(System.in);
