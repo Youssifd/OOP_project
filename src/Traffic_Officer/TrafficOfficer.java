@@ -14,7 +14,7 @@ import java.util.Scanner;
 
 import static java.lang.System.out;
 
-public class TrafficOfficer extends Account implements display {
+public class TrafficOfficer extends Account  {
     private final String assignedZone;
     public ArrayList<Traffic_Violation> violations;//list ->ArrayList
     public static int officercount = 0;
@@ -50,17 +50,6 @@ public class TrafficOfficer extends Account implements display {
 //        Notification.sendNotification(o.get(OwnerIndex).notifications, Message);
         o.get(OwnerIndex).sendNotification(TV);
 
-    }
-
-    @Override
-    public void displayInfo() {
-        System.out.println("================ Traffic Officer Info ================");
-        System.out.println("Traffic Officer ID: " + getID());//getid -> getID
-        System.out.println("Name: " + Name);//no getter for name
-        System.out.println("Contact Info: " + Contact);//no getter for contact
-        System.out.println("Assigned Zone: " + assignedZone);
-        System.out.println("Violations Recorded: " + violations.size());
-        System.out.println("=====================================================");
     }
 
     public void viewViolations(int ch) {
