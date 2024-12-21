@@ -2,7 +2,6 @@ package Admin;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-
 import static java.lang.System.out;
 
 public class Exc {

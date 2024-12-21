@@ -4,7 +4,6 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
-
 import Area.Zone;
 import Vehicle.Traffic_Violation;
 

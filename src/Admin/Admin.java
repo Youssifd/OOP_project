@@ -6,7 +6,6 @@ import Traffic_Officer.TrafficOfficer;
 import Vehicle.Traffic_Violation;
 import java.util.ArrayList;
 import java.util.Scanner;
-
 import static java.lang.System.out;
 
 public class Admin extends Account {
@@ -28,16 +27,13 @@ public class Admin extends Account {
         do {
             Cin = new Scanner(System.in);
             Id = Exc.Unique("Enter ID: ", Account.ids);
-
             Email = Display.validateEmail();
             out.print("Enter Password: ");
             Password = Cin.nextLine();
-
             Name = Exc.Unique("Enter Name: ", Account.Names);
             out.print("Enter Contact_info: ");
             Contact = Cin.nextLine();
             for (int i = 0; i < Zone.size(); i++) {
-
                 out.println(i+1 + "- " + Zone.get(i).getName());
             }
             out.print("Enter Number assigned zone: ");
@@ -77,28 +73,22 @@ public class Admin extends Account {
             System.out.print("Does this Admin already have an account? (y/n): ");
             hasAccount = Admin.cin.next().charAt(0);
             Admin.cin.nextLine();
-
             if (hasAccount == 'y' || hasAccount == 'Y') {
                 System.out.print("Enter their ID: ");
                 id = Admin.cin.nextLine();
-
                 for (Owner owner : owners) {
                     if (owner.getID().equals(id)) {
-
                         name = Exc.Unique("Enter their new username: ", Account.Names);
-
                         email = owner.Email;
                         contact = owner.Contact;
                         System.out.print("Enter their password: ");
                         password = Admin.cin.nextLine();
-
                         admins.add(new Admin(id, name, email, password, contact));
                         System.out.println("Admin added successfully!");
                         return admins;
                     }
                 }
                 System.out.println("No owner found with the given ID.");
-
             } else {
                 do {
                     id = Exc.Unique("Enter their Id: ", Account.ids);
@@ -164,7 +154,6 @@ public class Admin extends Account {
             out.println("......");
             out.print("Enter your choice: ");
             int a = 0, zoneindex = 0;
-
             a = Exc.infinite(0, 14, 1);
             if (a >= 1 && a <= 4) {
                 for (int j = 0; j < Zone.size(); j++) {
@@ -175,9 +164,7 @@ public class Admin extends Account {
                 int choice = 0;
                 choice = Exc.infinite(choice, Zone.size(), 1);
                 zoneindex = choice - 1;
-
             }
-
             switch (a) {
                 case 1:
                     Zone.get(zoneindex).ViewZoneInfo();
