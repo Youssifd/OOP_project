@@ -1,12 +1,9 @@
 package Admin;
 
 import Account.*;
-
 import Area.*;
 import Traffic_Officer.TrafficOfficer;
 import Vehicle.Traffic_Violation;
-
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -39,9 +36,9 @@ public class Admin extends Account {
             Name = Exc.Unique("Enter Name: ", Account.Names);
             out.print("Enter Contact_info: ");
             Contact = Cin.nextLine();
-            for (int i = 0, j; i < Zone.size(); i++) {
-                j = i + 1;
-                out.println(j + "- " + Zone.get(i).getName());
+            for (int i = 0; i < Zone.size(); i++) {
+
+                out.println(i+1 + "- " + Zone.get(i).getName());
             }
             out.print("Enter Number assigned zone: ");
             int choice = 0;

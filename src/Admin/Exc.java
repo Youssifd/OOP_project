@@ -11,7 +11,6 @@ public class Exc {
         Scanner cin = new Scanner(System.in);
         while (true) {
             input = cin.nextLine();
-
             try {
                 num = Integer.parseInt(input);
                 if (num >= min && num <= max) {
@@ -26,7 +25,6 @@ public class Exc {
                         "Please enter a valid number: ");
             }
         }
-
     }
 
     public static String Unique(String prompt, ArrayList<String> existingValues) {
@@ -34,19 +32,15 @@ public class Exc {
         System.out.print(prompt);
         while (true) {
             input = Admin.cin.nextLine();
-
-
-
             if (input.contains(",")) {
                 System.out.println("Error: The value cannot contain a comma. Please try again.");
                 System.out.print("Enter new value: ");
-
-            } else {
+            }
+            else {
                 if (existingValues.contains(input)) {
                     System.out.println("Error: This value is already used. Please try again.");
                     System.out.print("Enter new value: ");
                 }
-
                 else {
                     existingValues.add(input);
                     break;
@@ -54,9 +48,6 @@ public class Exc {
             }
         }
         return input;
-
-
-
     }
 
     public static String vald(String input) {
@@ -64,14 +55,12 @@ public class Exc {
             if (input.contains(",")) {
                 System.out.println("Error: The value cannot contain a comma. Please try again.");
                 System.out.print("Enter new value: ");
-                input = Admin.cin.nextLine(); // Assuming Admin.cin is a valid Scanner object
+                input = Admin.cin.nextLine();
             } else {
                 return input;
             }
         }
     }
-
-
 }
 
 
