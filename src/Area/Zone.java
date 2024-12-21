@@ -77,6 +77,7 @@ public class Zone {
             for (int i = 0; i < traffic_lights.size(); i++) {
                 if (traffic_lights.get(i).getLocation().equals(Location)) {
                     flag = true;
+                    traffic_lights.get(i).Stop();
                     traffic_lights.remove(i);
                     break;
                 }

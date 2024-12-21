@@ -74,11 +74,11 @@ public class TrafficOfficer extends Account  {
             }
 
         } else if (ch == 2) {
-            System.out.println("Choose Violation Type\n1- Speeding\n2- Parking\n3- Running Red Light\n4- No License Plate\n5- No Registration\n");
+            System.out.println("Choose Violation Type\n1- Speeding\n2- Parking\n3- Running Red Light\n4- No License Plate\n5- No Registration\n6- No Helmet");
             System.out.println("Enter your choice: ");
             String Violation_type = " ";
             int choice = 0;
-            choice = Exc.infinite(choice, 5, 1);
+            choice = Exc.infinite(choice, 6, 1);
 
         switch (choice) {
             case 1:
