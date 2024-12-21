@@ -104,7 +104,7 @@ public class Traffic_Violation {
         Scanner scan;
         char c;
         String by;
-        System.out.println("Do you want view violations by Zone or vechicle?\n1-Zone\n2-Vehicle");
+        System.out.println("Do you want view violations by Zone or vehicle?\n1-Zone\n2-Vehicle");
         do {
             System.out.print("Enter your choice: ");
             scan = new Scanner(System.in);
@@ -113,7 +113,7 @@ public class Traffic_Violation {
 
             choice = Exc.infinite(choice, 2, 1);
             if (choice == 2) {
-                System.out.println("Enter Vehicle ID: ");
+                System.out.println("Enter license Plate: ");
                 by = Admin.cin.next();
 
                 for (Traffic_Violation trafficViolation : traffic_Violation) {
@@ -134,7 +134,7 @@ public class Traffic_Violation {
 
             } else {
 
-                System.out.print("Enter Zone: ");
+                System.out.print("Enter Zone name: ");
                 by = Admin.cin.next();
                 for (Traffic_Violation trafficViolation : traffic_Violation) {
                     if (trafficViolation.getZoneName().equals(by)) {

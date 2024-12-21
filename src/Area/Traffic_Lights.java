@@ -148,7 +148,7 @@ public class Traffic_Lights implements Runnable {
     }
 
     public static void addTrafficLight(ArrayList<Traffic_Lights> Traffic_Lights, String location) {
-        
+
         int temp = Traffic_Lights.size() + 1;
         String Location = location + "-" + temp;
         String Status = "";

@@ -48,18 +48,6 @@ public class Exc {
         }
         return input;
     }
-
-    public static String vald(String input) {
-        while (true) {
-            if (input.contains(",")) {
-                System.out.println("Error: The value cannot contain a comma. Please try again.");
-                System.out.print("Enter new value: ");
-                input = Admin.cin.nextLine();
-            } else {
-                return input;
-            }
-        }
-    }
 }
 
 
