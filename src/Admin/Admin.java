@@ -30,9 +30,11 @@ public class Admin extends Account {
             Email = Display.validateEmail();
             out.print("Enter Password: ");
             Password = Cin.nextLine();
+            Password = Exc.valid(Password);
             Name = Exc.Unique("Enter Name: ", Account.Names);
             out.print("Enter Contact_info: ");
             Contact = Cin.nextLine();
+            Contact = Exc.valid(Contact);
             for (int i = 0; i < Zone.size(); i++) {
                 out.println(i+1 + "- " + Zone.get(i).getName());
             }
@@ -56,8 +58,10 @@ public class Admin extends Account {
             s=new Scanner(System.in);
             out.print("Enter the name of the zone: ");
             String name = cin.nextLine();
+            name = Exc.valid(name);
             out.print("Enter the Location of the zone: ");
             String Loc = cin.nextLine();
+            Loc = Exc.valid(Loc);
             Zone zone = new Zone(name, Loc);
             zones.add(zone);
             out.println("Zone ID: " + zone.getID() + ",added successfully!");
@@ -95,10 +99,11 @@ public class Admin extends Account {
                     email = Display.validateEmail();
                     System.out.print("Enter their Password: ");
                     password = Admin.cin.nextLine();
+                    password = Exc.valid(password);
                     name = Exc.Unique("Enter their name: ", Account.Names);
                     System.out.print("Enter their Contact_info: ");
                     contact = Admin.cin.nextLine();
-
+                    contact = Exc.valid(contact);
                     admins.add(new Admin(id, name, email, password, contact));
                     System.out.println("Account created successfully!");
 

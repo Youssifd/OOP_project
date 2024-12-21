@@ -6,9 +6,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import Area.Zone;
 import Vehicle.Traffic_Violation;
-import Vehicle.Vehicle;
 
-import static java.lang.System.out;
 
 public class TrafficReport {
     public static int[] arr = new int[6];

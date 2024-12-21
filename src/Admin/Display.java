@@ -35,9 +35,11 @@ public class Display {
             Email = validateEmail();
             out.print("Enter your Password: ");
             Password = Admin.cin.nextLine();
+            Password = Exc.valid(Password);
             Name = Exc.Unique("Enter your Name: ", Account.Names);
             out.print("Enter your Contact_info: ");
             Contact_info = Admin.cin.nextLine();
+            Contact_info = Exc.valid(Contact_info);
             arr.add(new Owner(ID, Name, Email, Password, Contact_info));
             out.println("Account created successfully!");
             out.print("Do you want to create another account? (y/n): ");

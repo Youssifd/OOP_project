@@ -48,6 +48,23 @@ public class Exc {
         }
         return input;
     }
+    public static String valid(String s)
+    {
+        Scanner scan;
+        while (true)
+        {
+            scan=new Scanner(System.in);
+            if (s.contains(",")) {
+                System.out.println("Error: The value cannot contain a comma. Please try again.");
+                System.out.print("Enter new value: ");
+                s=scan.nextLine();
+            }
+            else
+                return s;
+        }
+
+
+    }
 }
 
 

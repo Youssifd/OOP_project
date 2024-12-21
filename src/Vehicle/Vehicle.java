@@ -99,6 +99,7 @@ public class Vehicle {
             while (true) {
                 System.out.println("Enter license plate:");
                 licensePlate = scanner.nextLine();
+                licensePlate = Exc.valid(licensePlate);
 
                 if (licensePlate.isEmpty()) {
                     continue;
