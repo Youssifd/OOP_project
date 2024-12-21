@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import Area.Zone;
 import Vehicle.Traffic_Violation;
+import Vehicle.Vehicle;
+
+import static java.lang.System.out;
 
 public class TrafficReport {
     public static int[] arr = new int[6];
@@ -13,8 +16,6 @@ public class TrafficReport {
     public static void generateReportBasedOnChoice(ArrayList<Traffic_Violation> trafficViolations, ArrayList<Zone> zones) {
         char c ;
         do {
-            for (int i=0;i<arr.length;i++)
-                arr[i]=0;
             z(trafficViolations);
             System.out.println("1. High-Density Zones Report based on Time");
             System.out.println("2. Most Violated Zone");
@@ -32,7 +33,6 @@ public class TrafficReport {
                 case 3:
                     generateM(trafficViolations);
                     break;
-
             }
             System.out.print("Do you want to continue generate report (y/n): ");
             c = Admin.cin.next().charAt(0);
@@ -98,7 +98,6 @@ public class TrafficReport {
     public static void generateM(ArrayList<Traffic_Violation> trafficViolations) {
         DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
         String reportTime = LocalTime.now().format(timeFormatter);
-
         System.out.println("\nFrequent Violations Report: " + trafficViolations.size());
         System.out.println("Speeding: " + arr[0]);
         System.out.println("Parking: " + arr[1]);
@@ -118,8 +117,6 @@ public class TrafficReport {
         System.out.println("1- for all\n2- for each type\n3- specific type");
         do {
             x=0;
-            for (int i=0;i<arr.length;i++)
-                arr[i]=0;
         z(trafficViolations);
         x += arr[0] * 3 * 100;
         x += arr[1] * 3 * 50;
@@ -196,7 +193,12 @@ public class TrafficReport {
         } while (p == 'y' || p == 'Y');
     }
 
+
+
+
     public static void z(ArrayList<Traffic_Violation> trafficViolations) {
+        for (int i=0;i<arr.length;i++)
+            arr[i]=0;
         for (int i = 0; i < trafficViolations.size(); i++) {
             if (trafficViolations.get(i).getViolation_type().equals("Speeding"))
                 arr[0]++;

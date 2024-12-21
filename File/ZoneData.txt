@@ -3,7 +3,7 @@ TL-01,Location1-1,Green,20,25,5,20
 TL-07,Location1-2,Green,20,25,5,20
 TL-08,Location1-3,Green,20,25,5,20
 
-Z-002,Zone2,Location2,5,3
+Z-002,Zone2,Location2,7,3
 TL-02,Location2-1,Green,20,25,5,20
 TL-04,Location2-2,Green,20,25,5,20
 TL-06,Location2-3,Green,20,25,5,20
